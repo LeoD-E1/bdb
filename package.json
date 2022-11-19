@@ -1,0 +1,32 @@
+{
+	"name": "pizza-pos",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"test": "vitest",
+		"build": "vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"prop-types": "^15.8.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@testing-library/react": "^13.4.0",
+		"@types/react": "^18.0.24",
+		"@types/react-dom": "^18.0.8",
+		"@vitejs/plugin-react": "^2.2.0",
+		"eslint": "^8.0.1",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-config-standard": "^17.0.0",
+		"eslint-plugin-import": "^2.25.2",
+		"eslint-plugin-n": "^15.0.0",
+		"eslint-plugin-promise": "^6.0.0",
+		"eslint-plugin-react": "^7.31.10",
+		"vite": "^3.2.3",
+		"vitest": "^0.25.2"
+	}
+}
