@@ -10,6 +10,7 @@ import 'swiper/css';
 const Hero = ({ data }) => {
 	return (
 		<Swiper
+			className='h-[100vh] w-full'
 			spaceBetween={50}
 			slidesPerView={1}
 			effect={'fade'}
@@ -27,7 +28,11 @@ const Hero = ({ data }) => {
 		>
 			{data.map(slide => (
 				<SwiperSlide key={slide.id}>
-					<img src={slide.url} alt={slide.title} />
+					<img
+						src={slide.url}
+						alt={slide.title}
+						className='w-full h-full object-cover'
+					/>
 				</SwiperSlide>
 			))}
 		</Swiper>

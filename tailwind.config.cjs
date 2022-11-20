@@ -15,6 +15,7 @@ module.exports = {
 			orange: '#ff7849',
 			green: '#13ce66',
 			yellow: '#ffc82c',
+			white: '#fff',
 			'gray-dark': '#273444',
 			gray: '#8492a6',
 			'gray-light': '#d3dce6',
@@ -22,6 +23,7 @@ module.exports = {
 		fontFamily: {
 			sans: ['Graphik', 'sans-serif'],
 			serif: ['Merriweather', 'serif'],
+			kanit: ['Kanit', 'serif'],
 		},
 		extend: {
 			spacing: {
