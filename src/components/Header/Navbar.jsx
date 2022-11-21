@@ -1,4 +1,29 @@
+import { useState } from 'react';
+
 const Navbar = () => {
+	const [links] = useState([
+		{
+			id: '0',
+			title: 'Home',
+			url: '/home',
+		},
+		{
+			id: '1',
+			title: 'Nosotros',
+			url: '/nosotros',
+		},
+		{
+			id: '2',
+			title: 'Menu',
+			url: '/menu',
+		},
+		{
+			id: '3',
+			title: 'Contacto',
+			url: '/contacto',
+		},
+	]);
+
 	return (
 		<>
 			<header className='z-10 fixed w-full bg-white'>
@@ -49,24 +74,18 @@ const Navbar = () => {
 							<h1 className='text-3xl'>Logo</h1>
 						</a>
 					</div>
-					<nav className='hidden items-center space-x-2 text-sm font-medium text-gray-800 md:flex'>
-						<a href='#' className=' p-3 transition hover:bg-gray-100'>
-							Features
-						</a>
-						<a href='#' className=' p-3 transition hover:bg-gray-100'>
-							Pricing
-						</a>
-						<a href='#' className=' p-3 transition hover:bg-gray-100'>
-							About
-						</a>
-						<a href='#' className=' p-3 transition hover:bg-gray-100'>
-							Changelog
-						</a>
-						<a href='#' className=' p-3 transition hover:bg-gray-100'>
-							Blog
-						</a>
+					<nav className='hidden items-center space-x-2 text-md font-medium text-gray-800 md:flex'>
+						{links.map(link => (
+							<a
+								key={link.id}
+								href={link.url}
+								className='p-3 transition hover:bg-gray-100'
+							>
+								{link.title}
+							</a>
+						))}
 					</nav>
-					<nav className='flex items-center space-x-1 text-sm font-medium text-gray-800'>
+					<nav className='flex items-center space-x-1 text-md font-medium text-gray-800'>
 						<a href='#' className=' p-3 transition hover:bg-gray-100'>
 							Login
 						</a>

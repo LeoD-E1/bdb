@@ -7,7 +7,7 @@ import { Pagination, Autoplay, EffectFade } from 'swiper';
 
 import 'swiper/css';
 
-const Hero = ({ data }) => {
+const Slider = ({ data }) => {
 	return (
 		<Swiper
 			className='h-[100vh] w-full'
@@ -28,19 +28,29 @@ const Hero = ({ data }) => {
 		>
 			{data.map(slide => (
 				<SwiperSlide key={slide.id}>
-					<img
-						src={slide.url}
-						alt={slide.title}
-						className='w-full h-full object-cover'
-					/>
+					<div
+						className='w-full h-full'
+						style={{
+							backgroundImage: `url(${slide.url})`,
+							backgroundAttachment: 'fixed',
+							backgroundRepeat: 'no-repeat',
+							backgroundOrigin: 'center',
+							backgroundSize: 'cover',
+							backgroundPosition: '100% 50%',
+						}}
+					>
+						<div className='w-full h-full opacity-90 bg-dark-gray flex justify-center items-center'>
+							<h1>{slide.title}</h1>
+						</div>
+					</div>
 				</SwiperSlide>
 			))}
 		</Swiper>
 	);
 };
 
-Hero.propTypes = {
+Slider.propTypes = {
 	data: PropTypes.array,
 };
 
-export default Hero;
+export default Slider;

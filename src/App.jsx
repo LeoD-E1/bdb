@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Hero from './components/Content/Hero';
+import Slider from './components/Content/Slider';
 import Navbar from './components/Header/Navbar';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
 	return (
 		<div className='App'>
 			<Navbar />
-			<Hero data={photos} />
+			<Slider data={photos} />
 		</div>
 	);
 }
