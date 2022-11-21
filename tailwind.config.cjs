@@ -20,13 +20,18 @@ module.exports = {
 			gray: '#8492a6',
 			'gray-light': '#d3dce6',
 			'dark-gray': '#1F2731',
+			'middle-gray': '#596570',
 		},
 		fontFamily: {
 			sans: ['Graphik', 'sans-serif'],
 			serif: ['Merriweather', 'serif'],
 			kanit: ['Kanit', 'serif'],
+			marker: ['Marker', 'serif'],
 		},
 		extend: {
+			backgroundImage: {
+				chairs: "url('./src/assets/images/about.jpg')",
+			},
 			spacing: {
 				128: '32rem',
 				144: '36rem',

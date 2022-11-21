@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Slider from './components/Content/Slider';
+import Welcome from './components/Content/Welcome';
 import Navbar from './components/Header/Navbar';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 		<div className='App'>
 			<Navbar />
 			<Slider data={photos} />
+			<Welcome />
 		</div>
 	);
 }

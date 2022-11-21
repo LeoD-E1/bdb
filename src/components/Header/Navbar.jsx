@@ -89,7 +89,7 @@ const Navbar = () => {
 						<a href='#' className=' p-3 transition hover:bg-gray-100'>
 							Login
 						</a>
-						<a href='#' className='p-3 text-white transition hover:bg-pink'>
+						<a href='#' className='p-3 transition'>
 							Sign Up
 						</a>
 					</nav>

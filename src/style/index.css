@@ -9,8 +9,27 @@
   font-size: normal;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  @apply font-kanit;
+@font-face {
+  font-family: 'Marker';
+  src: url(/fonts/Permanent_Marker/PermanentMarker-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-size: normal;
+}
+
+@layer base {
+  p, h1, h2, h3, h4, h5, h6, span{
+    color: theme('colors.middle-gray');
+  }
+}
+
+@layer components {
+  .layout-container {
+    max-width: theme('screens.xl');
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 20px;
+    padding-left: 20px;
+    width: 100%;
+    position: relative;
+  }
 }
