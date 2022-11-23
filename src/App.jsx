@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import CardSlider from './components/Content/CardSlider';
 import Slider from './components/Content/Slider';
 import Welcome from './components/Content/Welcome';
 import Navbar from './components/Header/Navbar';
@@ -24,6 +25,7 @@ function App() {
 			<Navbar />
 			<Slider data={photos} />
 			<Welcome />
+			<CardSlider data={photos} />
 		</div>
 	);
 }

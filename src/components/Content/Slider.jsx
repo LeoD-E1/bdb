@@ -53,7 +53,7 @@ const Slider = ({ data }) => {
 							</p>
 							<br />
 							<button className='px-7 py-3 bg-orange rounded-lg text-white'>
-								Pedir
+								Pedir ya!
 							</button>
 						</div>
 					</div>

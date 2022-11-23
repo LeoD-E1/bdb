@@ -16,6 +16,10 @@ const Welcome = () => {
 								placeat explicabo eaque consequuntur quo unde laudantium rem
 								asperiores minus quae? Fuga, qui praesentium!
 							</p>
+							<br />
+							<button className='px-7 py-3 bg-orange rounded-lg text-white'>
+								CTA
+							</button>
 						</div>
 					</div>
 				</div>
