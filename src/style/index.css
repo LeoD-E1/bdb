@@ -32,4 +32,17 @@
     width: 100%;
     position: relative;
   }
+
+  .card {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card .inner-card {
+    display: none;
+  }
+
+  .card:hover .inner-card {
+    display: block;
+  }
 }

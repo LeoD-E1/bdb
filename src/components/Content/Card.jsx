@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 
 const Card = ({ item }) => {
-	console.log('🚀 ~ file: Card.jsx ~ line 4 ~ Card ~ item', item);
 	return (
 		<div
-			className='h-full w-full rounded-xl shadow-xl hover:'
+			className='card rounded-xl shadow-xl hover:cursor-pointer'
 			style={{
 				backgroundImage: `url(${item.url})`,
 				backgroundAttachment: 'fixed',
@@ -14,9 +13,9 @@ const Card = ({ item }) => {
 				backgroundPosition: '100% 50%',
 			}}
 		>
-			<div className='hidden h-full w-full bg-orange hover:opacity-90 hover:bg-dark-gray'>
-				<h1>{item.title}</h1>
-				<p>
+			<div className='inner-card h-full w-full hover:opacity-60 hover:bg-black rounded-xl p-10'>
+				<h1 className='text-2xl text-white py-3'>{item.title}</h1>
+				<p className='text-white text-lg'>
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam,
 					laudantium atque vero blanditiis delectus porro sunt dignissimos?
 					Officia esse, vero repudiandae ex ipsa sapiente itaque! Provident
