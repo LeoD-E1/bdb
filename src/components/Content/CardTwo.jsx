@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const CardTwo = ({ item }) => {
 	return (
-		<div className='wrapper bg-gray-400 antialiased text-gray-900 my-5'>
+		<div className='bg-gray-400 antialiased text-gray-900 my-5 max-w-lg'>
 			<div>
 				<img
 					src={item.url}

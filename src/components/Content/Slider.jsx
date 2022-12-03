@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 const Slider = ({ data }) => {
 	return (
 		<Swiper
-			className='h-[100vh] w-full'
+			className='h-[70vh] w-full'
 			spaceBetween={50}
 			slidesPerView={1}
 			effect={'fade'}

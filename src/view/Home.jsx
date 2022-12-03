@@ -49,7 +49,7 @@ const Home = () => {
 					<Slider data={photos} />
 					{/* <Welcome /> */}
 					<CardSlider data={photos} title='Nuestra recomendacion' />
-					<Offers data={photos} title='Promos mas vendidas' />
+					<Offers data={photos} title='Promos mas vendidas' stop={6} />
 					<Footer />
 				</>
 			)}
