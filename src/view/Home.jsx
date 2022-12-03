@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import CardSlider from '../components/Content/CardSlider';
+import Offers from '../components/Content/Offers';
 import Slider from '../components/Content/Slider';
-import Welcome from '../components/Content/Welcome';
+// import Welcome from '../components/Content/Welcome';
 import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Header/Navbar';
 
@@ -46,8 +47,9 @@ const Home = () => {
 				<>
 					<Navbar />
 					<Slider data={photos} />
-					<Welcome />
+					{/* <Welcome /> */}
 					<CardSlider data={photos} title='Nuestra recomendacion' />
+					<Offers data={photos} title='Promos mas vendidas' />
 					<Footer />
 				</>
 			)}

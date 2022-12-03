@@ -2,10 +2,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import PropTypes from 'prop-types';
 import 'swiper/css/pagination';
 
-import { Pagination, EffectCoverflow } from 'swiper';
+import { Pagination, EffectCoverflow, Navigation } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
+import 'swiper/css/navigation';
+
 import Card from './Card';
 
 const CardSlider = ({ data, title }) => {
@@ -20,11 +22,25 @@ const CardSlider = ({ data, title }) => {
 					spaceBetween={30}
 					slidesPerView={3}
 					effect={'coverflow'}
+					navigation={true}
 					loop={true}
+					breakpoints={{
+						0: {
+							slidesPerView: 1,
+						},
+
+						767: {
+							slidesPerView: 2,
+						},
+
+						991: {
+							slidesPerView: 3,
+						},
+					}}
 					pagination={{
 						dynamicBullets: true,
 					}}
-					modules={[Pagination, EffectCoverflow]}
+					modules={[Navigation, Pagination, EffectCoverflow]}
 					onSlideChange={() => console.log('slide change')}
 					onSwiper={swiper => console.log(swiper)}
 				>

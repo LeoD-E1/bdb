@@ -43,6 +43,8 @@
   }
 
   .card:hover .inner-card {
-    display: block;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
   }
 }

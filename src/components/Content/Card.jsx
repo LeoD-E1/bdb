@@ -21,6 +21,7 @@ const Card = ({ item }) => {
 					Officia esse, vero repudiandae ex ipsa sapiente itaque! Provident
 					totam hic explicabo animi!
 				</p>
+				<h2 className='text-2xl'>$1299</h2>
 			</div>
 		</div>
 	);
