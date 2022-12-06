@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Offers = ({ data, title, stop }) => {
 	return (
-		<div className='layout-container'>
+		<div className='layout-container py-3'>
 			{title && (
 				<h2 className='text-3xl font-marker text-black mt-10'> {title} </h2>
 			)}
