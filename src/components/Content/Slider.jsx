@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 const Slider = ({ data }) => {
 	return (
 		<Swiper
-			className='h-[70vh] w-full'
+			className='h-[100vh] w-full'
 			spaceBetween={50}
 			slidesPerView={1}
 			effect={'fade'}
@@ -45,14 +45,6 @@ const Slider = ({ data }) => {
 							<h1 className='text-orange text-6xl font-marker'>
 								{slide.title.toUpperCase()}
 							</h1>
-							<br />
-							<p className='text-white text-2xl'>
-								{' '}
-								Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque,
-								eum commodi dignissimos pariatur perferendis cumque iusto harum
-								saepe quas voluptatibus illo asperiores reiciendis molestias
-								provident mollitia vel corporis placeat fugiat.
-							</p>
 							<br />
 							<button className='px-7 py-3 bg-orange rounded-lg text-white'>
 								Pedir ya!

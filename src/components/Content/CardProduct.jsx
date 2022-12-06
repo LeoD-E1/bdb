@@ -1,26 +1,21 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const CardTwo = ({ item }) => {
 	return (
 		<div className='bg-gray-400 antialiased text-gray-900 my-5 max-w-lg'>
 			<div>
-				<img
-					src={item.url}
-					alt=' random imgee'
-					className='w-full object-cover object-center rounded-lg shadow-md'
-				/>
+				<a href='#'>
+					<img
+						src={item.url}
+						alt=' random imgee'
+						className='w-full object-cover object-center rounded-lg shadow-md'
+					/>
+				</a>
 
-				<div className='relative px-4 -mt-16  '>
+				<div className='relative px-4 -mt-10  '>
 					<div className='bg-white p-6 rounded-lg shadow-lg'>
-						<div className='flex items-baseline'>
-							<span className='bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full  uppercase font-semibold tracking-wide'>
-								New
-							</span>
-							<div className='ml-2 text-gray-600 uppercase text-xs font-semibold tracking-wider'>
-								2 baths &bull; 3 rooms
-							</div>
-						</div>
-
 						<h4 className='mt-1 text-xl font-semibold uppercase leading-tight truncate'>
 							{item.title}
 						</h4>
@@ -36,6 +31,9 @@ const CardTwo = ({ item }) => {
 							<span className='text-sm text-gray-600'>
 								(based on 234 ratings)
 							</span>
+							<button>
+								<FontAwesomeIcon icon={faEnvelope} />
+							</button>
 						</div>
 					</div>
 				</div>

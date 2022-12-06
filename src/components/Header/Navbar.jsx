@@ -26,7 +26,7 @@ const Navbar = () => {
 
 	return (
 		<>
-			<header className='z-10 fixed w-full bg-white'>
+			<header className='z-10 w-full bg-white'>
 				<div className='mx-auto flex max-w-7xl items-center justify-between p-4'>
 					<div className='flex items-center space-x-2'>
 						<button className='flex appearance-none p-1 text-gray-500 md:hidden'>
