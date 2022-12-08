@@ -9,6 +9,7 @@ module.exports = {
 			xl: '1440px',
 		},
 		colors: {
+			transparent: 'transparent',
 			blue: '#1fb6ff',
 			black: '#000',
 			purple: '#7e5bef',
@@ -27,6 +28,7 @@ module.exports = {
 			sans: ['Graphik', 'sans-serif'],
 			serif: ['Merriweather', 'serif'],
 			kanit: ['Kanit', 'serif'],
+			kanitExtraBold: ['Kanit-ExtraBold', 'serif'],
 			marker: ['Marker', 'serif'],
 		},
 		extend: {

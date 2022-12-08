@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
 
-import { Pagination, Autoplay, EffectFade, Navigation } from 'swiper';
+import { Pagination, Autoplay, EffectFade } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -15,7 +15,6 @@ const Slider = ({ data }) => {
 			spaceBetween={50}
 			slidesPerView={1}
 			effect={'fade'}
-			navigation={true}
 			loop={true}
 			autoplay={{
 				delay: 5000,
@@ -24,9 +23,7 @@ const Slider = ({ data }) => {
 			pagination={{
 				dynamicBullets: true,
 			}}
-			modules={[Navigation, Pagination, EffectFade, Autoplay]}
-			onSlideChange={() => console.log('slide change')}
-			onSwiper={swiper => console.log(swiper)}
+			modules={[Pagination, EffectFade, Autoplay]}
 		>
 			{data.map(slide => (
 				<SwiperSlide

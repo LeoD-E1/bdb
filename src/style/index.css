@@ -10,11 +10,20 @@
 }
 
 @font-face {
+  font-family: 'Kanit-ExtraBold';
+  src: url(/fonts/Kanit/Kanit-ExtraBold.ttf) format('truetype');
+  font-weight: normal;
+  font-size: normal;
+}
+
+@font-face {
   font-family: 'Marker';
   src: url(/fonts/Permanent_Marker/PermanentMarker-Regular.ttf) format('truetype');
   font-weight: normal;
   font-size: normal;
 }
+
+
 
 @layer base {
   p, h1, h2, h3, h4, h5, h6, span{

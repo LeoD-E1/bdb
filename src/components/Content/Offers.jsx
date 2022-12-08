@@ -16,7 +16,7 @@ const Offers = ({ data, title, stop = 8 }) => {
 				<div className='w-100 flex justify-center items-center'>
 					<button className='px-7 py-3 bg-orange rounded-lg text-white'>
 						{' '}
-						mas promos! 3
+						mas promos!
 					</button>
 				</div>
 			)}

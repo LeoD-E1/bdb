@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import logo from '../../../public/favicon.png';
 
 const Navbar = () => {
 	const [links] = useState([
@@ -26,54 +27,11 @@ const Navbar = () => {
 
 	return (
 		<>
-			<header className='z-10 w-full bg-white'>
+			<header className='z-10 absolute w-full bg-transparent text-white font-kanitExtraBold font- text-xl'>
 				<div className='mx-auto flex max-w-7xl items-center justify-between p-4'>
-					<div className='flex items-center space-x-2'>
-						<button className='flex appearance-none p-1 text-gray-500 md:hidden'>
-							<svg
-								className='h-6 w-6'
-								fill='currentcolor'
-								viewBox='0 0 256 256'
-							>
-								<line
-									x1='40'
-									y1='128'
-									x2='216'
-									y2='128'
-									fill='none'
-									stroke='currentcolor'
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth='24'
-								></line>
-								<line
-									x1='40'
-									y1='64'
-									x2='216'
-									y2='64'
-									fill='none'
-									stroke='currentcolor'
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth='24'
-								></line>
-								<line
-									x1='40'
-									y1='192'
-									x2='216'
-									y2='192'
-									fill='none'
-									stroke='currentcolor'
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth='24'
-								></line>
-							</svg>
-						</button>
-						<a href='#'>
-							<h1 className='text-3xl'>Logo</h1>
-						</a>
-					</div>
+					<a href='#'>
+						<h1 className='text-3xl'>Logo</h1>
+					</a>
 					<nav className='hidden items-center space-x-2 text-md font-medium text-gray-800 md:flex'>
 						{links.map(link => (
 							<a
@@ -85,7 +43,7 @@ const Navbar = () => {
 							</a>
 						))}
 					</nav>
-					<nav className='flex items-center space-x-1 text-md font-medium text-gray-800'>
+					<nav className='hidden md:flex items-center space-x-1 text-md font-medium text-gray-800'>
 						<a href='#' className=' p-3 transition hover:bg-gray-100'>
 							Login
 						</a>
@@ -93,6 +51,11 @@ const Navbar = () => {
 							Sign Up
 						</a>
 					</nav>
+					<div className='flex items-center space-x-2'>
+						<button className='flex appearance-none p-1 text-gray-500 md:hidden'>
+							menu <img src={logo} alt='pizza' style={{ width: 25 }} />
+						</button>
+					</div>
 				</div>
 			</header>
 		</>

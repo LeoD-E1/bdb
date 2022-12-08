@@ -3,14 +3,9 @@ import PropTypes from 'prop-types';
 const Card = ({ item }) => {
 	return (
 		<div
-			className='card rounded-xl shadow-xl hover:cursor-pointer'
+			className='card rounded-xl shadow-xl bg-cover hover:cursor-pointer'
 			style={{
 				backgroundImage: `url(${item.url})`,
-				backgroundAttachment: 'fixed',
-				backgroundRepeat: 'no-repeat',
-				backgroundOrigin: 'center',
-				backgroundSize: 'cover',
-				backgroundPosition: '100% 50%',
 			}}
 		>
 			<div className='inner-card h-full w-full hover:opacity-60 hover:bg-black rounded-xl p-10'>

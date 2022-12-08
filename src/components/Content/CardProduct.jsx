@@ -9,12 +9,12 @@ const CardTwo = ({ item }) => {
 				<a href='#'>
 					<img
 						src={item.url}
-						alt=' random imgee'
+						alt='random imgee'
 						className='w-full object-cover object-center rounded-lg shadow-md'
 					/>
 				</a>
 
-				<div className='relative px-4 -mt-10  '>
+				<div className='relative px-2 -mt-10'>
 					<div className='bg-white p-6 rounded-lg shadow-lg'>
 						<h4 className='mt-1 text-xl font-semibold uppercase leading-tight truncate'>
 							{item.title}

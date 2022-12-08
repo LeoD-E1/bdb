@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import PropTypes from 'prop-types';
 import 'swiper/css/pagination';
 
-import { Pagination, EffectCoverflow, Navigation } from 'swiper';
+import { Pagination } from 'swiper';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -19,10 +19,8 @@ const CardSlider = ({ data, title }) => {
 				)}
 				<Swiper
 					className='h-[50vh] w-full my-10 p-5'
-					spaceBetween={30}
-					slidesPerView={3}
-					effect={'coverflow'}
-					navigation={true}
+					spaceBetween={20}
+					slidesPerView={4}
 					loop={true}
 					breakpoints={{
 						0: {
@@ -40,9 +38,7 @@ const CardSlider = ({ data, title }) => {
 					pagination={{
 						dynamicBullets: true,
 					}}
-					modules={[Navigation, Pagination, EffectCoverflow]}
-					onSlideChange={() => console.log('slide change')}
-					onSwiper={swiper => console.log(swiper)}
+					modules={[Pagination]}
 				>
 					{data.map(result => (
 						<SwiperSlide key={result.id}>
