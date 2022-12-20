@@ -14,6 +14,9 @@ module.exports = {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
 	},
-	plugins: ['react'],
-	rules: {},
+	plugins: ['react', 'react-jsx'],
+	rules: {
+		'react/prop-types': 'warn',
+		camelcase: 'off',
+	},
 };

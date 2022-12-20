@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @font-face {
   font-family: 'Kanit';
   src: url(/fonts/Kanit/Kanit-Regular.ttf) format('truetype');

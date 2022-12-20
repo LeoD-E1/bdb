@@ -17,7 +17,7 @@ const Account = ({ session }) => {
 			setLoading(true);
 			const { user } = session;
 
-			let { data, error, status } = await supabase
+			const { data, error, status } = await supabase
 				.from('profiles')
 				.select(`username, website, avatar_url`)
 				.eq('id', user.id)
@@ -50,7 +50,7 @@ const Account = ({ session }) => {
 				id: user.id,
 				username,
 				website,
-				avatar_url,
+				avatar_url: avatarUrl,
 				updated_at: new Date(),
 			};
 
@@ -72,7 +72,7 @@ const Account = ({ session }) => {
 				'Saving ...'
 			) : (
 				<form onSubmit={updateProfile} className='form-widget'>
-					<div>Email: {user.email}</div>
+					<div>Email: {session.user.email}</div>
 					<div>
 						<label htmlFor='username'>Name</label>
 						<input
