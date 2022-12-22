@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import * as icon from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(true);
 
 	const places = [
 		{
@@ -40,37 +41,36 @@ const Sidebar = () => {
 
 	return (
 		<div
-			className={`flex flex-col h-screen p-3 shadow-lg ${
+			className={`flex flex-col relative h-screen text-white bg-accent p-3 shadow-lg ${
 				open ? 'w-60' : 'w-20'
 			}`}
 		>
+			<FontAwesomeIcon
+				className='absolute top-2 -right-8 text-accent text-xl shadow-lg '
+				onClick={() => setOpen(!open)}
+				icon={
+					open ? icon['faArrowAltCircleLeft'] : icon['faArrowAltCircleRight']
+				}
+			/>
+			<div className='flex items-center justify-around'>
+				<h1>LOGO</h1>
+				{open && <h2 className='text-xl font-bold'>Dashboard</h2>}
+			</div>
 			<div className='p-y-3'>
-				<FontAwesomeIcon
-					onClick={() => setOpen(!open)}
-					icon={
-						open ? icon['faArrowAltCircleLeft'] : icon['faArrowAltCircleRight']
-					}
-				/>
-				{open && (
-					<div className='flex items-center'>
-						<h2 className='text-xl font-bold'>Dashboard</h2>
-					</div>
-				)}
-				<div className='flex-1'>
-					<ul className='pt-2 pb-4 space-y-1 text-sm'>
-						{places.map((place, i) => (
-							<li key={i} className='rounded-sm'>
-								<a
-									href={place.path}
-									className='flex items-center p-2 space-x-3 rounded-md'
-								>
-									<FontAwesomeIcon icon={place.icon} />
-									{open && <span>{place.name}</span>}
-								</a>
-							</li>
-						))}
-					</ul>
-				</div>
+				<ul className='pt-2 pb-4 space-y-1'>
+					{places.map((place, i) => (
+						<li key={i} className='flex w-full'>
+							<Link to={place.path} className='w-full'>
+								<div className='flex w-full justify-start items-center p-2 space-x-3 rounded-md hover:bg-gray'>
+									<FontAwesomeIcon icon={place.icon} className='text-xl' />
+									{open && (
+										<span className='text-md text-white'>{place.name}</span>
+									)}
+								</div>
+							</Link>
+						</li>
+					))}
+				</ul>
 			</div>
 		</div>
 	);
