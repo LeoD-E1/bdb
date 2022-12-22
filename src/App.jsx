@@ -1,4 +1,3 @@
-// import routes from './view';
 import { Routes, Route } from 'react-router-dom';
 import routes from './view/index';
 

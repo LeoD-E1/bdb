@@ -1,5 +1,4 @@
 import Nav from '../../components/Header/Nav';
-import Button from '../../components/Content/Button';
 
 const Landing = () => {
 	return (
@@ -10,7 +9,6 @@ const Landing = () => {
 				<Nav />
 				{/* END Header */}
 
-				<Button />
 				{/* Hero Content */}
 				<div className='flex flex-col lg:flex-row-reverse space-y-16 lg:space-y-0 text-center lg:text-left container xl:max-w-7xl mx-auto px-4 py-16 lg:px-8 lg:py-32'>
 					<div className='lg:w-1/2 lg:flex lg:items-center'>
