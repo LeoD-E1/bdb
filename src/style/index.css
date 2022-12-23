@@ -57,4 +57,19 @@
     justify-content: space-evenly;
     flex-direction: column;
   }
+
+  .sidebar {
+    position: relative;
+  }
+
+  .side-button {
+    display: none;
+    position: absolute;
+    top: 1;
+    right: 10;
+  }
+
+  .sidebar:hover .side-button {
+    display: block;
+  } 
 }
