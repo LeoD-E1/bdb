@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
 	faMagnifyingGlass,
 	faArrowLeft,
@@ -11,11 +11,12 @@ import {
 	faPager,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Sidebar = () => {
 	const [open, setOpen] = useState(true);
 	const [visible, setVisible] = useState(false);
+	const { pathname } = useLocation();
 
 	const places = [
 		{
@@ -89,7 +90,9 @@ const Sidebar = () => {
 							<li key={i}>
 								<Link
 									to={place.path}
-									className='flex items-center px-4 py-4 my-2 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-darkBlue dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700'
+									className={`${
+										place.path === pathname && 'bg-darkBlue'
+									} flex items-center px-4 py-4 my-2 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-darkBlue dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700`}
 								>
 									<FontAwesomeIcon icon={place.icon} className='w-5 h-5' />
 									{open && (
