@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import * as icon from '@fortawesome/free-regular-svg-icons';
 import {
 	faMagnifyingGlass,
 	faArrowLeft,
 	faArrowRight,
+	faChartSimple,
+	faGear,
+	faTable,
+	faMap,
+	faUser,
+	faPager,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -15,32 +20,32 @@ const Sidebar = () => {
 	const places = [
 		{
 			name: 'Dashboard',
-			icon: icon['faAddressBook'],
+			icon: faChartSimple,
 			path: '/dashboard',
 		},
 		{
 			name: 'Settings',
-			icon: icon['faAddressBook'],
+			icon: faGear,
 			path: '/settings',
 		},
 		{
 			name: 'Tables',
-			icon: icon['faAddressBook'],
+			icon: faTable,
 			path: '/tables',
 		},
 		{
 			name: 'Map',
-			icon: icon['faAddressBook'],
+			icon: faMap,
 			path: '/map',
 		},
 		{
 			name: 'Login',
-			icon: icon['faAddressBook'],
+			icon: faUser,
 			path: '/Login',
 		},
 		{
 			name: 'Page',
-			icon: icon['faAddressBook'],
+			icon: faPager,
 			path: '/landing',
 		},
 	];
