@@ -1,12 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar/Sidebar';
 import routes from './view/index';
-Sidebar;
 
 function App() {
 	return (
 		<div className='App'>
-			<Sidebar />
 			<Routes>
 				{routes.map((data, index) => (
 					<Route
