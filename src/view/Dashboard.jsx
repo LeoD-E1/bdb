@@ -1,10 +1,11 @@
 import React from 'react';
 import DashboardLayout from '../components/layout/dashboard/DashboardLayout';
+import ResumeCards from '../components/layout/dashboard/e-commerce/ResumeCards';
 
 const Dashboard = () => {
 	return (
-		<div className='flex justify-center items-center w-full h-screen'>
-			<h1>Dashboard</h1>
+		<div className='w-full p-5'>
+			<ResumeCards />
 		</div>
 	);
 };

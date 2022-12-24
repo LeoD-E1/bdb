@@ -7,7 +7,7 @@ import {
 	faGear,
 	faTable,
 	faMap,
-	faUser,
+	faBell,
 	faPager,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -40,9 +40,9 @@ const Sidebar = ({ open, onClose }) => {
 			path: '/map',
 		},
 		{
-			name: 'Login',
-			icon: faUser,
-			path: '/Login',
+			name: 'Notifications',
+			icon: faBell,
+			path: '/notifications',
 		},
 		{
 			name: 'Page',
@@ -53,7 +53,7 @@ const Sidebar = ({ open, onClose }) => {
 
 	return (
 		<div
-			className={`relative h-screen text-white bg-accent font-kanit  shadow-lg ${
+			className={`relative h-screen text-white bg-accent font-kanit  shadow-xl ${
 				open ? 'w-60' : 'w-20'
 			}`}
 		>

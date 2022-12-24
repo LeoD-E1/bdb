@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Sidebar from '../../Sidebar/Sidebar';
+import Sidebar from './sidebar/Sidebar';
 
 const DashboardLayout = ({ children }) => {
 	const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -12,9 +12,10 @@ const DashboardLayout = ({ children }) => {
 		<>
 			<div className='flex'>
 				<Sidebar open={isSidebarOpen} onClose={handleClose} />
-				<div className='flex grow h-screen'>{children}</div>
+				<div className='flex grow h-screen border-l-2 ml-2 border-gray-light shadow-xl'>
+					{children}
+				</div>
 			</div>
-			{/* <DashboardNavbar onSidebarOpen={() => setSidebarOpen(true)} /> */}
 		</>
 	);
 };
