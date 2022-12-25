@@ -10,7 +10,7 @@ import {
 const ResumeCards = () => {
 	const cards = [
 		{
-			number: '$278',
+			number: '278',
 			icon: faCartShopping,
 			title: 'Total Orders',
 			difference: 5,
@@ -20,7 +20,7 @@ const ResumeCards = () => {
 			number: '$564',
 			icon: faCreditCard,
 			title: 'Total sales',
-			difference: 5,
+			difference: -5,
 			to: '/sales',
 		},
 		{
@@ -31,7 +31,7 @@ const ResumeCards = () => {
 			to: '/clients',
 		},
 		{
-			number: '$33421',
+			number: '$3.3K',
 			icon: faDollar,
 			title: 'Total Revenue',
 			difference: 15,
@@ -41,7 +41,8 @@ const ResumeCards = () => {
 
 	return (
 		<>
-			<div className='grid grid-cols-1 md:grid-cols-4 gap-4 lg:gap-8'>
+			<h3 className='text-xl text-gray font-semibold'>E-commerce</h3>
+			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8'>
 				{cards.map((card, i) => (
 					<Card item={card} key={i} />
 				))}
