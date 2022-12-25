@@ -11,10 +11,10 @@ import {
 
 const DashboardNavbar = ({ open, onClose }) => {
 	return (
-		<div className='p-3 flex bg-white justify-between items-center'>
+		<div className='p-2 flex bg-white justify-between items-center'>
 			<div className='flex items-center '>
 				<FontAwesomeIcon
-					className='text-white text-lg shadow-lg cursor-pointer p-1 rounded-tr-lg rounded-br-lg bg-accent'
+					className='text-white text-lg shadow-lg cursor-pointer p-2 rounded-tr-lg rounded-br-lg bg-accent'
 					onClick={() => onClose(!open)}
 					icon={open ? faArrowLeft : faArrowRight}
 				/>
