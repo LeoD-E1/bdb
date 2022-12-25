@@ -4,7 +4,7 @@ import ResumeCards from '../components/layout/dashboard/e-commerce/ResumeCards';
 
 const Dashboard = () => {
 	return (
-		<div className='w-full p-5'>
+		<div className='w-full'>
 			<ResumeCards />
 		</div>
 	);

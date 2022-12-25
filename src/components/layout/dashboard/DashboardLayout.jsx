@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import DashboardNavbar from './navbar/DashboardNavbar';
 import Sidebar from './sidebar/Sidebar';
 
 const DashboardLayout = ({ children }) => {
@@ -10,10 +11,11 @@ const DashboardLayout = ({ children }) => {
 
 	return (
 		<>
-			<div className='flex'>
+			<div className='flex max-h-[100vh]'>
 				<Sidebar open={isSidebarOpen} onClose={handleClose} />
-				<div className='flex grow h-screen border-l-2 ml-2 border-gray-light shadow-xl'>
-					{children}
+				<div className='flex-1 h-screen'>
+					<DashboardNavbar />
+					<div className='flex w-[100%] p-3'>{children}</div>
 				</div>
 			</div>
 		</>
