@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import {
-	faMagnifyingGlass,
-	faArrowLeft,
-	faArrowRight,
 	faChartSimple,
 	faGear,
 	faTable,
@@ -57,33 +54,12 @@ const Sidebar = ({ open, onClose }) => {
 				open ? 'w-60' : 'w-20'
 			}`}
 		>
-			<FontAwesomeIcon
-				className='absolute -right-6 top-2 text-white text-lg shadow-lg cursor-pointer p-1 rounded-tr-lg rounded-br-lg bg-accent'
-				onClick={() => onClose(!open)}
-				icon={open ? faArrowLeft : faArrowRight}
-			/>
 			<div className='relative flex flex-col justify-around items-center h-[80vh]'>
 				<div className='flex items-center justify-between'>
 					<h1>LOGO</h1>
 					{open && <h2 className='text-xl font-bold'>Dashboard</h2>}
 				</div>
-				<div className='flex justify-center items-start'>
-					{open ? (
-						<input
-							type='search'
-							className='w-full m-2 py-2 pl-4 pr-4 font-bold bg-transparent border-none bg-gray-light opacity-30 focus:outline-none  rounded-lg text-dark-gray'
-							placeholder='Search'
-						/>
-					) : (
-						<div className='w-10 h-10 flex justify-center items-center rounded-full bg-gray-light p-2 opacity-20 hover:cursor-pointer'>
-							<FontAwesomeIcon
-								icon={faMagnifyingGlass}
-								className='text-xl'
-								onClick={() => onClose(true)}
-							/>
-						</div>
-					)}
-				</div>
+
 				<div>
 					<nav>
 						<ul>
