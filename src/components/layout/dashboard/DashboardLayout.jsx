@@ -11,9 +11,9 @@ const DashboardLayout = ({ children }) => {
 
 	return (
 		<>
-			<div className='flex max-h-[100vh]'>
+			<div className='flex max-h-[100vh] h-full max-w-[100vw]'>
 				<Sidebar open={isSidebarOpen} onClose={handleClose} />
-				<div className='flex-1 h-screen'>
+				<div className='flex-1 h-screen max-h-screen overflow-y-auto overflow-x-hidden'>
 					<DashboardNavbar open={isSidebarOpen} onClose={handleClose} />
 					<div className='flex w-[100%] p-3'>{children}</div>
 				</div>

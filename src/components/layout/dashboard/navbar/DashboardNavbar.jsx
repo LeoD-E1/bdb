@@ -32,14 +32,14 @@ const DashboardNavbar = ({ open, onClose }) => {
 					</div>
 				</div>
 			</div>
-			<div className='flex items-center justify-around w-[20%]'>
+			<div className='flex items-center justify-around'>
 				{options.map((option, i) => (
 					<div className='relative' key={i}>
 						<FontAwesomeIcon
 							className='h-5 w-5 text-gray text-lg p-2 rounded-full hover:bg-gray hover:bg-opacity-20 relative'
 							icon={option.icon}
 						/>
-						<span class='absolute top-0 right-0 h-2 w-2 rounded-full bg-green flex justify-center items-center'></span>
+						<span className='absolute top-0 right-0 h-2 w-2 rounded-full bg-green flex justify-center items-center'></span>
 					</div>
 				))}
 				<div>
