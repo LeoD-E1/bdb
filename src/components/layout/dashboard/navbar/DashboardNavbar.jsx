@@ -3,49 +3,45 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faArrowLeft,
 	faArrowRight,
-	faMagnifyingGlass,
 	faBell,
 	faEnvelope,
 	faGear,
 } from '@fortawesome/free-solid-svg-icons';
 
 const DashboardNavbar = ({ open, onClose }) => {
+	const options = [
+		{ icon: faGear, label: 'Settings' },
+		{ icon: faEnvelope, label: 'Messages' },
+		{ icon: faBell, label: 'Notifications' },
+	];
 	return (
-		<div className='p-2 flex bg-white justify-between items-center'>
+		<div className='p-2 flex justify-between items-center border-b border-b-[#eee]'>
 			<div className='flex items-center '>
 				<FontAwesomeIcon
-					className='text-white text-lg shadow-lg cursor-pointer p-2 rounded-tr-lg rounded-br-lg bg-accent'
+					className='text-gray text-lg shadow-lg p-2 rounded-tr-lg rounded-br-lg  hover:bg-gray hover:bg-opacity-20'
 					onClick={() => onClose(!open)}
 					icon={open ? faArrowLeft : faArrowRight}
 				/>
 				<div className='flex justify-center items-center'>
 					<div className='flex items-center ml-3'>
-						<FontAwesomeIcon
-							className='text-gray text-lg p-1 rounded-full '
-							icon={faMagnifyingGlass}
-						/>
 						<input
 							type='search'
-							className='w-full m-2 py-2 pl-4 pr-4 font-bold bg-transparent border-none bg-gray-light opacity-30 focus:outline-none  rounded-lg text-dark-gray'
+							className='w-full m-2 py-2 pl-4 pr-4 font-bold border-none bg-lightGrey bg-opacity-70 focus:outline-none rounded-lg text-gray'
 							placeholder='Search'
 						/>
 					</div>
 				</div>
 			</div>
-			<div className='flex items-center justify-around'>
-				<FontAwesomeIcon
-					className='h-5 w-5 text-gray text-lg p-2 rounded-full hover:bg-gray hover:bg-opacity-20'
-					icon={faGear}
-				/>
-				<FontAwesomeIcon
-					className='h-5 w-5 text-gray text-lg p-2 rounded-full hover:bg-gray hover:bg-opacity-20'
-					icon={faBell}
-				/>
-				<FontAwesomeIcon
-					className='h-5 w-5 text-gray text-lg p-2 rounded-full hover:bg-gray hover:bg-opacity-20'
-					icon={faEnvelope}
-				/>
-
+			<div className='flex items-center justify-around w-[20%]'>
+				{options.map((option, i) => (
+					<div className='relative' key={i}>
+						<FontAwesomeIcon
+							className='h-5 w-5 text-gray text-lg p-2 rounded-full hover:bg-gray hover:bg-opacity-20 relative'
+							icon={option.icon}
+						/>
+						<span class='absolute top-0 right-0 h-2 w-2 rounded-full bg-green flex justify-center items-center'></span>
+					</div>
+				))}
 				<div>
 					<img
 						className='object-cover mx-2 rounded-full h-10 w-10'

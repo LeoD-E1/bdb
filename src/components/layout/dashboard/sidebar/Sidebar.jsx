@@ -50,7 +50,7 @@ const Sidebar = ({ open, onClose }) => {
 
 	return (
 		<div
-			className={`relative h-screen text-white bg-accent font-kanit  shadow-xl ${
+			className={`relative h-screen text-white bg-accent font-kanit  ${
 				open ? 'w-60' : 'w-20'
 			}`}
 		>
