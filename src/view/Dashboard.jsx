@@ -1,6 +1,6 @@
 import React from 'react';
-import DashboardLayout from '../components/layout/dashboard/DashboardLayout';
-import ResumeCards from '../components/layout/dashboard/e-commerce/ResumeCards';
+import DashboardLayout from '../components/Dashboard/DashboardLayout';
+import ResumeCards from '../components/Dashboard/e-commerce/ResumeCards';
 import Chart from '../components/chart/Chart';
 
 const Dashboard = () => {
