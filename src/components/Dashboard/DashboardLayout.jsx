@@ -15,7 +15,7 @@ const DashboardLayout = ({ children }) => {
 				<Sidebar open={isSidebarOpen} onClose={handleClose} />
 				<div className='flex-1 h-screen max-h-screen overflow-y-auto overflow-x-hidden bg-lightGrey'>
 					<DashboardNavbar open={isSidebarOpen} onClose={handleClose} />
-					<div className='flex w-[100%] p-3'>{children}</div>
+					<div className='flex w-[100%] p-6'>{children}</div>
 				</div>
 			</div>
 		</>
