@@ -5,7 +5,7 @@ const Card = ({ item }) => {
 	const { number, icon, title, difference, to } = item;
 
 	return (
-		<div className='flex flex-col rounded shadow-lg overflow-hidden px-3 py-5'>
+		<div className='flex flex-col rounded-lg shadow-lg overflow-hidden px-3 py-5 bg-white'>
 			<div className='flex justify-between items-center py-2'>
 				<span className='font-kanit text-sm text-gray'>{title}</span>
 

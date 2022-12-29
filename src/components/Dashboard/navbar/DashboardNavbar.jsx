@@ -16,7 +16,7 @@ const DashboardNavbar = ({ open, onClose }) => {
 		{ icon: faBell, label: 'Notifications' },
 	];
 	return (
-		<div className='p-2 flex justify-between items-center border-b border-b-[#eee]'>
+		<div className='p-2 flex justify-between items-center border-b border-b-[#eee] bg-white'>
 			<div className='flex items-center '>
 				<FontAwesomeIcon
 					className='text-gray text-lg shadow-lg p-2 rounded-tr-lg rounded-br-lg  hover:bg-gray hover:bg-opacity-20'

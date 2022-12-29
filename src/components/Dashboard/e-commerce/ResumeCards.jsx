@@ -42,7 +42,7 @@ const ResumeCards = () => {
 	return (
 		<>
 			<h3 className='text-xl text-gray font-semibold'>E-commerce</h3>
-			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8'>
+			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 my-3'>
 				{cards.map((card, i) => (
 					<Card item={card} key={i} />
 				))}

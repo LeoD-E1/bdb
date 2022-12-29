@@ -13,7 +13,7 @@ const DashboardLayout = ({ children }) => {
 		<>
 			<div className='flex max-h-[100vh] h-full max-w-[100vw]'>
 				<Sidebar open={isSidebarOpen} onClose={handleClose} />
-				<div className='flex-1 h-screen max-h-screen overflow-y-auto overflow-x-hidden'>
+				<div className='flex-1 h-screen max-h-screen overflow-y-auto overflow-x-hidden bg-lightGrey'>
 					<DashboardNavbar open={isSidebarOpen} onClose={handleClose} />
 					<div className='flex w-[100%] p-3'>{children}</div>
 				</div>
