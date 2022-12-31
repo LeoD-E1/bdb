@@ -1,9 +1,9 @@
 import React from 'react';
-import DashboardLayout from '../components/Dashboard/DashboardLayout';
-import ResumeCards from '../components/Dashboard/e-commerce/ResumeCards';
-import DoughnutChart from '../components/chart/DoughnutChart';
-import LineChart from '../components/chart/LineChart';
-import CardChart from '../components/chart/CardChart';
+import DashboardLayout from '../../components/Dashboard/DashboardLayout';
+import ResumeCards from '../../components/Dashboard/e-commerce/ResumeCards';
+import DoughnutChart from '../../components/chart/DoughnutChart';
+import LineChart from '../../components/chart/LineChart';
+import CardChart from '../../components/chart/CardChart';
 
 const Dashboard = () => {
 	return (
