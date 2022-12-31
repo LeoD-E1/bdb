@@ -11,8 +11,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useLocation } from 'react-router-dom';
 
 const Sidebar = ({ open, onClose }) => {
-	console.log('🚀 ~ file: Sidebar.jsx:17 ~ Sidebar ~ open', open);
-	// const [open, setOpen] = useState(true);
 	const { pathname } = useLocation();
 
 	const places = [
