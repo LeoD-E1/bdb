@@ -14,14 +14,16 @@ const Item = ({ item, pathname, open, opened, fillOpened }) => {
 						item.path === pathname && 'bg-darkBlue'
 					}`}
 				>
-					{item.icon && (
-						<FontAwesomeIcon icon={item.icon} className='w-5 h-5' />
-					)}
-					{open && (
-						<div className='mx-5'>
-							<span className='mx-4 text-white'>{item.name}</span>
-						</div>
-					)}
+					<Link to={item.path} className='flex items-center'>
+						{item.icon && (
+							<FontAwesomeIcon icon={item.icon} className='w-5 h-5' />
+						)}
+						{open && (
+							<div className='mx-5'>
+								<span className='mx-4 text-white'>{item.name}</span>
+							</div>
+						)}
+					</Link>
 
 					{item.children ? (
 						<FontAwesomeIcon
