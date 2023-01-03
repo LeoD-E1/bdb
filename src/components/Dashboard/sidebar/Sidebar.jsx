@@ -7,7 +7,7 @@ import {
 	faPager,
 } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
-import TreeView from './SideLinks';
+import SideLinks from './SideLinks';
 
 const Sidebar = ({ open }) => {
 	const { pathname } = useLocation();
@@ -23,47 +23,13 @@ const Sidebar = ({ open }) => {
 			id: 1,
 			name: 'Settings',
 			icon: faGear,
-			path: '/settings',
-			children: [
-				{
-					id: 11,
-					name: 'Customers',
-					path: '/settings/customers',
-					children: [
-						{
-							id: 110,
-							name: 'Customers',
-							path: '/settings/customers',
-						},
-					],
-				},
-				{
-					id: 12,
-					name: 'Products',
-					path: '/settings/customers',
-				},
-				{
-					id: 13,
-					name: 'Products',
-					path: '/settings/customers',
-				},
-				{
-					id: 14,
-					name: 'Products',
-					path: '/settings/customers',
-				},
-				{
-					id: 15,
-					name: 'Products',
-					path: '/settings/customers',
-				},
-			],
+			path: '/dashboard/settings',
 		},
 		{
 			id: 2,
-			name: 'Tables',
+			name: 'Products',
 			icon: faTable,
-			path: '/tables',
+			path: '/dashboard/products',
 		},
 		{
 			id: 3,
@@ -96,7 +62,7 @@ const Sidebar = ({ open }) => {
 					<h1>LOGO</h1>
 					{open && <h2 className='text-xl font-bold'>Dashboard</h2>}
 				</div>
-				<TreeView items={places} open={open} pathname={pathname} />
+				<SideLinks items={places} open={open} pathname={pathname} />
 			</div>
 		</div>
 	);
