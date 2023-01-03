@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
 	faChartSimple,
 	faGear,
@@ -7,12 +6,11 @@ import {
 	faBell,
 	faPager,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link, useLocation } from 'react-router-dom';
-import TreeView from './TreeView';
+import { useLocation } from 'react-router-dom';
+import TreeView from './SideLinks';
 
 const Sidebar = ({ open }) => {
 	const { pathname } = useLocation();
-	const [openItems, setOpenItems] = useState([]);
 
 	const places = [
 		{
@@ -93,7 +91,7 @@ const Sidebar = ({ open }) => {
 				open ? 'w-60' : 'w-20'
 			}`}
 		>
-			<div className='flex flex-col items-center h-[100vh] overflow-y-auto w-full'>
+			<div className=' relative flex flex-col items-center h-[100vh] overflow-y-auto w-full'>
 				<div className='flex items-center justify-between'>
 					<h1>LOGO</h1>
 					{open && <h2 className='text-xl font-bold'>Dashboard</h2>}
