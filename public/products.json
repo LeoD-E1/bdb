@@ -1,0 +1,74 @@
+[
+	{
+		"id": 0,
+		"name": "Empanada  carne",
+		"price": 200,
+		"stock": 322,
+		"status": "many",
+		"image_url": "https://images.pexels.com/photos/8279595/pexels-photo-8279595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
+	},
+	{
+		"id": 1,
+		"name": "Empanada  pollo",
+		"price": 200,
+		"stock": 32,
+		"status": "low",
+		"image_url": "https://images.pexels.com/photos/8279595/pexels-photo-8279595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
+	},
+	{
+		"id": 2,
+		"name": "Empanada  choclo",
+		"price": 200,
+		"stock": 0,
+		"status": "no",
+		"image_url": "https://images.pexels.com/photos/8279595/pexels-photo-8279595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
+	},
+	{
+		"id": 3,
+		"name": "Empanada  JyQ",
+		"price": 200,
+		"stock": 100,
+		"status": "many",
+		"image_url": "https://images.pexels.com/photos/8279595/pexels-photo-8279595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
+	},
+	{
+		"id": 4,
+		"name": "Empanada humita",
+		"price": 200,
+		"stock": 3,
+		"status": "low",
+		"image_url": "https://images.pexels.com/photos/8279595/pexels-photo-8279595.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
+	},
+	{
+		"id": 5,
+		"name": "Pizza Muzzarella",
+		"price": 1200,
+		"stock": 1,
+		"status": "many",
+		"image_url": "https://images.pexels.com/photos/1146760/pexels-photo-1146760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
+	},
+	{
+		"id": 6,
+		"name": "Pizza Jamon Morron",
+		"price": 1700,
+		"stock": 1,
+		"status": "many",
+		"image_url": "https://images.pexels.com/photos/1146760/pexels-photo-1146760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
+	},
+	{
+		"id": 7,
+		"name": "Pizza Napolitana",
+		"price": 1500,
+		"stock": 1,
+		"status": "many",
+		"image_url": "https://images.pexels.com/photos/1146760/pexels-photo-1146760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do"
+	}
+]

@@ -8,6 +8,7 @@ import CardChart from '../../components/chart/CardChart';
 const Dashboard = () => {
 	return (
 		<div className='w-full'>
+			<h3 className='text-xl text-gray font-semibold'>E-commerce</h3>
 			<ResumeCards />
 			<div className='grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6 my-3'>
 				<div className='lg:col-span-2'>
