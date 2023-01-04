@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import ProductTableItem from './ProductTableItem';
+import { useModalStore } from '../../../../store/modalStore';
 
 const ProductTable = ({ products }) => {
+	const updateVisibility = useModalStore(state => state.updateVisibility);
+
 	const EditProduct = id => {
 		console.log('Edit Product', id);
 	};
@@ -14,7 +18,15 @@ const ProductTable = ({ products }) => {
 	};
 
 	return (
-		<div className='flex rounded-lg bg-white p-5 my-3 shadow-lg'>
+		<div className='rounded-lg bg-white p-5 my-3 shadow-lg'>
+			<div className='my-2'>
+				<button
+					className='p-3 text-white rounded-md bg-accent font-kanit text-md font-semibold'
+					onClick={() => updateVisibility(true)}
+				>
+					+ Add new
+				</button>
+			</div>
 			<div className='overflow-auto lg:overflow-visible w-full'>
 				<table className=' text-gray border-separate space-y-6 text-sm w-full'>
 					<thead className='bg-lightGrey text-gray'>

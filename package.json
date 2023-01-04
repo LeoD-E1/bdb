@@ -24,7 +24,8 @@
 		"react-chartjs-2": "^5.1.0",
 		"react-dom": "^18.2.0",
 		"react-router-dom": "^6.4.4",
-		"swiper": "^8.4.4"
+		"swiper": "^8.4.4",
+		"zustand": "^4.2.0"
 	},
 	"devDependencies": {
 		"@testing-library/react": "^13.4.0",
