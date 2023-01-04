@@ -7,7 +7,10 @@
 		"dev": "vite",
 		"test": "vitest",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"lint": "eslint .",
+		"lint:fix": "eslint --fix",
+		"format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.2.1",

@@ -1,11 +1,11 @@
 import ProductTableItem from './ProductTableItem';
 
 const ProductTable = ({ products }) => {
-	const EditProduct = () => {
-		console.log('Edit Product');
+	const EditProduct = id => {
+		console.log('Edit Product', id);
 	};
-	const DeleteProduct = () => {
-		console.log('Delete Product');
+	const DeleteProduct = id => {
+		console.log('Delete Product', id);
 	};
 
 	const actions = {

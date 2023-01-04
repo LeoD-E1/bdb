@@ -46,12 +46,9 @@ const ProductTableItem = ({ product, actions }) => {
 							<span
 								key={i}
 								className='text-gray-400 hover:text-gray-100 mr-2 hover:bg-gray-light p-2 rounded-full'
+								onClick={() => actions[action.name](product.id)}
 							>
-								<FontAwesomeIcon
-									icon={action.icon}
-									className='w-4 h-4'
-									onClick={actions[action.name]}
-								/>
+								<FontAwesomeIcon icon={action.icon} className='w-4 h-4' />
 							</span>
 						))}
 					</div>
