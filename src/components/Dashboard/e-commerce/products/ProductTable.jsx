@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import ProductTableItem from './ProductTableItem';
 import { useModalStore } from '../../../../store/modalStore';
 
-const ProductTable = ({ products }) => {
+const ProductTable = ({ products, category }) => {
 	const updateVisibility = useModalStore(state => state.updateVisibility);
 
 	const EditProduct = id => {
@@ -18,8 +17,9 @@ const ProductTable = ({ products }) => {
 	};
 
 	return (
-		<div className='rounded-lg bg-white p-5 my-3 shadow-lg'>
-			<div className='my-2'>
+		<div className='rounded-lg bg-white p-5 shadow-lg'>
+			<div className='flex justify-between'>
+				<h3 className='text-lg text-gray font-semibold'>{category}</h3>
 				<button
 					className='p-3 text-white rounded-md bg-accent font-kanit text-md font-semibold'
 					onClick={() => updateVisibility(true)}
