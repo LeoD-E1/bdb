@@ -1,12 +1,21 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { useModalStore } from '../../../../store/modalStore';
 
 const Categories = ({ categories, setCategory }) => {
+	const updateVisibility = useModalStore(state => state.updateVisibility);
+	const updateModalType = useModalStore(state => state.updateModalType);
 	return (
 		<div className='bg-white w-full h-auto p-2 shadow-lg'>
 			<div className='my-2'>
-				<button className='p-2 w-full text-white rounded-md bg-accent font-kanit text-md font-semibold'>
+				<button
+					className='p-2 w-full text-white rounded-md bg-accent font-kanit text-md font-semibold'
+					onClick={() => {
+						updateVisibility(true);
+						updateModalType('create-category');
+					}}
+				>
 					+ Add new
 				</button>
 			</div>

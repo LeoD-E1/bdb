@@ -2,12 +2,14 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useModalStore } from '../../store/modalStore';
+import CreateCategory from '../Dashboard/e-commerce/products/CreateCategory';
 import CreateProduct from '../Dashboard/e-commerce/products/CreateProduct';
 
 const Modal = ({ modalType }) => {
 	const updateVisibility = useModalStore(state => state.updateVisibility);
 	const modals = {
 		'create-product': CreateProduct,
+		'create-category': CreateCategory,
 	};
 
 	return (

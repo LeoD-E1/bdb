@@ -3,6 +3,7 @@ import { useModalStore } from '../../../../store/modalStore';
 
 const ProductTable = ({ products, category }) => {
 	const updateVisibility = useModalStore(state => state.updateVisibility);
+	const updateModalType = useModalStore(state => state.updateModalType);
 
 	const EditProduct = id => {
 		console.log('Edit Product', id);
@@ -18,11 +19,14 @@ const ProductTable = ({ products, category }) => {
 
 	return (
 		<div className='rounded-lg bg-white p-5 shadow-lg'>
-			<div className='flex justify-between'>
+			<div className='flex justify-between items-center mb-1'>
 				<h3 className='text-lg text-gray font-semibold'>{category}</h3>
 				<button
 					className='p-2 text-white rounded-md bg-accent font-kanit text-md font-semibold'
-					onClick={() => updateVisibility(true)}
+					onClick={() => {
+						updateVisibility(true);
+						updateModalType('create-product');
+					}}
 				>
 					+ Add new
 				</button>
