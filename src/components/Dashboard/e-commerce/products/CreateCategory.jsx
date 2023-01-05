@@ -1,5 +1,5 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
+import { createCategory } from '../../../../api/categories';
 
 const CreateCategory = () => {
 	const { handleSubmit, register, errors } = useForm();
@@ -13,9 +13,13 @@ const CreateCategory = () => {
 			required: true,
 		},
 	];
+
+	const onSubmit = data => {
+		createCategory(data.category_name);
+	};
 	return (
 		<div className='bg-white rounded-lg p-4'>
-			<form onSubmit={handleSubmit(data => setData(JSON.stringify(data)))}>
+			<form onSubmit={handleSubmit(data => onSubmit(data))}>
 				<h3 className='text-lg font-kanit font-semibold text-dark-gray my-2'>
 					Create category
 				</h3>
@@ -34,10 +38,12 @@ const CreateCategory = () => {
 						</div>
 					))}
 				</div>
-				<input
+				<button
 					type='submit'
 					className='bg-accent p-3 w-full rounded-lg text-md text-white my-2'
-				/>
+				>
+					Create category
+				</button>
 			</form>
 		</div>
 	);

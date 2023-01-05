@@ -3,6 +3,7 @@ import { getProductsByCategory } from '../../api/getProductsByCategory';
 import DashboarsLayout from '../../components/Dashboard/DashboardLayout';
 import Categories from '../../components/Dashboard/e-commerce/products/Categories';
 import ProductTable from '../../components/Dashboard/e-commerce/products/ProductTable';
+import { getAllCategories } from '../../api/categories';
 
 const Products = () => {
 	const [products, setProducts] = useState([]);
@@ -22,6 +23,11 @@ const Products = () => {
 		try {
 			!loading && setLoading(true);
 			const data = await getProductsByCategory(selectedCategory);
+			const categories = await getAllCategories();
+			console.log(
+				'🚀 ~ file: Products.jsx:27 ~ getData ~ categories',
+				categories
+			);
 			setProducts(data);
 		} catch (error) {
 			console.error(error);
