@@ -21,7 +21,7 @@ const ProductTable = ({ products, category }) => {
 			<div className='flex justify-between'>
 				<h3 className='text-lg text-gray font-semibold'>{category}</h3>
 				<button
-					className='p-3 text-white rounded-md bg-accent font-kanit text-md font-semibold'
+					className='p-2 text-white rounded-md bg-accent font-kanit text-md font-semibold'
 					onClick={() => updateVisibility(true)}
 				>
 					+ Add new

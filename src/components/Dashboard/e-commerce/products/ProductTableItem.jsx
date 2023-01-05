@@ -45,7 +45,7 @@ const ProductTableItem = ({ product, actions }) => {
 						{AbailableActions.map((action, i) => (
 							<span
 								key={i}
-								className='text-gray-400 hover:text-gray-100 mr-2 hover:bg-gray-light p-2 rounded-full'
+								className='text-gray-400 mr-2 hover:bg-gray-light p-2 rounded-full'
 								onClick={() => actions[action.name](product.id)}
 							>
 								<FontAwesomeIcon icon={action.icon} className='w-4 h-4' />

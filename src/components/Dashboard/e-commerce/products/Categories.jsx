@@ -13,11 +13,11 @@ const Categories = ({ categories, setCategory }) => {
 			{categories.map((category, i) => (
 				<div
 					key={i}
-					className='flex justify-start p-3 hover:bg-lightGrey hover:cursor-default'
+					className='flex justify-start p-3 hover:bg-gray-100 hover:cursor-default'
 					onClick={() => setCategory(category)}
 				>
 					<FontAwesomeIcon icon={faCircle} className='h-5 w-5 text-accent' />
-					<h4 className='text-md font-kanit text-gray-200 font-semibold ml-3'>
+					<h4 className='text-md font-kanit text-gray font-semibold ml-3'>
 						{category}
 					</h4>
 				</div>

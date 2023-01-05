@@ -8,7 +8,7 @@ const Products = () => {
 	const [products, setProducts] = useState([]);
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(true);
-	const [categories, setCategories] = useState([
+	const [categories] = useState([
 		'hamburguesas',
 		'empanadas',
 		'pizzas',
@@ -57,15 +57,11 @@ const Products = () => {
 				<>
 					<h3 className='text-xl text-gray font-semibold'>Manage products</h3>
 					<div className='grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6 my-3'>
-						{loading ? (
-							<h1>Loading...</h1>
-						) : (
-							<Categories
-								categories={categories}
-								setCategory={selectCat}
-								selectedCat={selectedCategory}
-							/>
-						)}
+						<Categories
+							categories={categories}
+							setCategory={selectCat}
+							selectedCat={selectedCategory}
+						/>
 						<div className='lg:col-span-3'>
 							{loading ? (
 								<h1>Loading...</h1>
