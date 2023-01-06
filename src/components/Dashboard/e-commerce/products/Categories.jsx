@@ -22,11 +22,11 @@ const Categories = ({ categories, setCategory }) => {
 				<div
 					key={i}
 					className='flex justify-start p-3 hover:bg-gray-100 hover:cursor-default rounded-lg'
-					onClick={() => setCategory(category)}
+					onClick={() => setCategory(category.name)}
 				>
 					<FontAwesomeIcon icon={faCircle} className='h-5 w-5 text-accent' />
 					<h4 className='text-md font-kanit text-gray font-semibold ml-3'>
-						{category}
+						{category.name}
 					</h4>
 				</div>
 			))}

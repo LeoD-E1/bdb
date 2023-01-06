@@ -6,28 +6,28 @@ import ProductTable from '../../components/Dashboard/e-commerce/products/Product
 import { getAllCategories } from '../../api/categories';
 
 const Products = () => {
+	const [categories, setCategories] = useState([]);
 	const [products, setProducts] = useState([]);
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(true);
-	const [categories] = useState([
-		'hamburguesas',
-		'empanadas',
-		'pizzas',
-		'pastas',
-		'postres',
-		'bebidas',
-	]);
-	const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+	const [selectedCategory, setSelectedCategory] = useState('');
 
-	const getData = async () => {
+	const getCategories = async () => {
+		!loading && setLoading(true);
+		try {
+			const categories = await getAllCategories();
+			setCategories(categories);
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	const getProductByCategory = async () => {
 		try {
 			!loading && setLoading(true);
 			const data = await getProductsByCategory(selectedCategory);
-			const categories = await getAllCategories();
-			console.log(
-				'🚀 ~ file: Products.jsx:27 ~ getData ~ categories',
-				categories
-			);
 			setProducts(data);
 		} catch (error) {
 			console.error(error);
@@ -39,7 +39,8 @@ const Products = () => {
 
 	useEffect(() => {
 		(async () => {
-			getData();
+			await getCategories();
+			await getProductByCategory();
 		})();
 	}, [selectedCategory]);
 
@@ -63,11 +64,15 @@ const Products = () => {
 				<>
 					<h3 className='text-xl text-gray font-semibold'>Manage products</h3>
 					<div className='grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6 my-3'>
-						<Categories
-							categories={categories}
-							setCategory={selectCat}
-							selectedCat={selectedCategory}
-						/>
+						{loading ? (
+							<h1>Loading...</h1>
+						) : (
+							<Categories
+								categories={categories}
+								setCategory={selectCat}
+								selectedCat={selectedCategory}
+							/>
+						)}
 						<div className='lg:col-span-3'>
 							{loading ? (
 								<h1>Loading...</h1>

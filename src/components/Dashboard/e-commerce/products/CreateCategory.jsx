@@ -7,7 +7,7 @@ const CreateCategory = () => {
 	const fields = [
 		{
 			title: 'Category name',
-			name: 'category-name',
+			name: 'category_name',
 			fieldType: 'text',
 			ex: 'Empanadas',
 			required: true,
