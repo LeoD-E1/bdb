@@ -23,6 +23,11 @@ const Navbar = () => {
 			title: 'Contacto',
 			url: '/contacto',
 		},
+		{
+			id: '4',
+			title: 'Dashboard',
+			url: '/dashboard',
+		},
 	]);
 
 	return (
