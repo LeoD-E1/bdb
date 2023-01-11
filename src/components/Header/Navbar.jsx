@@ -1,5 +1,7 @@
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import logo from '../../../public/favicon.png';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 	const [links] = useState([
@@ -48,17 +50,17 @@ const Navbar = () => {
 							</a>
 						))}
 					</nav>
-					<nav className='hidden md:flex items-center space-x-1 text-md font-medium text-gray-800'>
-						<a href='#' className=' p-3 transition hover:bg-gray-100'>
+					<nav className='hidden md:flex items-center text-md text-gray-800'>
+						<Link to='/login' className=' p-3 transition hover:bg-gray-400'>
 							Login
-						</a>
-						<a href='#' className='p-3 transition'>
+						</Link>
+						<Link to='/signup' className='p-3 transition hover:bg-gray-400'>
 							Sign Up
-						</a>
+						</Link>
 					</nav>
 					<div className='flex items-center space-x-2'>
 						<button className='flex appearance-none p-1 text-gray-500 md:hidden'>
-							menu <img src={logo} alt='pizza' style={{ width: 25 }} />
+							<FontAwesomeIcon icon={faBars} className='h-5 w-5 text-white' />
 						</button>
 					</div>
 				</div>

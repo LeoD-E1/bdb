@@ -1,13 +1,19 @@
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { EMAIL_REQUIRED } from '../../constants/constants';
+import { EMAIL_FORM } from '../../constants/regExp';
 import { supabase } from '../../helper/supabaseClient';
 
 export default function Auth() {
 	const [loading, setLoading] = useState(false);
 	const [email, setEmail] = useState('');
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 
 	const handleLogin = async e => {
-		e.preventDefault();
-
 		try {
 			setLoading(true);
 			const { error } = await supabase.auth.signInWithOtp({ email });
@@ -21,25 +27,50 @@ export default function Auth() {
 	};
 
 	return (
-		<div className='row flex-center flex'>
-			<div className='col-6 form-widget' aria-live='polite'>
-				<p className='description'>
-					Sign in via magic link with your email below
-				</p>
+		<div className='flex justify-center items-center h-screen'>
+			<div
+				className='bg-gray-light shadow-xl p-5 rounded-lg'
+				aria-live='polite'
+			>
+				<article className='p-2'>
+					<p className='text-lg text-accent font-kanit'>Sign in</p>
+				</article>
 				{loading ? (
-					'Sending magic link...'
+					<h4 className='text-sm text-accent font-kanit'>
+						Sending magic link...
+					</h4>
 				) : (
-					<form onSubmit={handleLogin}>
-						<label htmlFor='email'>Email</label>
+					<form
+						onSubmit={handleSubmit(handleLogin)}
+						className='flex flex-col justify-start'
+					>
+						<label htmlFor='email' className='px-2 text-gray-400'>
+							Email
+						</label>
 						<input
+							{...register('email', {
+								required: EMAIL_REQUIRED,
+								pattern: {
+									value: EMAIL_FORM,
+									message: 'the email provided is not valid',
+								},
+							})}
 							id='email'
-							className='inputField'
+							name='email'
+							className='px-10 py-3 my-2 rounded-lg outline-none focus:border-accent border-transparent border'
 							type='email'
 							placeholder='Your email'
 							value={email}
 							onChange={e => setEmail(e.target.value)}
+							required={true}
 						/>
-						<button className='button block' aria-live='polite'>
+						<span className='text-sm font-kanit text-red'>
+							{errors.email?.message}
+						</span>
+						<button
+							className='p-3 bg-accent rounded-lg text-white'
+							aria-live='polite'
+						>
 							Send magic link
 						</button>
 					</form>
