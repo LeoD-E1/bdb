@@ -1,2 +1,2 @@
-export const EMAIL_REQUIRED = 'Email address is required';
+export const REQUIRED_FIELD = 'This field is required';
 export const INVALID_EMAIL_ADDRESS = 'Invalid email address';

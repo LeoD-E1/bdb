@@ -8,7 +8,7 @@ import Products from './dashboard/Products';
 import Signup from './auth/signup/Signup';
 
 const routes = [
-	{ path: '/', component: Home, reqAuth: false },
+	{ path: '/', component: <Home />, reqAuth: false },
 	{ path: '/landing', component: Landing, reqAuth: false },
 	{ path: '/dashboard', component: Dashboard, reqAuth: false },
 	{ path: '/dashboard/settings', component: Configurations, reqAuth: false },

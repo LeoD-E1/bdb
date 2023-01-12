@@ -1,35 +1,23 @@
-import React from 'react';
-import DashboardLayout from '../../components/Dashboard/DashboardLayout';
-import ResumeCards from '../../components/Dashboard/e-commerce/ResumeCards';
-import DoughnutChart from '../../components/chart/DoughnutChart';
-import LineChart from '../../components/chart/LineChart';
-import CardChart from '../../components/chart/CardChart';
+import { Routes, Route } from 'react-router-dom';
+import NoResult from '../../view/NoResult';
+import ConfigView from './Configurations';
+import EcommerceView from './E-commerce';
+import ProductsView from './Products';
 
 const Dashboard = () => {
+	const onUpdateFn = () => window.scrollTo(0, 0);
 	return (
-		<div className='w-full'>
-			<h3 className='text-xl text-gray font-semibold'>E-commerce</h3>
-			<ResumeCards />
-			<div className='grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6 my-3'>
-				<div className='lg:col-span-2'>
-					<CardChart title={'Traffic source'}>
-						<LineChart />
-					</CardChart>
-				</div>
-				<div className='lg:col-span-2'>
-					<CardChart title={'Traffic source'}>
-						<DoughnutChart />
-					</CardChart>
-				</div>
-			</div>
-		</div>
+		<Routes>
+			<Route onUpdate={onUpdateFn} path='/' element={<EcommerceView />} />
+			<Route
+				onUpdate={onUpdateFn}
+				path='/products'
+				element={<ProductsView />}
+			/>
+			<Route onUpdate={onUpdateFn} path='/settings' element={<ConfigView />} />
+			<Route onUpdate={onUpdateFn} path='*' element={<NoResult />} />
+		</Routes>
 	);
 };
 
-const DashboardView = () => (
-	<DashboardLayout>
-		<Dashboard />
-	</DashboardLayout>
-);
-
-export default DashboardView;
+export default Dashboard;

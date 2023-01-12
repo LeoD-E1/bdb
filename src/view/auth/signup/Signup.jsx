@@ -1,8 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { EMAIL_FORM } from '../../../constants/regExp';
+import { EMAIL_FORM, PASSWORD_REGEXP } from '../../../constants/regExp';
 import {
-	EMAIL_REQUIRED,
+	REQUIRED_FIELD,
 	INVALID_EMAIL_ADDRESS,
 } from '../../../constants/constants';
 
@@ -67,7 +67,7 @@ const Signup = () => {
 								className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
 								name='email'
 								{...register('email', {
-									required: { value: true, message: EMAIL_REQUIRED },
+									required: { value: true, message: REQUIRED_FIELD },
 									pattern: {
 										value: EMAIL_FORM,
 										message: INVALID_EMAIL_ADDRESS,
@@ -88,6 +88,24 @@ const Signup = () => {
 								<input
 									className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline'
 									name='password'
+									{...register('password', {
+										required: {
+											value: true,
+											message: REQUIRED_FIELD,
+										},
+										minLength: {
+											value: 8,
+											message: 'At least 8 Characters',
+										},
+										maxLength: {
+											value: 255,
+											message: '255 characters maximum',
+										},
+										pattern: {
+											value: PASSWORD_REGEXP,
+											message: '',
+										},
+									})}
 									type='password'
 									placeholder='******************'
 								/>
@@ -112,10 +130,10 @@ const Signup = () => {
 						</div>
 						<div className='mb-6 text-center'>
 							<button
-								className='w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+								className='w-full px-4 py-2 font-bold text-black bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline'
 								type='button'
 							>
-								Register Account
+								Register
 							</button>
 						</div>
 						<hr className='mb-6 border-t' />

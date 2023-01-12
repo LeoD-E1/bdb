@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { EMAIL_REQUIRED } from '../../constants/constants';
+import { INVALID_EMAIL_ADDRESS } from '../../constants/constants';
 import { EMAIL_FORM } from '../../constants/regExp';
 import { supabase } from '../../helper/supabaseClient';
 
@@ -49,7 +49,7 @@ export default function Auth() {
 						</label>
 						<input
 							{...register('email', {
-								required: EMAIL_REQUIRED,
+								required: INVALID_EMAIL_ADDRESS,
 								pattern: {
 									value: EMAIL_FORM,
 									message: 'the email provided is not valid',
