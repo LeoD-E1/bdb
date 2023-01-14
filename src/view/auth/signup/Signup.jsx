@@ -4,8 +4,14 @@ import {
 	REQUIRED_FIELD,
 	INVALID_EMAIL_ADDRESS,
 } from '../../../constants/constants';
+import { Link } from 'react-router-dom';
+import { registerUser } from '../../../api/signup';
+import { useState } from 'react';
+import Spinner from '../../../components/Spinner/Spinner';
 
 const Signup = () => {
+	const [loading, setLoading] = useState(false);
+
 	const {
 		register,
 		watch,
@@ -14,7 +20,21 @@ const Signup = () => {
 	} = useForm();
 
 	const passwordWatcher = watch('password');
-	const onSubmit = data => console.log(data);
+
+	const onSubmit = async data => {
+		!loading && setLoading(true);
+		try {
+			const user = await registerUser({
+				email: data.email,
+				password: data.password,
+			});
+			console.log(user);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+		}
+	};
 
 	const validateConfirm = value => {
 		if (value !== passwordWatcher) {
@@ -44,7 +64,7 @@ const Signup = () => {
 									First Name
 								</label>
 								<input
-									className='w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+									className='w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border-accent'
 									name='firstName'
 									{...register('firstName')}
 									type='text'
@@ -59,7 +79,7 @@ const Signup = () => {
 									Last Name
 								</label>
 								<input
-									className='w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+									className='w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border-accent'
 									name='lastName'
 									{...register('lastName')}
 									type='text'
@@ -75,7 +95,7 @@ const Signup = () => {
 								Email
 							</label>
 							<input
-								className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+								className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border-accent'
 								name='email'
 								{...register('email', {
 									required: { value: true, message: REQUIRED_FIELD },
@@ -100,7 +120,7 @@ const Signup = () => {
 									Password
 								</label>
 								<input
-									className='w-full max-w-sm px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+									className='w-full max-w-sm px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:border-accent'
 									name='password'
 									{...register('password', {
 										required: {
@@ -133,7 +153,7 @@ const Signup = () => {
 									Confirm Password
 								</label>
 								<input
-									className='w-full max-w-sm px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+									className='w-full max-w-sm px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border-accent'
 									name='confirm'
 									{...register('confirm', {
 										required: REQUIRED_FIELD,
@@ -151,28 +171,28 @@ const Signup = () => {
 						</div>
 						<div className='mb-6 text-center'>
 							<button
-								className='w-full px-4 py-2 font-bold text-darkBlue bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+								className='w-full px-4 py-2 font-bold text-white bg-accent rounded-xl'
 								type='submit'
 							>
-								Register
+								{!loading ? 'Register' : <Spinner />}
 							</button>
 						</div>
 					</form>
 					<div className='text-center'>
 						<a
-							className='inline-block text-sm text-blue-500 align-baseline hover:text-blue-800'
+							className='inline-block text-sm text-accent align-baseline hover:underline'
 							href='#'
 						>
 							Forgot Password?
 						</a>
 					</div>
 					<div className='text-center'>
-						<a
-							className='inline-block text-sm text-blue-500 align-baseline hover:text-blue-800'
-							href='./index.html'
+						<Link
+							className='inline-block text-sm text-accent align-baseline hover:underline'
+							to='/login'
 						>
-							Already have an account? Login!
-						</a>
+							Already have an account?
+						</Link>
 					</div>
 				</div>
 			</div>
