@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { EMAIL_FORM, PASSWORD_REGEXP } from '../../../constants/regExp';
 import {
@@ -16,6 +15,12 @@ const Signup = () => {
 
 	const passwordWatcher = watch('password');
 	const onSubmit = data => console.log(data);
+
+	const validateConfirm = value => {
+		if (value !== passwordWatcher) {
+			return 'Passwords do not match';
+		}
+	};
 
 	return (
 		<div className='h-screen max-h-screen w-full'>
@@ -45,6 +50,9 @@ const Signup = () => {
 									type='text'
 									placeholder='First Name'
 								/>
+								<span className='text-xs italic text-red'>
+									{errors.firtsName?.message}
+								</span>
 							</div>
 							<div className='md:ml-2'>
 								<label className='block mb-2 text-sm font-bold text-gray-700'>
@@ -57,6 +65,9 @@ const Signup = () => {
 									type='text'
 									placeholder='Last Name'
 								/>
+								<span className='text-xs italic text-red'>
+									{errors.lastName?.message}
+								</span>
 							</div>
 						</div>
 						<div className='mb-4'>
@@ -76,6 +87,9 @@ const Signup = () => {
 								type='email'
 								placeholder='Email'
 							/>
+							<span className='text-xs italic text-red'>
+								{errors.email?.message}
+							</span>
 						</div>
 						<div className='mb-4 md:flex md:justify-between'>
 							<div className='mb-4 md:mr-2 md:mb-0'>
@@ -86,7 +100,7 @@ const Signup = () => {
 									Password
 								</label>
 								<input
-									className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+									className='w-full max-w-sm px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline'
 									name='password'
 									{...register('password', {
 										required: {
@@ -103,57 +117,63 @@ const Signup = () => {
 										},
 										pattern: {
 											value: PASSWORD_REGEXP,
-											message: '',
+											message:
+												'It must contain at least 1 number, 1 uppercase letter, 1 lowercase letter',
 										},
 									})}
 									type='password'
 									placeholder='******************'
 								/>
-								<p className='text-xs italic text-red-500'>
-									Please choose a password.
-								</p>
+								<span className='text-xs italic text-red'>
+									{errors.password?.message}
+								</span>
 							</div>
 							<div className='md:ml-2'>
-								<label
-									className='block mb-2 text-sm font-bold text-gray-700'
-									htmlFor='c_password'
-								>
+								<label className='block mb-2 text-sm font-bold text-gray-700'>
 									Confirm Password
 								</label>
 								<input
-									className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-									name='c_password'
+									className='w-full max-w-sm px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+									name='confirm'
+									{...register('confirm', {
+										required: REQUIRED_FIELD,
+										validate: {
+											value: value => validateConfirm(value),
+										},
+									})}
 									type='password'
 									placeholder='******************'
 								/>
+								<span className='text-xs italic text-red'>
+									{errors.confirm?.message}
+								</span>
 							</div>
 						</div>
 						<div className='mb-6 text-center'>
 							<button
-								className='w-full px-4 py-2 font-bold text-black bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline'
-								type='button'
+								className='w-full px-4 py-2 font-bold text-darkBlue bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline'
+								type='submit'
 							>
 								Register
 							</button>
 						</div>
-						<hr className='mb-6 border-t' />
-						<div className='text-center'>
-							<a
-								className='inline-block text-sm text-blue-500 align-baseline hover:text-blue-800'
-								href='#'
-							>
-								Forgot Password?
-							</a>
-						</div>
-						<div className='text-center'>
-							<a
-								className='inline-block text-sm text-blue-500 align-baseline hover:text-blue-800'
-								href='./index.html'
-							>
-								Already have an account? Login!
-							</a>
-						</div>
 					</form>
+					<div className='text-center'>
+						<a
+							className='inline-block text-sm text-blue-500 align-baseline hover:text-blue-800'
+							href='#'
+						>
+							Forgot Password?
+						</a>
+					</div>
+					<div className='text-center'>
+						<a
+							className='inline-block text-sm text-blue-500 align-baseline hover:text-blue-800'
+							href='./index.html'
+						>
+							Already have an account? Login!
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>

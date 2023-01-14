@@ -4,7 +4,6 @@ module.exports = {
 		es2021: true,
 	},
 	extends: [
-		'eslint: recommended',
 		'plugin:react/recommended',
 		'standard',
 		'plugin:react/jsx-runtime',
@@ -15,7 +14,7 @@ module.exports = {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
 	},
-	plugins: ['react', 'react-jsx'],
+	plugins: ['react'],
 	rules: {
 		'react/prop-types': 'warn',
 		camelcase: 'off',
