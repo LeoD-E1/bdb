@@ -1,5 +1,3 @@
-import React from 'react';
-import Profile from './Profile';
 import { Link } from 'react-router-dom';
 
 import {
@@ -41,41 +39,35 @@ const ProfileMenu = () => {
 	];
 	return (
 		<>
-			<div
-				className='absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg '
-				aria-orientation='vertical'
-				aria-labelledby='menu-button'
-			>
-				<div className='flex items-center justify-center px-3 py-6'>
+			<div className='absolute right-0 z-10 my-2 w-56 origin-top-right rounded-md bg-white shadow-lg '>
+				<div className='flex items-center justify-center py-3'>
 					<img
 						className='object-cover mx-2 rounded-full h-10 w-10'
 						src={dataSrc}
 						alt='avatar-user'
 					/>
-					<div>
+					<div className='flex flex-col'>
 						<Link to={'/profile'}>
-							<h6 className='font-semibold text-md hover:text-accent'>
+							<h6 className='font-semibold font-kanit text-md hover:text-accent'>
 								{userName}
 							</h6>
 						</Link>
 
-						<span className='text-sm text-gray font-serif'>
+						<span className='text-sm text-gray font-kanit'>
 							{userProffesion}
 						</span>
 					</div>
 				</div>
-				<div className='flex justify-center'>
+				<div className='flex justify-center mb-3'>
 					<div className='flex flex-col'>
 						{links.map((link, index) => (
-							<div key={index} className='hover:text-accent'>
+							<div key={index} className='hover:text-accent '>
 								<Link
 									to={link.to}
-									className={`flex items-center p-2 my-1 rounded-md hover:bg-lightGrey`}
+									className={`flex items-center p-2 my-1 rounded-md hover:bg-lightGrey text-gray-400 text-sm hover:text-accent`}
 								>
 									<FontAwesomeIcon icon={link.icon} className='w-5 h-5' />
-									<span className='mx-4 text-sm hover:text-accent'>
-										{link.title}
-									</span>
+									<p className='mx-4'>{link.title}</p>
 								</Link>
 							</div>
 						))}
