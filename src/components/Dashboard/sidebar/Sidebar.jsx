@@ -5,11 +5,14 @@ import {
 	faMap,
 	faBell,
 	faPager,
+	faAnglesLeft,
+	faAnglesRight,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation } from 'react-router-dom';
 import SideLinks from './SideLinks';
 
-const Sidebar = ({ open }) => {
+const Sidebar = ({ open, onClose }) => {
 	const { pathname } = useLocation();
 
 	const places = [
@@ -57,12 +60,20 @@ const Sidebar = ({ open }) => {
 				open ? 'w-60' : 'w-20'
 			}`}
 		>
-			<div className=' relative flex flex-col items-center h-[100vh] overflow-y-auto w-full'>
-				<div className='flex items-center justify-between'>
+			<div className=' relative flex flex-col justify-between items-center h-[100vh] overflow-y-auto w-full'>
+				<div className='flex items-center justify-center'>
 					<h1>LOGO</h1>
 					{open && <h2 className='text-xl font-bold'>Dashboard</h2>}
 				</div>
 				<SideLinks items={places} open={open} pathname={pathname} />
+				<div
+					className={`flex p-10  w-full ${
+						open ? 'justify-end' : 'justify-center'
+					} hover:bg-darkBlue border-t border-t-[#999]`}
+					onClick={() => onClose(!open)}
+				>
+					<FontAwesomeIcon icon={open ? faAnglesLeft : faAnglesRight} />
+				</div>
 			</div>
 		</div>
 	);

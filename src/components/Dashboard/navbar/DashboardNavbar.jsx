@@ -1,14 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-	faArrowLeft,
-	faArrowRight,
 	faBell,
 	faEnvelope,
 	faGear,
 } from '@fortawesome/free-solid-svg-icons';
 import ProfileDropdown from './ProfileDropdown';
 
-const DashboardNavbar = ({ open, onClose }) => {
+const DashboardNavbar = ({ open }) => {
 	const options = [
 		{ icon: faGear, label: 'Settings' },
 		{ icon: faEnvelope, label: 'Messages' },
@@ -17,11 +15,6 @@ const DashboardNavbar = ({ open, onClose }) => {
 	return (
 		<div className='p-2 flex justify-between items-center border-b border-b-[#eee] bg-white '>
 			<div className='flex items-center '>
-				<FontAwesomeIcon
-					className='text-gray text-lg shadow-lg p-2 rounded-tr-lg rounded-br-lg  hover:bg-gray hover:bg-opacity-20'
-					onClick={() => onClose(!open)}
-					icon={open ? faArrowLeft : faArrowRight}
-				/>
 				<div className='flex justify-center items-center'>
 					<div className='flex items-center ml-3'>
 						<input

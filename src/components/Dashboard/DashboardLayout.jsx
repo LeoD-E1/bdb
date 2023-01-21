@@ -5,7 +5,7 @@ import DashboardNavbar from './navbar/DashboardNavbar';
 import Sidebar from './sidebar/Sidebar';
 
 const DashboardLayout = ({ children }) => {
-	const [isSidebarOpen, setSidebarOpen] = useState(true);
+	const [isSidebarOpen, setSidebarOpen] = useState(false);
 	const visible = useModalStore(state => state.visible);
 	const modalType = useModalStore(state => state.modalType);
 
