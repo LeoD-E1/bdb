@@ -1,30 +1,26 @@
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { EMAIL_FORM, PASSWORD_REGEXP } from '../../../constants/regExp';
 import {
 	REQUIRED_FIELD,
 	INVALID_EMAIL_ADDRESS,
 } from '../../../constants/constants';
 import { Link } from 'react-router-dom';
-import { registerUser } from '../../../api/signup';
+import { createUser } from '../../../api/user/userService';
 import { useState } from 'react';
 import Spinner from '../../../components/Spinner/Spinner';
+import Input from '../../../components/input/Input';
+// import {useForm} from '../../../Hook/form-hook';
 
 const Signup = () => {
 	const [loading, setLoading] = useState(false);
 
-	const {
-		register,
-		watch,
-		handleSubmit,
-		formState: { errors },
-	} = useForm();
-
-	const passwordWatcher = watch('password');
+	const methods = useForm();
 
 	const onSubmit = async data => {
+		console.log('🚀 ~ file: Signup.jsx:28 ~ onSubmit ~ data', data);
 		!loading && setLoading(true);
 		try {
-			const user = await registerUser({
+			const user = await createUser({
 				email: data.email,
 				password: data.password,
 			});
@@ -36,11 +32,64 @@ const Signup = () => {
 		}
 	};
 
-	const validateConfirm = value => {
-		if (value !== passwordWatcher) {
-			return 'Passwords do not match';
-		}
-	};
+	const fields = [
+		{
+			element: 'input',
+			type: 'text',
+			label: 'First Name',
+			placeholder: 'John',
+			name: 'first_name',
+			constraints: {},
+		},
+		{
+			element: 'input',
+			type: 'text',
+			label: 'Last Name',
+			placeholder: 'Smith',
+			name: 'last_name',
+			constraints: {},
+		},
+		{
+			element: 'input',
+			type: 'email',
+			label: 'Email',
+			placeholder: 'John.Smith@email.com',
+			name: 'email',
+			constraints: {
+				required: { value: true, message: REQUIRED_FIELD },
+				pattern: {
+					value: EMAIL_FORM,
+					message: INVALID_EMAIL_ADDRESS,
+				},
+			},
+		},
+		{
+			element: 'input',
+			type: 'password',
+			label: 'Password',
+			placeholder: '*******************',
+			name: 'password',
+			constraints: {
+				required: {
+					value: true,
+					message: REQUIRED_FIELD,
+				},
+				minLength: {
+					value: 8,
+					message: 'At least 8 Characters',
+				},
+				maxLength: {
+					value: 255,
+					message: '255 characters maximum',
+				},
+				pattern: {
+					value: PASSWORD_REGEXP,
+					message:
+						'It must contain at least 1 number, 1 uppercase letter, 1 lowercase letter',
+				},
+			},
+		},
+	];
 
 	return (
 		<div className='h-screen max-h-screen w-full'>
@@ -57,132 +106,7 @@ const Signup = () => {
 						<Spinner />
 					) : (
 						<>
-							<h3 className='text-2xl my-10 text-gray-700'>Sign up</h3>
-							<form
-								onSubmit={handleSubmit(onSubmit)}
-								className='w-full bg-white max-w-xl lg:px-3'
-							>
-								<div className='mb-4 md:flex md:justify-between'>
-									<div className='mb-4 md:mr-2 md:mb-0'>
-										<label className='block mb-2 text-sm font-bold text-gray-400'>
-											First Name
-										</label>
-										<input
-											className='w-full px-3 py-2 text-sm leading-tight text-gray-400 border rounded  appearance-none focus:outline-none focus:border-accent'
-											name='firstName'
-											{...register('firstName')}
-											type='text'
-											placeholder='First Name'
-										/>
-										<span className='text-xs italic text-red'>
-											{errors.firtsName?.message}
-										</span>
-									</div>
-									<div className='md:ml-2'>
-										<label className='block mb-2 text-sm font-bold text-gray-400'>
-											Last Name
-										</label>
-										<input
-											className='w-full px-3 py-2 text-sm leading-tight text-gray-400 border rounded  appearance-none focus:outline-none focus:border-accent'
-											name='lastName'
-											{...register('lastName')}
-											type='text'
-											placeholder='Last Name'
-										/>
-										<span className='text-xs italic text-red'>
-											{errors.lastName?.message}
-										</span>
-									</div>
-								</div>
-								<div className='mb-4'>
-									<label className='block mb-2 text-sm font-bold text-gray-400'>
-										Email
-									</label>
-									<input
-										className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-400 border rounded  appearance-none focus:outline-none focus:border-accent'
-										name='email'
-										{...register('email', {
-											required: { value: true, message: REQUIRED_FIELD },
-											pattern: {
-												value: EMAIL_FORM,
-												message: INVALID_EMAIL_ADDRESS,
-											},
-										})}
-										type='email'
-										placeholder='Email'
-									/>
-									<span className='text-xs italic text-red'>
-										{errors.email?.message}
-									</span>
-								</div>
-								<div className='mb-4 md:flex md:justify-between'>
-									<div className='mb-4 md:mr-2 md:mb-0'>
-										<label
-											className='block mb-2 text-sm font-bold text-gray-400'
-											htmlFor='password'
-										>
-											Password
-										</label>
-										<input
-											className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-400 border rounded  appearance-none focus:outline-none focus:border-accent'
-											name='password'
-											{...register('password', {
-												required: {
-													value: true,
-													message: REQUIRED_FIELD,
-												},
-												minLength: {
-													value: 8,
-													message: 'At least 8 Characters',
-												},
-												maxLength: {
-													value: 255,
-													message: '255 characters maximum',
-												},
-												pattern: {
-													value: PASSWORD_REGEXP,
-													message:
-														'It must contain at least 1 number, 1 uppercase letter, 1 lowercase letter',
-												},
-											})}
-											type='password'
-											placeholder='******************'
-										/>
-										<span className='text-xs italic text-red'>
-											{errors.password?.message}
-										</span>
-									</div>
-									<div className='md:ml-2'>
-										<label className='block mb-2 text-sm font-bold text-gray-400'>
-											Confirm Password
-										</label>
-										<input
-											className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-400 border rounded  appearance-none focus:outline-none focus:border-accent'
-											name='confirm'
-											{...register('confirm', {
-												required: REQUIRED_FIELD,
-												validate: {
-													value: value => validateConfirm(value),
-												},
-											})}
-											type='password'
-											placeholder='******************'
-										/>
-										<span className='text-xs italic text-red'>
-											{errors.confirm?.message}
-										</span>
-									</div>
-								</div>
-								<div className='mb-6 text-center'>
-									<button
-										className='w-full px-4 py-2 font-bold text-white bg-accent rounded-xl'
-										type='submit'
-									>
-										Register
-									</button>
-								</div>
-							</form>
-							<div className='text-center'>
+							<div className='text-end'>
 								<Link
 									className='inline-block text-sm text-accent align-baseline hover:underline'
 									to='/login'
@@ -190,6 +114,33 @@ const Signup = () => {
 									Already have an account?
 								</Link>
 							</div>
+							<h3 className='text-2xl my-10 text-gray-700'>Sign up</h3>
+							<FormProvider {...methods}>
+								<form
+									onSubmit={methods.handleSubmit(onSubmit)}
+									className='w-full bg-white max-w-xl lg:px-3'
+								>
+									{fields.map(field => (
+										<Input
+											key={field.name}
+											constraints={field.constraints}
+											element={field.element}
+											label={field.label}
+											name={field.name}
+											placeholder={field.placeholder}
+											type={field.type}
+										/>
+									))}
+									<div className='mb-6 text-center'>
+										<button
+											className='w-full px-4 py-2 font-bold text-white bg-accent rounded-xl'
+											type='submit'
+										>
+											Register
+										</button>
+									</div>
+								</form>
+							</FormProvider>
 						</>
 					)}
 				</div>
