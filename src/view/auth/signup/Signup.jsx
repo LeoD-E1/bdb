@@ -1,4 +1,4 @@
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { EMAIL_FORM, PASSWORD_REGEXP } from '../../../constants/regExp';
 import {
 	REQUIRED_FIELD,
@@ -8,13 +8,16 @@ import { Link } from 'react-router-dom';
 import { createUser } from '../../../api/user/userService';
 import { useState } from 'react';
 import Spinner from '../../../components/Spinner/Spinner';
-import Input from '../../../components/input/Input';
 // import {useForm} from '../../../Hook/form-hook';
 
 const Signup = () => {
 	const [loading, setLoading] = useState(false);
 
-	const methods = useForm();
+	const {
+		formState: { errors },
+		register,
+		handleSubmit,
+	} = useForm();
 
 	const onSubmit = async data => {
 		console.log('🚀 ~ file: Signup.jsx:28 ~ onSubmit ~ data', data);
@@ -115,32 +118,33 @@ const Signup = () => {
 								</Link>
 							</div>
 							<h3 className='text-2xl my-10 text-gray-700'>Sign up</h3>
-							<FormProvider {...methods}>
-								<form
-									onSubmit={methods.handleSubmit(onSubmit)}
-									className='w-full bg-white max-w-xl lg:px-3'
-								>
-									{fields.map(field => (
-										<Input
-											key={field.name}
-											constraints={field.constraints}
-											element={field.element}
-											label={field.label}
+							<form
+								onSubmit={handleSubmit(onSubmit)}
+								className='w-full bg-white max-w-xl lg:px-3'
+							>
+								{fields.map(field => (
+									<div key={field.name} className='flex flex-col my-3'>
+										<input
+											className='w-full px-3 py-2 mb-1 text-sm leading-tight text-gray-400 border rounded focus:outline-none focus:border-accent'
 											name={field.name}
-											placeholder={field.placeholder}
 											type={field.type}
+											{...register(field.name, { ...field.constraints })}
+											placeholder={field.placeholder}
 										/>
-									))}
-									<div className='mb-6 text-center'>
-										<button
-											className='w-full px-4 py-2 font-bold text-white bg-accent rounded-xl'
-											type='submit'
-										>
-											Register
-										</button>
+										<span className='text-xs text-red font-kanit'>
+											{errors[field.name] && errors[field.name].message}
+										</span>
 									</div>
-								</form>
-							</FormProvider>
+								))}
+								<div className='mb-6 text-center'>
+									<button
+										className='w-full px-4 py-2 font-bold text-white bg-accent rounded-xl'
+										type='submit'
+									>
+										Register
+									</button>
+								</div>
+							</form>
 						</>
 					)}
 				</div>
