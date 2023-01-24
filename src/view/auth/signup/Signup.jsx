@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { EMAIL_FORM, PASSWORD_REGEXP } from '../../../constants/regExp';
 import {
 	REQUIRED_FIELD,
@@ -8,26 +8,28 @@ import { Link } from 'react-router-dom';
 import { createUser } from '../../../api/user/userService';
 import { useState } from 'react';
 import Spinner from '../../../components/Spinner/Spinner';
-// import {useForm} from '../../../Hook/form-hook';
+import Input from '../../../components/input/Input';
 
 const Signup = () => {
 	const [loading, setLoading] = useState(false);
 
-	const {
-		formState: { errors },
-		register,
-		handleSubmit,
-	} = useForm();
+	const methods = useForm();
+
+	const confirmWatch = methods.watch('password');
+	const validateConfirm = value => {
+		if (value !== confirmWatch) {
+			return 'Passwords do not match';
+		}
+	};
 
 	const onSubmit = async data => {
-		console.log('🚀 ~ file: Signup.jsx:28 ~ onSubmit ~ data', data);
 		!loading && setLoading(true);
 		try {
 			const user = await createUser({
 				email: data.email,
 				password: data.password,
 			});
-			console.log(user);
+			console.log(user.message);
 		} catch (error) {
 			console.log(error);
 		} finally {
@@ -92,6 +94,22 @@ const Signup = () => {
 				},
 			},
 		},
+		{
+			element: 'input',
+			type: 'password',
+			label: 'Confirm',
+			placeholder: '*******************',
+			name: 'confirm',
+			constraints: {
+				required: {
+					value: true,
+					message: REQUIRED_FIELD,
+				},
+				validate: {
+					value: value => validateConfirm(value),
+				},
+			},
+		},
 	];
 
 	return (
@@ -117,34 +135,25 @@ const Signup = () => {
 									Already have an account?
 								</Link>
 							</div>
-							<h3 className='text-2xl my-10 text-gray-700'>Sign up</h3>
-							<form
-								onSubmit={handleSubmit(onSubmit)}
-								className='w-full bg-white max-w-xl lg:px-3'
-							>
-								{fields.map(field => (
-									<div key={field.name} className='flex flex-col my-3'>
-										<input
-											className='w-full px-3 py-2 mb-1 text-sm leading-tight text-gray-400 border rounded focus:outline-none focus:border-accent'
-											name={field.name}
-											type={field.type}
-											{...register(field.name, { ...field.constraints })}
-											placeholder={field.placeholder}
-										/>
-										<span className='text-xs text-red font-kanit'>
-											{errors[field.name] && errors[field.name].message}
-										</span>
+							<h3 className='text-2xl my-10 text-gray-700'>Create account</h3>
+							<FormProvider {...methods}>
+								<form
+									onSubmit={methods.handleSubmit(onSubmit)}
+									className='w-full bg-white max-w-xl lg:px-3'
+								>
+									{fields.map(field => (
+										<Input key={field.name} field={field} />
+									))}
+									<div className='mb-6 text-center'>
+										<button
+											className='w-full p-4 font-bold text-white bg-accent rounded-xl'
+											type='submit'
+										>
+											Create account
+										</button>
 									</div>
-								))}
-								<div className='mb-6 text-center'>
-									<button
-										className='w-full px-4 py-2 font-bold text-white bg-accent rounded-xl'
-										type='submit'
-									>
-										Register
-									</button>
-								</div>
-							</form>
+								</form>
+							</FormProvider>
 						</>
 					)}
 				</div>
