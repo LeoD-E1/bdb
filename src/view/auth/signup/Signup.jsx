@@ -18,7 +18,7 @@ const Signup = () => {
 	const confirmWatch = methods.watch('password');
 	const validateConfirm = value => {
 		if (value !== confirmWatch) {
-			return 'Passwords do not match';
+			return 'Las contraseñas no coinciden';
 		}
 	};
 
@@ -28,6 +28,8 @@ const Signup = () => {
 			const user = await createUser({
 				email: data.email,
 				password: data.password,
+				first_name: data.first_name,
+				last_name: data.last_name,
 			});
 			console.log(user.message);
 		} catch (error) {
@@ -41,16 +43,16 @@ const Signup = () => {
 		{
 			element: 'input',
 			type: 'text',
-			label: 'First Name',
-			placeholder: 'John',
+			label: 'Nombre',
+			placeholder: 'Jorge',
 			name: 'first_name',
 			constraints: {},
 		},
 		{
 			element: 'input',
 			type: 'text',
-			label: 'Last Name',
-			placeholder: 'Smith',
+			label: 'Apellido',
+			placeholder: 'Pérez',
 			name: 'last_name',
 			constraints: {},
 		},
@@ -58,7 +60,7 @@ const Signup = () => {
 			element: 'input',
 			type: 'email',
 			label: 'Email',
-			placeholder: 'John.Smith@email.com',
+			placeholder: 'Jorge.perez@email.com',
 			name: 'email',
 			constraints: {
 				required: { value: true, message: REQUIRED_FIELD },
@@ -71,7 +73,7 @@ const Signup = () => {
 		{
 			element: 'input',
 			type: 'password',
-			label: 'Password',
+			label: 'Contraseña',
 			placeholder: '*******************',
 			name: 'password',
 			constraints: {
@@ -81,23 +83,23 @@ const Signup = () => {
 				},
 				minLength: {
 					value: 8,
-					message: 'At least 8 Characters',
+					message: 'Al menor 8 caracteres',
 				},
 				maxLength: {
 					value: 255,
-					message: '255 characters maximum',
+					message: 'maximo 255 caracteres',
 				},
 				pattern: {
 					value: PASSWORD_REGEXP,
 					message:
-						'It must contain at least 1 number, 1 uppercase letter, 1 lowercase letter',
+						'Al menos debe contener 1 numero, 1 letra mayuscula, 1 letra minúscula',
 				},
 			},
 		},
 		{
 			element: 'input',
 			type: 'password',
-			label: 'Confirm',
+			label: 'Repetí tu contraseña',
 			placeholder: '*******************',
 			name: 'confirm',
 			constraints: {
@@ -119,7 +121,7 @@ const Signup = () => {
 					className='w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover'
 					style={{
 						backgroundImage:
-							"url('https://source.unsplash.com/Mv9hjnEUHR4/600x800')",
+							"url('https://images.pexels.com/photos/5903264/pexels-photo-5903264.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
 					}}
 				></div>
 				<div className='w-full flex flex-col items-center justify-center lg:w-7/12 bg-white p-5'>
@@ -128,14 +130,15 @@ const Signup = () => {
 					) : (
 						<>
 							<div className='text-end'>
+								<span> ¿Ya estás registrado? </span>
 								<Link
 									className='inline-block text-sm text-accent align-baseline hover:underline'
 									to='/login'
 								>
-									Already have an account?
+									Ingresar
 								</Link>
 							</div>
-							<h3 className='text-2xl my-10 text-gray-700'>Create account</h3>
+							<h3 className='text-2xl my-10 text-gray-700'>Crear cuenta</h3>
 							<FormProvider {...methods}>
 								<form
 									onSubmit={methods.handleSubmit(onSubmit)}
@@ -149,7 +152,7 @@ const Signup = () => {
 											className='w-full p-4 font-bold text-white bg-accent rounded-xl'
 											type='submit'
 										>
-											Create account
+											Crear cuenta
 										</button>
 									</div>
 								</form>

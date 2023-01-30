@@ -11,10 +11,13 @@ const Input = ({ field }) => {
 		register,
 	} = useFormContext();
 
+	const required = field.constraints?.required?.value;
+
 	return (
 		<div key={field.name} className='flex flex-col my-3'>
 			<label className='text-sm text-black font-kanit font-semibold'>
 				{field.label}
+				{required && <span className='text-red text-md'> *</span>}
 			</label>
 			<div className='flex items-center'>
 				<input
