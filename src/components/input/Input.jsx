@@ -19,9 +19,9 @@ const Input = ({ field }) => {
 				{field.label}
 				{required && <span className='text-red text-md'> *</span>}
 			</label>
-			<div className='flex items-center'>
+			<div className='relative flex items-center'>
 				<input
-					className='w-full p-4 mb-1 text-sm text-gray-500 font-kanit font-semibold leading-tight bg-lightGrey border rounded-lg focus:outline-none focus:border-accent border-transparent'
+					className='w-full p-4 pr-7 mb-1 text-sm text-gray-500 font-kanit font-semibold leading-tight focus:outline-none focus:border-accent border-transparent border rounded-lg  bg-lightGrey'
 					name={field.name}
 					type={
 						field.name !== 'password' && field.name !== 'confirm'
@@ -36,7 +36,7 @@ const Input = ({ field }) => {
 				{(field.name === 'password' || field.name === 'confirm') && (
 					<FontAwesomeIcon
 						icon={show ? faEye : faEyeSlash}
-						className='w-5 mx-1'
+						className='w-5 mx-1 text-gray-400 absolute right-0'
 						onClick={() => {
 							setShow(!show);
 							show ? setType('password') : setType('text');

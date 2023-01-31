@@ -9,6 +9,7 @@ import { createUser } from '../../../api/user/userService';
 import { useState } from 'react';
 import Spinner from '../../../components/Spinner/Spinner';
 import Input from '../../../components/input/Input';
+import RoleCheckbox from '../../../components/Content/RoleCheckbox';
 
 const Signup = () => {
 	const [loading, setLoading] = useState(false);
@@ -43,17 +44,9 @@ const Signup = () => {
 		{
 			element: 'input',
 			type: 'text',
-			label: 'Nombre',
-			placeholder: 'Jorge',
-			name: 'first_name',
-			constraints: {},
-		},
-		{
-			element: 'input',
-			type: 'text',
-			label: 'Apellido',
-			placeholder: 'Pérez',
-			name: 'last_name',
+			label: 'Nombre de usuario',
+			placeholder: 'nombre_apellido',
+			name: 'username',
 			constraints: {},
 		},
 		{
@@ -114,6 +107,11 @@ const Signup = () => {
 		},
 	];
 
+	const roles = [
+		{ name: 'Comerciante', id: 1 },
+		{ name: 'Consumidor', id: 2 },
+	];
+
 	return (
 		<div className='h-screen max-h-screen w-full'>
 			<div className='w-full h-full flex'>
@@ -144,9 +142,30 @@ const Signup = () => {
 									onSubmit={methods.handleSubmit(onSubmit)}
 									className='w-full bg-white max-w-xl lg:px-3'
 								>
-									{fields.map(field => (
-										<Input key={field.name} field={field} />
-									))}
+									<div className='w-full grid grid-flow-row sm:grid-cols-2 gap-2'>
+										{fields.map(field => (
+											<Input key={field.name} field={field} />
+										))}
+										<section>
+											<label className='text-sm text-black font-kanit font-semibold'>
+												Soy
+											</label>
+											<ul className='grid w-full gap-2 grid-cols-2'>
+												{roles.map(role => (
+													<li
+														className='relative flex items-center mr-4 mb-2'
+														key={role.id}
+													>
+														<RoleCheckbox
+															title={role.name}
+															description={'cacs'}
+														/>
+													</li>
+												))}
+											</ul>
+										</section>
+									</div>
+
 									<div className='mb-6 text-center'>
 										<button
 											className='w-full p-4 font-bold text-white bg-accent rounded-xl'
