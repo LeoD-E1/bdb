@@ -15,7 +15,7 @@ const Input = ({ field }) => {
 
 	return (
 		<div key={field.name} className='flex flex-col my-3'>
-			<label className='text-sm text-black font-kanit font-semibold'>
+			<label className='text-sm text-black font-kanit '>
 				{field.label}
 				{required && <span className='text-red text-md'> *</span>}
 			</label>

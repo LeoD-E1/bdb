@@ -12,34 +12,6 @@ import Input from '../../../components/input/Input';
 import RoleCheckbox from '../../../components/Content/RoleCheckbox';
 
 const Signup = () => {
-	const [loading, setLoading] = useState(false);
-
-	const methods = useForm();
-
-	const confirmWatch = methods.watch('password');
-	const validateConfirm = value => {
-		if (value !== confirmWatch) {
-			return 'Las contraseñas no coinciden';
-		}
-	};
-
-	const onSubmit = async data => {
-		!loading && setLoading(true);
-		try {
-			const user = await createUser({
-				email: data.email,
-				password: data.password,
-				first_name: data.first_name,
-				last_name: data.last_name,
-			});
-			console.log(user.message);
-		} catch (error) {
-			console.log(error);
-		} finally {
-			setLoading(false);
-		}
-	};
-
 	const fields = [
 		{
 			element: 'input',
@@ -108,9 +80,43 @@ const Signup = () => {
 	];
 
 	const roles = [
-		{ name: 'Comerciante', id: 1 },
-		{ name: 'Consumidor', id: 2 },
+		{ name: 'Comerciante', id: 1, description: 'Vendedor, dueño de negocio' },
+		{
+			name: 'Consumidor',
+			id: 2,
+			description: 'Comprar comidas de los locales',
+		},
 	];
+
+	const [loading, setLoading] = useState(false);
+	const [roleSelected, setRoleSelected] = useState(roles[1]);
+
+	const methods = useForm();
+
+	const confirmWatch = methods.watch('password');
+	const validateConfirm = value => {
+		if (value !== confirmWatch) {
+			return 'Las contraseñas no coinciden';
+		}
+	};
+
+	const onSubmit = async data => {
+		!loading && setLoading(true);
+		try {
+			const user = await createUser({
+				email: data.email,
+				password: data.password,
+				first_name: data.first_name,
+				last_name: data.last_name,
+				role_id: roleSelected,
+			});
+			console.log(user.message);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+		}
+	};
 
 	return (
 		<div className='h-screen max-h-screen w-full'>
@@ -142,29 +148,25 @@ const Signup = () => {
 									onSubmit={methods.handleSubmit(onSubmit)}
 									className='w-full bg-white max-w-xl lg:px-3'
 								>
-									<div className='w-full grid grid-flow-row sm:grid-cols-2 gap-2'>
+									<section className='w-full grid grid-flow-row sm:grid-cols-2 gap-2'>
 										{fields.map(field => (
 											<Input key={field.name} field={field} />
 										))}
-										<section>
-											<label className='text-sm text-black font-kanit font-semibold'>
-												Soy
-											</label>
-											<ul className='grid w-full gap-2 grid-cols-2'>
-												{roles.map(role => (
-													<li
-														className='relative flex items-center mr-4 mb-2'
-														key={role.id}
-													>
-														<RoleCheckbox
-															title={role.name}
-															description={'cacs'}
-														/>
-													</li>
-												))}
-											</ul>
-										</section>
-									</div>
+									</section>
+									<section>
+										<label className='text-sm text-black font-kanit'>Soy</label>
+										<ul className='grid w-full gap-2 grid-cols-2'>
+											{roles.map(role => (
+												<li
+													className='relative flex items-center mr-4 mb-2 '
+													key={role.id}
+													onClick={() => setRoleSelected(role)}
+												>
+													<RoleCheckbox selected={roleSelected} role={role} />
+												</li>
+											))}
+										</ul>
+									</section>
 
 									<div className='mb-6 text-center'>
 										<button
