@@ -4,16 +4,14 @@ export const createUser = async ({
 	email,
 	password,
 	role_id = 2,
-	first_name = '',
-	last_name = '',
+	user_name = '',
 }) => {
 	const response = await fetch(`${VITE_APP_BASE_URL}/users`, {
 		body: JSON.stringify({
 			email,
 			password,
 			role_id,
-			first_name,
-			last_name,
+			user_name,
 		}),
 		method: 'POST',
 		headers: {

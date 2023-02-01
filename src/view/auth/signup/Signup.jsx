@@ -101,14 +101,14 @@ const Signup = () => {
 	};
 
 	const onSubmit = async data => {
+		console.log('🚀 ~ file: Signup.jsx:104 ~ onSubmit ~ data', data);
 		!loading && setLoading(true);
 		try {
 			const user = await createUser({
 				email: data.email,
 				password: data.password,
-				first_name: data.first_name,
-				last_name: data.last_name,
-				role_id: roleSelected,
+				user_name: data.username,
+				role_id: roleSelected.id,
 			});
 			console.log(user.message);
 		} catch (error) {
