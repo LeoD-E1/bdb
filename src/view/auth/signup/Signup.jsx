@@ -12,72 +12,102 @@ import Input from '../../../components/input/Input';
 import RoleCheckbox from '../../../components/Content/RoleCheckbox';
 
 const Signup = () => {
-	const fields = [
-		{
-			element: 'input',
-			type: 'text',
-			label: 'Nombre de usuario',
-			placeholder: 'nombre_apellido',
-			name: 'username',
-			constraints: {},
-		},
-		{
-			element: 'input',
-			type: 'email',
-			label: 'Email',
-			placeholder: 'Jorge.perez@email.com',
-			name: 'email',
-			constraints: {
-				required: { value: true, message: REQUIRED_FIELD },
-				pattern: {
-					value: EMAIL_FORM,
-					message: INVALID_EMAIL_ADDRESS,
+	const fields = {
+		common: [
+			{
+				element: 'input',
+				type: 'text',
+				label: 'Nombre de usuario',
+				placeholder: 'nombre_apellido',
+				name: 'username',
+				constraints: {},
+			},
+			{
+				element: 'input',
+				type: 'email',
+				label: 'Email',
+				placeholder: 'Jorge.perez@email.com',
+				name: 'email',
+				constraints: {
+					required: { value: true, message: REQUIRED_FIELD },
+					pattern: {
+						value: EMAIL_FORM,
+						message: INVALID_EMAIL_ADDRESS,
+					},
 				},
 			},
-		},
-		{
-			element: 'input',
-			type: 'password',
-			label: 'Contraseña',
-			placeholder: '*******************',
-			name: 'password',
-			constraints: {
-				required: {
-					value: true,
-					message: REQUIRED_FIELD,
-				},
-				minLength: {
-					value: 8,
-					message: 'Al menor 8 caracteres',
-				},
-				maxLength: {
-					value: 255,
-					message: 'maximo 255 caracteres',
-				},
-				pattern: {
-					value: PASSWORD_REGEXP,
-					message:
-						'Al menos debe contener 1 numero, 1 letra mayuscula, 1 letra minúscula',
-				},
-			},
-		},
-		{
-			element: 'input',
-			type: 'password',
-			label: 'Repetí tu contraseña',
-			placeholder: '*******************',
-			name: 'confirm',
-			constraints: {
-				required: {
-					value: true,
-					message: REQUIRED_FIELD,
-				},
-				validate: {
-					value: value => validateConfirm(value),
+			{
+				element: 'input',
+				type: 'password',
+				label: 'Contraseña',
+				placeholder: '*******************',
+				name: 'password',
+				constraints: {
+					required: {
+						value: true,
+						message: REQUIRED_FIELD,
+					},
+					minLength: {
+						value: 8,
+						message: 'Al menor 8 caracteres',
+					},
+					maxLength: {
+						value: 255,
+						message: 'maximo 255 caracteres',
+					},
+					pattern: {
+						value: PASSWORD_REGEXP,
+						message:
+							'Al menos debe contener 1 numero, 1 letra mayuscula, 1 letra minúscula',
+					},
 				},
 			},
-		},
-	];
+			{
+				element: 'input',
+				type: 'password',
+				label: 'Repetí tu contraseña',
+				placeholder: '*******************',
+				name: 'confirm',
+				constraints: {
+					required: {
+						value: true,
+						message: REQUIRED_FIELD,
+					},
+					validate: {
+						value: value => validateConfirm(value),
+					},
+				},
+			},
+		],
+		owner: [
+			{
+				element: 'input',
+				type: 'number',
+				label: 'Dni',
+				placeholder: '12345678',
+				name: 'dni',
+				constraints: {
+					required: {
+						value: true,
+						message: REQUIRED_FIELD,
+					},
+				},
+			},
+			{
+				element: 'input',
+				type: 'text',
+				label: 'Direccion del local',
+				placeholder: 'Av. xyz 1234',
+				name: 'address',
+				constraints: {
+					required: {
+						value: true,
+						message: REQUIRED_FIELD,
+					},
+				},
+			},
+		],
+	};
 
 	const roles = [
 		{ name: 'Comerciante', id: 1, description: 'Vendedor, dueño de negocio' },
@@ -101,7 +131,6 @@ const Signup = () => {
 	};
 
 	const onSubmit = async data => {
-		console.log('🚀 ~ file: Signup.jsx:104 ~ onSubmit ~ data', data);
 		!loading && setLoading(true);
 		try {
 			const user = await createUser({
@@ -109,6 +138,8 @@ const Signup = () => {
 				password: data.password,
 				user_name: data.username,
 				role_id: roleSelected.id,
+				dni: data.dni,
+				user_address: data.address,
 			});
 			console.log(user.message);
 		} catch (error) {
@@ -149,7 +180,7 @@ const Signup = () => {
 									className='w-full bg-white max-w-xl lg:px-3'
 								>
 									<section className='w-full grid grid-flow-row sm:grid-cols-2 gap-2'>
-										{fields.map(field => (
+										{fields.common.map(field => (
 											<Input key={field.name} field={field} />
 										))}
 									</section>
@@ -167,6 +198,14 @@ const Signup = () => {
 											))}
 										</ul>
 									</section>
+
+									{roleSelected.id === 1 && (
+										<section className='w-full grid grid-flow-row sm:grid-cols-2 gap-2'>
+											{fields.owner.map(field => (
+												<Input key={field.name} field={field} />
+											))}
+										</section>
+									)}
 
 									<div className='mb-6 text-center'>
 										<button

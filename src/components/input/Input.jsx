@@ -21,7 +21,7 @@ const Input = ({ field }) => {
 			</label>
 			<div className='relative flex items-center'>
 				<input
-					className='w-full p-4 pr-7 mb-1 text-sm text-gray-500 font-kanit font-semibold leading-tight focus:outline-none focus:border-accent border-transparent border rounded-lg  bg-lightGrey'
+					className='w-full p-4 pr-7 mb-1 text-sm text-gray-500 font-kanit leading-tight focus:outline-none focus:border-accent border-transparent border rounded-lg  bg-lightGrey'
 					name={field.name}
 					type={
 						field.name !== 'password' && field.name !== 'confirm'
