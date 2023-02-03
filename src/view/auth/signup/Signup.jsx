@@ -118,6 +118,13 @@ const Signup = () => {
 		},
 	];
 
+	// const steps = [
+	// 	{ id: 1, label: 'Usuario' },
+	// 	{ id: 2, label: 'Personal' },
+	// 	{ id: 3, label: 'Negocio' },
+	// ];
+
+	// const [step, setStep] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [roleSelected, setRoleSelected] = useState(roles[1]);
 
@@ -173,6 +180,7 @@ const Signup = () => {
 									Ingresar
 								</Link>
 							</div>
+
 							<h3 className='text-2xl my-10 text-gray-700'>Crear cuenta</h3>
 							<FormProvider {...methods}>
 								<form
