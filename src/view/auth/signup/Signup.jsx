@@ -10,6 +10,10 @@ import { useState } from 'react';
 import Spinner from '../../../components/Spinner/Spinner';
 import Input from '../../../components/input/Input';
 import RoleCheckbox from '../../../components/Content/RoleCheckbox';
+import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
+const { VITE_APP_GOOGLE_MAPS_API_KEY } = import.meta.env;
+
+const libraries = ['places'];
 
 const Signup = () => {
 	const fields = {
@@ -18,7 +22,7 @@ const Signup = () => {
 				element: 'input',
 				type: 'text',
 				label: 'Nombre de usuario',
-				placeholder: 'nombre_apellido',
+				placeholder: 'EJ. nombre_apellido',
 				name: 'username',
 				constraints: {},
 			},
@@ -118,15 +122,12 @@ const Signup = () => {
 		},
 	];
 
-	// const steps = [
-	// 	{ id: 1, label: 'Usuario' },
-	// 	{ id: 2, label: 'Personal' },
-	// 	{ id: 3, label: 'Negocio' },
-	// ];
-
-	// const [step, setStep] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [roleSelected, setRoleSelected] = useState(roles[1]);
+	const { isLoaded } = useJsApiLoader({
+		googleMapsApiKey: VITE_APP_GOOGLE_MAPS_API_KEY,
+		libraries,
+	});
 
 	const methods = useForm();
 
@@ -140,7 +141,7 @@ const Signup = () => {
 	const onSubmit = async data => {
 		!loading && setLoading(true);
 		try {
-			const user = await createUser({
+			const { user, status } = await createUser({
 				email: data.email,
 				password: data.password,
 				user_name: data.username,
@@ -148,6 +149,7 @@ const Signup = () => {
 				dni: data.dni,
 				user_address: data.address,
 			});
+			console.log('🚀 ~ file: Signup.jsx:152 ~ onSubmit ~ user', status);
 			console.log(user.message);
 		} catch (error) {
 			console.log(error);
@@ -155,6 +157,14 @@ const Signup = () => {
 			setLoading(false);
 		}
 	};
+
+	if (!isLoaded) {
+		return (
+			<div className='loader-div'>
+				<Spinner />
+			</div>
+		);
+	}
 
 	return (
 		<div className='h-screen max-h-screen w-full'>
@@ -165,7 +175,7 @@ const Signup = () => {
 						backgroundImage:
 							"url('https://images.pexels.com/photos/5903264/pexels-photo-5903264.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
 					}}
-				></div>
+				/>
 				<div className='w-full flex flex-col items-center justify-center lg:w-7/12 bg-white p-5'>
 					{loading ? (
 						<Spinner />
@@ -209,9 +219,16 @@ const Signup = () => {
 
 									{roleSelected.id === 1 && (
 										<section className='w-full grid grid-flow-row sm:grid-cols-2 gap-2'>
-											{fields.owner.map(field => (
-												<Input key={field.name} field={field} />
-											))}
+											{fields.owner.map(field => {
+												if (field.name === 'address') {
+													return (
+														<Autocomplete key={field.name}>
+															<Input key={field.name} field={field} />
+														</Autocomplete>
+													);
+												}
+												return <Input key={field.name} field={field} />;
+											})}
 										</section>
 									)}
 

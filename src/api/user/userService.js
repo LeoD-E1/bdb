@@ -8,19 +8,24 @@ export const createUser = async ({
 	dni = null,
 	user_address = '',
 }) => {
-	const response = await fetch(`${VITE_APP_BASE_URL}/users`, {
-		body: JSON.stringify({
-			email,
-			password,
-			role_id,
-			user_name,
-			dni,
-			user_address,
-		}),
-		method: 'POST',
-		headers: {
-			'content-type': 'application/json',
-		},
-	});
-	return response.json();
+	try {
+		const response = await fetch(`${VITE_APP_BASE_URL}/users`, {
+			body: JSON.stringify({
+				email,
+				password,
+				role_id,
+				user_name,
+				dni,
+				user_address,
+			}),
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+			},
+		});
+		const user = await response.json();
+		return { user, status: response.status };
+	} catch (error) {
+		console.log(error);
+	}
 };
