@@ -1,8 +1,13 @@
 import { useForm, FormProvider } from 'react-hook-form';
-import { EMAIL_FORM, PASSWORD_REGEXP } from '../../../constants/regExp';
+import {
+	EMAIL_FORM,
+	PASSWORD_REGEXP,
+	DNI_REGEXP,
+} from '../../../constants/regExp';
 import {
 	REQUIRED_FIELD,
 	INVALID_EMAIL_ADDRESS,
+	INVALID_DNI_NUMBER,
 } from '../../../constants/constants';
 import { Link } from 'react-router-dom';
 import { createUser } from '../../../api/user/userService';
@@ -88,12 +93,16 @@ const Signup = () => {
 				element: 'input',
 				type: 'number',
 				label: 'Dni',
-				placeholder: '12345678',
+				placeholder: '12.345.678',
 				name: 'dni',
 				constraints: {
 					required: {
 						value: true,
 						message: REQUIRED_FIELD,
+					},
+					pattern: {
+						value: DNI_REGEXP,
+						message: INVALID_DNI_NUMBER,
 					},
 				},
 			},
@@ -149,6 +158,7 @@ const Signup = () => {
 				dni: data.dni,
 				user_address: data.address,
 			});
+
 			console.log('🚀 ~ file: Signup.jsx:152 ~ onSubmit ~ user', status);
 			console.log(user.message);
 		} catch (error) {
