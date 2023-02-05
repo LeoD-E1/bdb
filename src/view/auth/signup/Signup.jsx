@@ -9,7 +9,7 @@ import {
 	INVALID_EMAIL_ADDRESS,
 	INVALID_DNI_NUMBER,
 } from '../../../constants/constants';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { createUser } from '../../../api/user/userService';
 import { useState } from 'react';
 import Spinner from '../../../components/Spinner/Spinner';
@@ -137,6 +137,7 @@ const Signup = () => {
 		googleMapsApiKey: VITE_APP_GOOGLE_MAPS_API_KEY,
 		libraries,
 	});
+	const navigate = useNavigate();
 
 	const methods = useForm();
 
@@ -161,6 +162,10 @@ const Signup = () => {
 
 			console.log('🚀 ~ file: Signup.jsx:152 ~ onSubmit ~ user', status);
 			console.log(user.message);
+
+			if (status >= 200 && status < 300) {
+				navigate(`/email-verification/${data.email}`);
+			}
 		} catch (error) {
 			console.log(error);
 		} finally {

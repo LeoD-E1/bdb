@@ -4,6 +4,7 @@ import Home from './view/Home';
 import Login from './view/auth/login/Login';
 import Signup from './view/auth/signup/Signup';
 import NoResult from './view/NoResult';
+import VerificationEmail from './view/auth/VerificationEmail';
 
 function App() {
 	const onUpdateFn = () => window.scrollTo(0, 0);
@@ -18,6 +19,11 @@ function App() {
 				<Route onUpdate={onUpdateFn} path='/' element={<Home />} />
 				<Route onUpdate={onUpdateFn} path='/login' element={<Login />} />
 				<Route onUpdate={onUpdateFn} path='/signup' element={<Signup />} />
+				<Route
+					onUpdate={onUpdateFn}
+					path='/email-verification'
+					element={<VerificationEmail />}
+				/>
 				<Route onUpdate={onUpdateFn} path='*' element={<NoResult />} />
 			</Routes>
 		</div>
