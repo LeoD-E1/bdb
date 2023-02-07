@@ -21,7 +21,7 @@ function App() {
 				<Route onUpdate={onUpdateFn} path='/signup' element={<Signup />} />
 				<Route
 					onUpdate={onUpdateFn}
-					path='/email-verification'
+					path='/success-sub'
 					element={<VerificationEmail />}
 				/>
 				<Route onUpdate={onUpdateFn} path='*' element={<NoResult />} />

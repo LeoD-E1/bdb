@@ -29,3 +29,25 @@ export const createUser = async ({
 		console.log(error);
 	}
 };
+
+export const loginUser = async ({ email, password }) => {
+	const resp = await fetch(`${VITE_APP_BASE_URL}/auth/login`, {
+		method: 'POST',
+		headers: {
+			'content-type': 'application/json',
+		},
+		body: JSON.stringify({ email, password }),
+	});
+	return resp.json();
+};
+
+export const getUserInfo = async token => {
+	try {
+		const response = await fetch(`${VITE_APP_BASE_URL}/auth/me`, {
+			headers: { Authorization: 'Bearer ' + token },
+		});
+		return response.json();
+	} catch (error) {
+		console.log(error);
+	}
+};

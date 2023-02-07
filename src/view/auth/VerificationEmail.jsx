@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const VerificationEmail = () => {
 	return (
 		<div className='loader-div bg-gray-700'>
@@ -13,6 +15,14 @@ const VerificationEmail = () => {
 					Hemos enviado un mensaje a tu correo, por favor para poder continuar
 					debes confirmarlo.
 				</p>
+
+				<Link
+					to='/login'
+					className='w-full p-2 font-bold text-white bg-accent rounded-xl'
+					type='submit'
+				>
+					Iniciar sesion
+				</Link>
 			</div>
 		</div>
 	);

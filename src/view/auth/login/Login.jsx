@@ -1,105 +1,106 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { EMAIL_FORM, PASSWORD_REGEXP } from '../../../constants/regExp';
+import { useForm, FormProvider } from 'react-hook-form';
+import { EMAIL_FORM } from '../../../constants/regExp';
 import {
 	REQUIRED_FIELD,
 	INVALID_EMAIL_ADDRESS,
 } from '../../../constants/constants';
-import { registerUser } from '../../../api/signup';
 import Spinner from '../../../components/Spinner/Spinner';
+import Input from '../../../components/input/Input';
+import { Link /* useNavigate */ } from 'react-router-dom';
+import { loginUser, getUserInfo } from '../../../api/user/userService';
+
 const Login = () => {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm();
+	const fields = [
+		{
+			element: 'input',
+			type: 'email',
+			label: 'Email',
+			placeholder: 'Jorge.perez@email.com',
+			name: 'email',
+			constraints: {
+				required: { value: true, message: REQUIRED_FIELD },
+				pattern: {
+					value: EMAIL_FORM,
+					message: INVALID_EMAIL_ADDRESS,
+				},
+			},
+		},
+		{
+			element: 'input',
+			type: 'password',
+			label: 'Contraseña',
+			placeholder: '*******************',
+			name: 'password',
+			constraints: {
+				required: {
+					value: true,
+					message: REQUIRED_FIELD,
+				},
+			},
+		},
+	];
+
+	// const navigate = useNavigate();
+	const methods = useForm();
 	const [loading, setLoading] = useState(false);
+
 	const onSubmit = async data => {
 		!loading && setLoading(true);
 		try {
-			const user = await registerUser({
+			const user = await loginUser({
 				email: data.email,
 				password: data.password,
 			});
-			console.log(user);
+			localStorage.setItem('token', JSON.stringify(user.data.token));
+			const dataUser = await getUserInfo(user.data.token);
+			console.log('🚀 ~ file: Login.jsx:57 ~ onSubmit ~ dataUser', dataUser);
+			// navigate('/');
 		} catch (error) {
 			console.log(error);
 		} finally {
 			setLoading(false);
 		}
 	};
+
 	return (
-		<div>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className='w-full p-6 bg-white max-w-xl'
-			>
-				<div className='mb-4'>
-					<label className='block mb-2 text-sm font-bold text-gray-700'>
-						Email
-					</label>
-					<input
-						className='w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:border-accent'
-						name='email'
-						{...register('email', {
-							required: { value: true, message: REQUIRED_FIELD },
-							pattern: {
-								value: EMAIL_FORM,
-								message: INVALID_EMAIL_ADDRESS,
-							},
-						})}
-						type='email'
-						placeholder='Email'
-					/>
-					<span className='text-xs italic text-red'>
-						{errors.email?.message}
-					</span>
-				</div>
-				<div className='mb-4 md:mr-2 md:mb-0'>
-					<label
-						className='block mb-2 text-sm font-bold text-gray-700'
-						htmlFor='password'
-					>
-						Password
-					</label>
-					<input
-						className='w-full max-w-sm px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:border-accent'
-						name='password'
-						{...register('password', {
-							required: {
-								value: true,
-								message: REQUIRED_FIELD,
-							},
-							minLength: {
-								value: 8,
-								message: 'At least 8 Characters',
-							},
-							maxLength: {
-								value: 255,
-								message: '255 characters maximum',
-							},
-							pattern: {
-								value: PASSWORD_REGEXP,
-								message:
-									'It must contain at least 1 number, 1 uppercase letter, 1 lowercase letter',
-							},
-						})}
-						type='password'
-						placeholder='******************'
-					/>
-					<span className='text-xs italic text-red'>
-						{errors.password?.message}
-					</span>
-				</div>
-				<div className='mb-6 text-center'>
-					<button
-						className='w-full px-4 py-2 font-bold text-white bg-accent rounded-xl'
-						type='submit'
-					>
-						{!loading ? 'Register' : <Spinner />}
-					</button>
-				</div>
-			</form>
+		<div className='loader-div flex-col'>
+			{loading ? (
+				<Spinner />
+			) : (
+				<>
+					<div className='text-end'>
+						<span> ¿Aun no tenés cuenta? </span>
+						<Link
+							className='inline-block text-sm text-accent align-baseline hover:underline'
+							to='/signup'
+						>
+							Registrarme
+						</Link>
+					</div>
+					<h3 className='text-2xl my-10 text-gray-700'>Ingresar</h3>
+					<FormProvider {...methods}>
+						<form
+							onSubmit={methods.handleSubmit(onSubmit)}
+							className='w-full p-6 bg-white max-w-xl'
+						>
+							<div className='mb-4'>
+								{fields.map(field => (
+									<Input key={field.name} field={field} />
+								))}
+							</div>
+							<div className='mb-6 text-center'>
+								<button
+									className='w-full px-4 py-2 font-bold text-white bg-accent rounded-xl'
+									type='submit'
+								>
+									{!loading ? 'Ingresar' : <Spinner />}
+								</button>
+							</div>
+						</form>
+					</FormProvider>
+				</>
+			)}
 		</div>
 	);
 };
