@@ -25,6 +25,10 @@
 }
 
 @layer base {
+	body {
+		font-family: 'Kanit';
+	}
+
 	p,
 	h1,
 	h2,
