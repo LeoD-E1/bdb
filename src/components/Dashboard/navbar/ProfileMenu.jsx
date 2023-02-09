@@ -8,12 +8,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const ProfileMenu = () => {
+const ProfileMenu = ({ name, proffesion, image }) => {
 	const dataSrc =
+		image ??
 		'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
 
-	const userName = "Leonardo D'angeli";
-	const userProffesion = 'Front-end Developer';
+	const userName = name ?? "Leonardo D'angeli";
+	const userProffesion = proffesion ?? 'Worker';
 
 	const links = [
 		{

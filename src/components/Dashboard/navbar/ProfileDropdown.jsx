@@ -4,28 +4,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Profile from './Profile';
 import ProfileMenu from './ProfileMenu';
 
-const ProfileDropdown = () => {
+const ProfileDropdown = ({ username, image, bgColor }) => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 
 	const dataSrc =
+		image ??
 		'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
 
-	const userName = "Leonardo D'angeli";
+	const userName = username ?? "Leonardo D'angeli";
+	const background = bgColor ? `bg-${bgColor}` : 'bg-lightGrey';
 
 	return (
 		<div className='relative inline-block text-left'>
 			<div
-				className='flex items-center cursor-default rounded-full p-0.5 lg:bg-lightGrey'
+				className={`flex items-center cursor-default rounded-full p-0.5 lg:${background}`}
 				onClick={() => setDropdownOpen(!dropdownOpen)}
 			>
 				<Profile src={dataSrc} name={userName} />
 
 				<FontAwesomeIcon
-					className='px-1 hidden lg:block'
+					className='px-1 hidden lg:block text-gray-400'
 					icon={!dropdownOpen ? faCaretDown : faCaretUp}
 				/>
 			</div>
-			{dropdownOpen && <ProfileMenu />}
+			{dropdownOpen && <ProfileMenu name={userName} />}
 		</div>
 	);
 };

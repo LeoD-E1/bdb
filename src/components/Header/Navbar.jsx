@@ -2,6 +2,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { useUserStore } from '../../store/userStore';
+import ProfileDropdown from '../Dashboard/navbar/ProfileDropdown';
 
 const Navbar = () => {
 	const links = [
@@ -36,7 +37,7 @@ const Navbar = () => {
 
 	return (
 		<>
-			<header className='z-10 absolute w-full bg-transparent bg-opacity-20 bg-black text-white'>
+			<header className='z-10 absolute w-full bg-opacity-20 bg-black text-white'>
 				<div className='mx-auto flex max-w-7xl items-center justify-between p-4'>
 					<a href='#'>
 						<h1 className='text-3xl'>Logo</h1>
@@ -62,7 +63,12 @@ const Navbar = () => {
 							</Link>
 						</nav>
 					) : (
-						<span className='text-white'>{user.email}</span>
+						<section className='hidden md:flex'>
+							<ProfileDropdown
+								username={user.username ?? user.email}
+								bgColor='transparent'
+							/>
+						</section>
 					)}
 					<div className='flex items-center space-x-2'>
 						<button className='flex appearance-none p-1 text-gray-500 md:hidden'>
