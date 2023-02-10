@@ -8,8 +8,8 @@ const Navbar = () => {
 	const links = [
 		{
 			id: '0',
-			title: 'Home',
-			url: '/home',
+			title: 'Inicio',
+			url: '/',
 		},
 		{
 			id: '1',
@@ -47,7 +47,7 @@ const Navbar = () => {
 							<Link
 								key={link.id}
 								to={link.url}
-								className='p-3 transition hover:bg-gray-100 font-kanit'
+								className='p-3 transition hover:text-gray-300 font-kanit'
 							>
 								{link.title}
 							</Link>
