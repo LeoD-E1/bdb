@@ -38,7 +38,12 @@ const Navbar = () => {
 	return (
 		<>
 			<header className='z-10 absolute w-full bg-opacity-20 bg-black text-white'>
-				<div className='mx-auto flex max-w-7xl items-center justify-between p-4'>
+				<div className='mx-auto flex max-w-7xl items-center md:justify-between p-4'>
+					<div className='flex items-center mr-3'>
+						<button className='flex appearance-none p-1 text-gray-500 md:hidden'>
+							<FontAwesomeIcon icon={faBars} className='h-5 w-5 text-white' />
+						</button>
+					</div>
 					<a href='#'>
 						<h1 className='text-3xl'>Logo</h1>
 					</a>
@@ -47,7 +52,7 @@ const Navbar = () => {
 							<Link
 								key={link.id}
 								to={link.url}
-								className='p-3 transition hover:text-gray-300 font-kanit'
+								className='px-3 transition hover:text-gray-300 font-kanit'
 							>
 								{link.title}
 							</Link>
@@ -70,11 +75,6 @@ const Navbar = () => {
 							/>
 						</section>
 					)}
-					<div className='flex items-center space-x-2'>
-						<button className='flex appearance-none p-1 text-gray-500 md:hidden'>
-							<FontAwesomeIcon icon={faBars} className='h-5 w-5 text-white' />
-						</button>
-					</div>
 				</div>
 			</header>
 		</>
