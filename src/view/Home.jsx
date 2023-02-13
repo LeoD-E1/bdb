@@ -13,7 +13,7 @@ const Home = () => {
 
 	const fetchPhotos = async () => {
 		try {
-			const url = 'https://jsonplaceholder.typicode.com/photos';
+			const url = '/images.json';
 			const resp = await fetch(url);
 			const data = await resp.json();
 			setPhotos(data.slice(0, 10));

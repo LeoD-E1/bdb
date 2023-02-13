@@ -17,11 +17,6 @@ const Navbar = () => {
 			url: '/nosotros',
 		},
 		{
-			id: '2',
-			title: 'Menu',
-			url: '/menu',
-		},
-		{
 			id: '3',
 			title: 'Contacto',
 			url: '/contacto',
