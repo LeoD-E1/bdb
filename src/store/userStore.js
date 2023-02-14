@@ -2,6 +2,23 @@ import create from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { mountStoreDevtool } from 'simple-zustand-devtools';
 
+const initialState = {
+	token: null,
+	user: {
+		user_id: null,
+		first_name: null,
+		last_name: null,
+		user_name: null,
+		email: null,
+		password: null,
+		creation_date: null,
+		dni: null,
+		role_id: null,
+		mobile_number: null,
+		user_address: null,
+	},
+};
+
 export const useUserStore = create(
 	persist(
 		set => ({
@@ -37,6 +54,7 @@ export const useUserStore = create(
 						...payload,
 					},
 				})),
+			signOut: () => set(state => initialState),
 		}),
 		{
 			name: 'user-storage',
