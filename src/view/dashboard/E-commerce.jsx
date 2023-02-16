@@ -2,7 +2,6 @@ import CardChart from '../../components/chart/CardChart';
 import DoughnutChart from '../../components/chart/DoughnutChart';
 import LineChart from '../../components/chart/LineChart';
 import ResumeCards from '../../components/Dashboard/e-commerce/ResumeCards';
-import React from 'react';
 import DashboardLayout from '../../components/Dashboard/DashboardLayout';
 
 const Ecommerce = () => {

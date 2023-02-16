@@ -164,7 +164,7 @@ const Signup = () => {
 			console.log(user.message);
 
 			if (status >= 200 && status < 300) {
-				navigate(`/success-sub/${data.email}`);
+				navigate(`/success-sub`);
 			}
 		} catch (error) {
 			console.log(error);

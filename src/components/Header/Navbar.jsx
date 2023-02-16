@@ -17,14 +17,9 @@ const Navbar = () => {
 			url: '/nosotros',
 		},
 		{
-			id: '3',
+			id: '2',
 			title: 'Contacto',
 			url: '/contacto',
-		},
-		{
-			id: '4',
-			title: 'Dashboard',
-			url: '/dashboard',
 		},
 	];
 
@@ -64,10 +59,7 @@ const Navbar = () => {
 						</nav>
 					) : (
 						<section className='hidden md:flex'>
-							<ProfileDropdown
-								username={user.username ?? user.email}
-								bgColor='transparent'
-							/>
+							<ProfileDropdown user={user} bgColor='transparent' />
 						</section>
 					)}
 				</div>

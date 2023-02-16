@@ -1,12 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	faBell,
-	faEnvelope,
-	faGear,
-} from '@fortawesome/free-solid-svg-icons';
+import { useUserStore } from '../../../store/userStore';
+import { faBell, faEnvelope, faGear } from '@fortawesome/free-solid-svg-icons';
 import ProfileDropdown from './ProfileDropdown';
 
 const DashboardNavbar = ({ open }) => {
+	const user = useUserStore(state => state.user);
+
 	const options = [
 		{ icon: faGear, label: 'Settings' },
 		{ icon: faEnvelope, label: 'Messages' },
@@ -36,7 +35,7 @@ const DashboardNavbar = ({ open }) => {
 					</div>
 				))}
 				<div>
-					<ProfileDropdown />
+					<ProfileDropdown user={user} />
 				</div>
 			</div>
 		</div>

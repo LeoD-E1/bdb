@@ -1,15 +1,16 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import {
 	faGear,
 	faQuestionCircle,
 	faArrowRightFromBracket,
 	faLanguage,
+	faChartLine,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useUserStore } from '../../../store/userStore';
 
-const ProfileMenu = ({ name, proffesion, image }) => {
+const ProfileMenu = ({ name, proffesion, image, role = 2 }) => {
 	const dataSrc =
 		image ??
 		'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
@@ -18,27 +19,37 @@ const ProfileMenu = ({ name, proffesion, image }) => {
 	const userProffesion = proffesion ?? 'Worker';
 	const signOut = useUserStore(state => state.signOut);
 	const navigate = useNavigate();
+	const { pathname } = useLocation();
 
 	const links = [
+		{
+			title: 'Dashboard',
+			to: '/dashboard',
+			icon: faChartLine,
+			requireOwner: true,
+		},
 		{
 			title: 'Settings',
 			to: '/settings',
 			icon: faGear,
+			requireOwner: false,
 		},
 		{
 			title: 'Help and Support',
 			to: '/help',
 			icon: faQuestionCircle,
+			requireOwner: false,
 		},
 		{
 			title: 'Change Language',
 			to: '/language',
 			icon: faLanguage,
+			requireOwner: false,
 		},
 		{
 			title: 'Sign Out',
-			to: '/',
 			icon: faArrowRightFromBracket,
+			requireOwner: false,
 			action: () => {
 				signOut();
 				navigate('/login');
@@ -48,7 +59,7 @@ const ProfileMenu = ({ name, proffesion, image }) => {
 	return (
 		<>
 			<div className='absolute right-0 z-10 my-2 w-56 origin-top-right rounded-md bg-white shadow-lg '>
-				<div className='flex items-center justify-center py-3'>
+				<div className='flex items-center justify-center py-3 gap-1'>
 					<img
 						className='object-cover mx-2 rounded-full h-10 w-10'
 						src={dataSrc}
@@ -69,7 +80,12 @@ const ProfileMenu = ({ name, proffesion, image }) => {
 				<div className='flex justify-center mb-3'>
 					<div className='flex flex-col'>
 						{links.map((link, index) => (
-							<div key={index} className='hover:text-accent'>
+							<div
+								key={index}
+								className={`hover:text-accent ${
+									role === 2 && link.requireOwner && 'hidden'
+								}`}
+							>
 								{link.action ? (
 									<button
 										className={`flex items-center p-2 my-1 rounded-md hover:bg-lightGrey text-gray-400 text-sm hover:text-accent`}
@@ -81,7 +97,9 @@ const ProfileMenu = ({ name, proffesion, image }) => {
 								) : (
 									<Link
 										to={link.to}
-										className={`flex items-center p-2 my-1 rounded-md hover:bg-lightGrey text-gray-400 text-sm hover:text-accent`}
+										className={`flex items-center p-2 my-1 rounded-md hover:bg-lightGrey text-gray-400 text-sm hover:text-accent ${
+											link.to === pathname && 'bg-gray-100 '
+										}`}
 									>
 										<FontAwesomeIcon icon={link.icon} className='w-5 h-5' />
 										<p className='mx-4'>{link.title}</p>
