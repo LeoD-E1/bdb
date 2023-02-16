@@ -1,19 +1,36 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useUserStore } from '../../../store/userStore';
-import { faBell, faEnvelope, faGear } from '@fortawesome/free-solid-svg-icons';
+import {
+	faBell,
+	faEnvelope,
+	faGear,
+	faHouse,
+} from '@fortawesome/free-solid-svg-icons';
 import ProfileDropdown from './ProfileDropdown';
+import { useNavigate } from 'react-router-dom';
 
 const DashboardNavbar = ({ open }) => {
 	const user = useUserStore(state => state.user);
+	const navigate = useNavigate();
 
 	const options = [
 		{ icon: faGear, label: 'Settings' },
 		{ icon: faEnvelope, label: 'Messages' },
 		{ icon: faBell, label: 'Notifications' },
 	];
+
+	const handleClick = () => {
+		navigate('/');
+	};
 	return (
 		<div className='p-2 flex justify-between items-center border-b border-b-[#eee] bg-white '>
 			<div className='flex items-center '>
+				<button className='bg-lightGrey' onClick={handleClick}>
+					<FontAwesomeIcon
+						icon={faHouse}
+						className='text-gray-500 text-lg p-2'
+					/>
+				</button>
 				<div className='flex justify-center items-center'>
 					<div className='flex items-center ml-3'>
 						<input

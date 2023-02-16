@@ -15,7 +15,7 @@ const ProfileMenu = ({ name, proffesion, image, role = 2 }) => {
 		image ??
 		'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
 
-	const userName = name ?? "Leonardo D'angeli";
+	const userName = name ?? 'unknown';
 	const userProffesion = proffesion ?? 'Worker';
 	const signOut = useUserStore(state => state.signOut);
 	const navigate = useNavigate();
