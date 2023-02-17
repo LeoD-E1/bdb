@@ -28,7 +28,7 @@ const Navbar = () => {
 	return (
 		<>
 			<header className='z-10 absolute w-full bg-opacity-20 bg-black text-white'>
-				<div className='layout-container flex justify-between p-4'>
+				<div className='layout-container flex justify-between p-2'>
 					<div className='flex items-center'>
 						<button className='flex appearance-none p-1 text-gray-500 md:hidden mr-3'>
 							<FontAwesomeIcon icon={faBars} className='h-5 w-5 text-white' />

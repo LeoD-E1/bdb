@@ -4,50 +4,43 @@ import {
 	faGear,
 	faQuestionCircle,
 	faArrowRightFromBracket,
-	faLanguage,
 	faChartLine,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useUserStore } from '../../../store/userStore';
 
-const ProfileMenu = ({ name, proffesion, image, role = 2 }) => {
+const ProfileMenu = ({ name, profession, image, role = 2 }) => {
 	const dataSrc =
 		image ??
 		'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
 
 	const userName = name ?? 'unknown';
-	const userProffesion = proffesion ?? 'Worker';
+	const userProffesion = profession ?? 'Worker';
 	const signOut = useUserStore(state => state.signOut);
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 
 	const links = [
 		{
-			title: 'Dashboard',
+			title: 'Tablero',
 			to: '/dashboard',
 			icon: faChartLine,
 			requireOwner: true,
 		},
 		{
-			title: 'Settings',
+			title: 'Configuraciones',
 			to: '/settings',
 			icon: faGear,
 			requireOwner: false,
 		},
 		{
-			title: 'Help and Support',
+			title: 'Ayuda y Soporte',
 			to: '/help',
 			icon: faQuestionCircle,
 			requireOwner: false,
 		},
 		{
-			title: 'Change Language',
-			to: '/language',
-			icon: faLanguage,
-			requireOwner: false,
-		},
-		{
-			title: 'Sign Out',
+			title: 'Cerrar Sesion',
 			icon: faArrowRightFromBracket,
 			requireOwner: false,
 			action: () => {

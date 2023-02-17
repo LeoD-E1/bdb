@@ -13,6 +13,7 @@ const ProfileDropdown = ({ user, bgColor }) => {
 
 	const userName = user.user_name ?? "Leonardo D'angeli";
 	const background = bgColor ? `bg-${bgColor}` : 'bg-lightGrey';
+	const profession = user.role_id === 1 ? 'Owner' : 'Customer';
 
 	return (
 		<div className='relative inline-block text-left'>
@@ -27,7 +28,13 @@ const ProfileDropdown = ({ user, bgColor }) => {
 					icon={!dropdownOpen ? faCaretDown : faCaretUp}
 				/>
 			</div>
-			{dropdownOpen && <ProfileMenu name={userName} role={user.role_id} />}
+			{dropdownOpen && (
+				<ProfileMenu
+					name={userName}
+					role={user.role_id}
+					profession={profession}
+				/>
+			)}
 		</div>
 	);
 };

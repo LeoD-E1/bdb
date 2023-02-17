@@ -63,7 +63,7 @@ const Login = () => {
 				pushToken(login.data.token);
 				const { user } = await getUserInfo(login.data.token);
 				fillWithUser(user);
-				navigate('/');
+				user.role_id !== 1 ? navigate('/') : navigate('/dashboard');
 			}
 		} catch (error) {
 			console.log(error);
