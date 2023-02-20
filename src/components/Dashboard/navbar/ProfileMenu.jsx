@@ -5,17 +5,15 @@ import {
 	faQuestionCircle,
 	faArrowRightFromBracket,
 	faChartLine,
+	faUser,
+	faLocationDot,
+	faClipboardList,
+	faHeart,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useUserStore } from '../../../store/userStore';
 
-const ProfileMenu = ({ name, profession, image, role = 2 }) => {
-	const dataSrc =
-		image ??
-		'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
-
-	const userName = name ?? 'unknown';
-	const userProffesion = profession ?? 'Worker';
+const ProfileMenu = ({ role = 2 }) => {
 	const signOut = useUserStore(state => state.signOut);
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
@@ -28,9 +26,33 @@ const ProfileMenu = ({ name, profession, image, role = 2 }) => {
 			requireOwner: true,
 		},
 		{
+			title: 'Mis direcciones',
+			to: '/addresses',
+			icon: faLocationDot,
+			requireOwner: false,
+		},
+		{
+			title: 'Mis pedidos',
+			to: '/orders',
+			icon: faClipboardList,
+			requireOwner: false,
+		},
+		{
+			title: 'Mis favoritos',
+			to: '/favorites',
+			icon: faHeart,
+			requireOwner: false,
+		},
+		{
 			title: 'Configuracion',
 			to: '/settings',
 			icon: faGear,
+			requireOwner: false,
+		},
+		{
+			title: 'Mi perfil',
+			to: '/profile',
+			icon: faUser,
 			requireOwner: false,
 		},
 		{
@@ -51,25 +73,7 @@ const ProfileMenu = ({ name, profession, image, role = 2 }) => {
 	];
 	return (
 		<>
-			<div className='absolute right-0 z-10 my-2 w-56 origin-top-right rounded-md bg-white shadow-lg '>
-				<div className='flex items-center justify-center py-3 gap-1'>
-					<img
-						className='object-cover mx-2 rounded-full h-10 w-10'
-						src={dataSrc}
-						alt='avatar-user'
-					/>
-					<div className='flex flex-col'>
-						<Link to={'/profile'}>
-							<h6 className='font-semibold font-kanit text-md hover:text-accent'>
-								{userName}
-							</h6>
-						</Link>
-
-						<span className='text-sm text-gray font-kanit'>
-							{userProffesion}
-						</span>
-					</div>
-				</div>
+			<div className='absolute right-0 z-10 my-2 w-56 origin-top-right rounded-b-md bg-white shadow-lg '>
 				<div className='flex justify-center mb-3'>
 					<div className='flex flex-col'>
 						{links.map((link, index) => (

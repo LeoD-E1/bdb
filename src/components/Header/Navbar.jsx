@@ -11,23 +11,13 @@ const Navbar = () => {
 			title: 'Inicio',
 			url: '/',
 		},
-		{
-			id: '1',
-			title: 'Nosotros',
-			url: '/nosotros',
-		},
-		{
-			id: '2',
-			title: 'Contacto',
-			url: '/contacto',
-		},
 	];
 
 	const user = useUserStore(state => state.user);
 
 	return (
 		<>
-			<header className='z-10 absolute w-full bg-opacity-20 bg-black text-white'>
+			<header className='z-10 absolute w-full bg-white text-dark-gray'>
 				<div className='layout-container flex justify-between p-2'>
 					<div className='flex items-center'>
 						<button className='flex appearance-none p-1 text-gray-500 md:hidden mr-3'>
@@ -50,16 +40,22 @@ const Navbar = () => {
 					</nav>
 					{!user.user_id ? (
 						<nav className='hidden md:flex items-center text-md text-gray-800'>
-							<Link to='/login' className=' p-3 transition hover:bg-gray-400'>
+							<Link
+								to='/login'
+								className=' p-3 transition hover:bg-gray-100 rounded-lg'
+							>
 								Login
 							</Link>
-							<Link to='/signup' className='p-3 transition hover:bg-gray-400'>
+							<Link
+								to='/signup'
+								className='p-3 transition hover:bg-gray-100 rounded-lg'
+							>
 								Sign Up
 							</Link>
 						</nav>
 					) : (
 						<section className='hidden md:flex'>
-							<ProfileDropdown user={user} bgColor='transparent' />
+							<ProfileDropdown user={user} bgColor='white' />
 						</section>
 					)}
 				</div>
