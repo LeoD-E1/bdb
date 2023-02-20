@@ -28,7 +28,7 @@ const ProfileMenu = ({ name, profession, image, role = 2 }) => {
 			requireOwner: true,
 		},
 		{
-			title: 'Configuraciones',
+			title: 'Configuracion',
 			to: '/settings',
 			icon: faGear,
 			requireOwner: false,
