@@ -21,7 +21,9 @@ export const createUser = async ({
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
+				'Access-Control-Allow-Origin': '*',
 			},
+			mode: 'cors',
 		});
 		const user = await response.json();
 		return { user, status: response.status };
