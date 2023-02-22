@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Profile = ({ src, name, profession }) => {
+const Profile = ({ src, name, description }) => {
 	return (
 		<>
 			<img
@@ -10,8 +8,8 @@ const Profile = ({ src, name, profession }) => {
 			/>
 			<div className='hidden lg:block'>
 				<h6 className='font-semibold text-md'>{name}</h6>
-				{profession && (
-					<span className='text-sm text-gray font-serif'>{profession}</span>
+				{description && (
+					<span className='text-sm text-gray font-serif'>{description}</span>
 				)}
 			</div>
 		</>

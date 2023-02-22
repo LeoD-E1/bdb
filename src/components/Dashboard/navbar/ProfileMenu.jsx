@@ -72,42 +72,40 @@ const ProfileMenu = ({ role = 2 }) => {
 		},
 	];
 	return (
-		<>
-			<div className='absolute right-0 z-10 my-2 w-56 origin-top-right rounded-b-md bg-white shadow-lg '>
-				<div className='flex justify-center mb-3'>
-					<div className='flex flex-col'>
-						{links.map((link, index) => (
-							<div
-								key={index}
-								className={`hover:text-accent ${
-									role === 2 && link.requireOwner && 'hidden'
-								}`}
-							>
-								{link.action ? (
-									<button
-										className={`flex items-center p-2 my-1 rounded-md hover:bg-lightGrey text-gray-400 text-sm hover:text-accent`}
-										onClick={link.action}
-									>
-										<FontAwesomeIcon icon={link.icon} className='w-5 h-5' />
-										<p className='mx-4'>{link.title}</p>
-									</button>
-								) : (
-									<Link
-										to={link.to}
-										className={`flex items-center p-2 my-1 rounded-md hover:bg-lightGrey text-gray-400 text-sm hover:text-accent ${
-											link.to === pathname && 'bg-gray-100 '
-										}`}
-									>
-										<FontAwesomeIcon icon={link.icon} className='w-5 h-5' />
-										<p className='mx-4'>{link.title}</p>
-									</Link>
-								)}
-							</div>
-						))}
-					</div>
+		<div className='my-2 w-full rounded-b-md bg-white'>
+			<div className='mb-3'>
+				<div className='flex flex-col'>
+					{links.map((link, index) => (
+						<div
+							key={index}
+							className={`hover:text-accent ${
+								role === 2 && link.requireOwner && 'hidden'
+							}`}
+						>
+							{link.action ? (
+								<button
+									className={`flex items-center p-2 my-1 rounded-md hover:bg-lightGrey text-gray-400 text-sm hover:text-accent`}
+									onClick={link.action}
+								>
+									<FontAwesomeIcon icon={link.icon} className='w-5 h-5' />
+									<p className='mx-4'>{link.title}</p>
+								</button>
+							) : (
+								<Link
+									to={link.to}
+									className={`flex items-center p-2 my-1 rounded-md hover:bg-lightGrey text-gray-400 text-sm hover:text-accent ${
+										link.to === pathname && 'bg-gray-100 '
+									}`}
+								>
+									<FontAwesomeIcon icon={link.icon} className='w-5 h-5' />
+									<p className='mx-4'>{link.title}</p>
+								</Link>
+							)}
+						</div>
+					))}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

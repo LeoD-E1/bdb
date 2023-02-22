@@ -5,11 +5,24 @@ import Login from './view/auth/login/Login';
 import Signup from './view/auth/signup/Signup';
 import NoResult from './view/NoResult';
 import VerificationEmail from './view/auth/VerificationEmail';
+import { useModalStore } from './store/modalStore';
+import Modal from './components/Content/Modal';
+import { useEffect } from 'react';
 
 function App() {
 	const onUpdateFn = () => window.scrollTo(0, 0);
+	const visible = useModalStore(state => state.visible);
+	const modalType = useModalStore(state => state.modalType);
+
+	useEffect(() => {
+		if (visible) {
+			document.body.style.overflow = 'hidden';
+		}
+	}, [visible]);
+
 	return (
 		<div className='App'>
+			{visible && <Modal modalType={modalType} />}
 			<Routes>
 				<Route
 					onUpdate={onUpdateFn}

@@ -27,7 +27,11 @@ const ProfileDropdown = ({ user, bgColor }) => {
 					icon={!dropdownOpen ? faCaretDown : faCaretUp}
 				/>
 			</div>
-			{dropdownOpen && <ProfileMenu role={user.role_id} />}
+			{dropdownOpen && (
+				<div className='absolute z-10 right-0 w-56'>
+					<ProfileMenu role={user.role_id} />
+				</div>
+			)}
 		</div>
 	);
 };
