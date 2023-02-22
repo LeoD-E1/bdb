@@ -15,9 +15,9 @@ function App() {
 	const modalType = useModalStore(state => state.modalType);
 
 	useEffect(() => {
-		if (visible) {
-			document.body.style.overflow = 'hidden';
-		}
+		visible
+			? document.body.setAttribute('style', 'overflow: hidden;')
+			: document.body.setAttribute('style', 'overflow: scroll;');
 	}, [visible]);
 
 	return (

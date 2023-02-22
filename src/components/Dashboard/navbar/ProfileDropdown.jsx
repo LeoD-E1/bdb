@@ -11,7 +11,7 @@ const ProfileDropdown = ({ user, bgColor }) => {
 		// user.image ??
 		'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
 
-	const userName = user.user_name ?? "Leonardo D'angeli";
+	const userName = user.user_name ?? 'unknown';
 	const background = `bg-${bgColor}` ?? 'bg-lightGrey';
 
 	return (
@@ -28,7 +28,7 @@ const ProfileDropdown = ({ user, bgColor }) => {
 				/>
 			</div>
 			{dropdownOpen && (
-				<div className='absolute z-10 right-0 w-56'>
+				<div className='absolute z-10 right-0 w-56 rounded-md'>
 					<ProfileMenu role={user.role_id} />
 				</div>
 			)}

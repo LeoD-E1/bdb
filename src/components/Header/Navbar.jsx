@@ -32,7 +32,7 @@ const Navbar = () => {
 					</section>
 
 					{!user.user_id ? (
-						<nav className='hidden md:flex items-center text-md text-gray-800'>
+						<nav className='hidden lg:flex items-center text-md text-gray-800'>
 							<Link
 								to='/login'
 								className=' p-3 transition hover:bg-gray-100 rounded-lg'

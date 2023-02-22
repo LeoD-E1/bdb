@@ -1,5 +1,4 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-
 import {
 	faGear,
 	faQuestionCircle,
@@ -13,7 +12,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useUserStore } from '../../../store/userStore';
 
-const ProfileMenu = ({ role = 2 }) => {
+const ProfileMenu = ({ role = 2, showModalAction }) => {
 	const signOut = useUserStore(state => state.signOut);
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
@@ -68,6 +67,7 @@ const ProfileMenu = ({ role = 2 }) => {
 			action: () => {
 				signOut();
 				navigate('/login');
+				showModalAction(false);
 			},
 		},
 	];
@@ -93,6 +93,7 @@ const ProfileMenu = ({ role = 2 }) => {
 							) : (
 								<Link
 									to={link.to}
+									onClick={() => showModalAction(false)}
 									className={`flex items-center p-2 my-1 rounded-md hover:bg-lightGrey text-gray-400 text-sm hover:text-accent ${
 										link.to === pathname && 'bg-gray-100 '
 									}`}
