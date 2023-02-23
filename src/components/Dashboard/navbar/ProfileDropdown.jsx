@@ -9,7 +9,7 @@ const ProfileDropdown = ({ user, bgColor }) => {
 
 	const dataSrc =
 		// user.image ??
-		'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
+		'https://randomuser.me/api/portraits/men/61.jpg';
 
 	const userName = user.user_name ?? 'unknown';
 	const background = `bg-${bgColor}` ?? 'bg-lightGrey';
