@@ -20,7 +20,7 @@ const ProfileDropdown = ({ user, bgColor }) => {
 				className={`flex items-center cursor-default rounded-full p-0.5 lg:${background}`}
 				onClick={() => setDropdownOpen(!dropdownOpen)}
 			>
-				<Profile src={dataSrc} name={userName} size={10} />
+				<Profile src={dataSrc} name={userName} />
 
 				<FontAwesomeIcon
 					className='px-1 hidden lg:block text-gray-400'

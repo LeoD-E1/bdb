@@ -1,4 +1,4 @@
-const Profile = ({ src, name, description, size = 10, col = false }) => {
+const Profile = ({ src, name, description, size = 7, col = false }) => {
 	return (
 		<div
 			className={`flex ${col && 'flex-col'} items-center justify-center p-2`}
