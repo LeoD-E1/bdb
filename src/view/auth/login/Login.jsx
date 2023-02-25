@@ -49,6 +49,10 @@ const Login = () => {
 	const methods = useForm();
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
+	const [loginError, setLoginError] = useState({
+		status: false,
+		message: '',
+	});
 
 	const onSubmit = async data => {
 		!loading && setLoading(true);
@@ -58,6 +62,10 @@ const Login = () => {
 				email: data.email,
 				password: data.password,
 			});
+
+			if (login.error) {
+				setLoginError({ status: true, message: login.message });
+			}
 
 			if (login.data.token) {
 				pushToken(login.data.token);
@@ -106,9 +114,9 @@ const Login = () => {
 								>
 									{!loading ? 'Ingresar' : <Spinner />}
 								</button>
-								{error && (
-									<div className='w-full px-4 py-2 text-red bg-gray mt-3'>
-										Email o contraseña incorrecta
+								{loginError.status && (
+									<div className='w-full px-4 py-2 text-red bg-gray-100 mt-3'>
+										{loginError.message}
 									</div>
 								)}
 							</div>

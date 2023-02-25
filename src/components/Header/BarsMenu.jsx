@@ -3,11 +3,10 @@ import ProfileMenu from '../Dashboard/navbar/ProfileMenu';
 import { useUserStore } from '../../store/userStore';
 import { useNavigate } from 'react-router-dom';
 import { useModalStore } from '../../store/modalStore';
+import noUser from '../../assets/images/no-user.png';
 
 const BarsMenu = () => {
-	const dataSrc =
-		// user.image ??
-		'https://randomuser.me/api/portraits/men/61.jpg';
+	const dataSrc = noUser;
 
 	const user = useUserStore(state => state.user);
 	const updateVisibility = useModalStore(state => state.updateVisibility);
@@ -26,7 +25,7 @@ const BarsMenu = () => {
 						name={user.user_name}
 						src={dataSrc}
 						description={user.email}
-						size={40}
+						size={20}
 						col={true}
 					/>
 					<ProfileMenu

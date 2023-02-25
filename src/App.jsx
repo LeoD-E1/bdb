@@ -17,7 +17,7 @@ function App() {
 	useEffect(() => {
 		visible
 			? document.body.setAttribute('style', 'overflow: hidden;')
-			: document.body.setAttribute('style', 'overflow: scroll;');
+			: document.body.setAttribute('style', 'overflow-y: auto;');
 	}, [visible]);
 
 	return (
