@@ -51,3 +51,26 @@ export const getUserInfo = async token => {
 		console.log(error);
 	}
 };
+
+export const requestEmail = async ({ email, user_name }) => {
+	console.log(
+		'🚀 ~ file: userService.js:56 ~ requestEmail ~ user_name:',
+		user_name
+	);
+	console.log('🚀 ~ file: userService.js:56 ~ requestEmail ~ email:', email);
+	try {
+		const resp = await fetch(
+			`${VITE_APP_BASE_URL}/users/send-email-verification`,
+			{
+				method: 'PUT',
+				headers: {
+					'content-type': 'application/json',
+				},
+				body: JSON.stringify({ email, user_name }),
+			}
+		);
+		return resp.json();
+	} catch (error) {
+		console.log(error);
+	}
+};

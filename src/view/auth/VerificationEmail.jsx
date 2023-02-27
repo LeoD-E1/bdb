@@ -1,6 +1,13 @@
+import { useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { requestEmail } from '../../api/user/userService';
 
 const VerificationEmail = () => {
+	useLayoutEffect(() => {
+		const dataUser = localStorage.getItem('user');
+		requestEmail(JSON.parse(dataUser));
+	}, []);
+
 	return (
 		<div className='loader-div bg-gray-700'>
 			<div className='flex flex-col max-w-lg gap-5 text-center'>
@@ -12,7 +19,7 @@ const VerificationEmail = () => {
 					!
 				</h2>
 				<p className='font-kanit text-lg text-gray-100'>
-					Hemos enviado un mensaje a tu correo, por favor para poder continuar
+					Hemos enviado un email a tu correo, por favor para poder continuar
 					debes confirmarlo.
 				</p>
 

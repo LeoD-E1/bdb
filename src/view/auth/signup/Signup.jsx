@@ -164,6 +164,10 @@ const Signup = () => {
 			console.log(user.message);
 
 			if (status >= 200 && status < 300) {
+				localStorage.setItem(
+					'user',
+					JSON.stringify({ email: data.email, user_name: data.username })
+				);
 				navigate(`/success-sub`);
 			}
 		} catch (error) {
