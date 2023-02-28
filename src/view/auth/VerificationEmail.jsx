@@ -1,12 +1,14 @@
-import { useLayoutEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { requestEmail } from '../../api/user/userService';
 
 const VerificationEmail = () => {
-	useLayoutEffect(() => {
-		const dataUser = localStorage.getItem('user');
-		requestEmail(JSON.parse(dataUser));
-	}, []);
+	const resendEmail = async () => {
+		try {
+			const userData = JSON.parse(localStorage.getItem('userData'));
+			await requestEmail(userData);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	return (
 		<div className='loader-div bg-gray-700'>
@@ -22,14 +24,26 @@ const VerificationEmail = () => {
 					Hemos enviado un email a tu correo, por favor para poder continuar
 					debes confirmarlo.
 				</p>
+				<p className='font-kanit text-lg text-gray-100'>
+					Este paso es necesario para finalizar. Por las dudas, acordate de
+					revisar la carpeta de spam
+				</p>
 
-				<Link
-					to='/login'
+				<span className='font-kanit text-md text-gray'>
+					¿Recibiste el email?
+				</span>
+
+				<button
+					onClick={resendEmail}
 					className='w-full p-2 font-bold text-white bg-accent rounded-xl'
-					type='submit'
 				>
-					Iniciar sesion
-				</Link>
+					Reenviar Email
+				</button>
+
+				<span className='font-kanit text-md text-gray'>
+					Una vez recibas el email, ya podes cerrar esta ventana y continuar
+					desde ahi
+				</span>
 			</div>
 		</div>
 	);

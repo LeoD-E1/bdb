@@ -10,7 +10,7 @@ import {
 	INVALID_DNI_NUMBER,
 } from '../../../constants/constants';
 import { Link, useNavigate } from 'react-router-dom';
-import { createUser } from '../../../api/user/userService';
+import { createUser, requestEmail } from '../../../api/user/userService';
 import { useState } from 'react';
 import Spinner from '../../../components/Spinner/Spinner';
 import Input from '../../../components/input/Input';
@@ -151,7 +151,7 @@ const Signup = () => {
 	const onSubmit = async data => {
 		!loading && setLoading(true);
 		try {
-			const { user, status } = await createUser({
+			const { user } = await createUser({
 				email: data.email,
 				password: data.password,
 				user_name: data.username,
@@ -160,15 +160,18 @@ const Signup = () => {
 				user_address: data.address,
 			});
 
-			console.log('🚀 ~ file: Signup.jsx:152 ~ onSubmit ~ user', status);
-			console.log(user.message);
+			if (user.error) {
+				return new Error(user.message);
+			}
+			const userData = {
+				email: data.email,
+				user_name: data.username,
+			};
 
-			if (status >= 200 && status < 300) {
-				localStorage.setItem(
-					'user',
-					JSON.stringify({ email: data.email, user_name: data.username })
-				);
-				navigate(`/success-sub`);
+			const requestedEmail = await requestEmail(userData);
+			if (!requestedEmail.error) {
+				localStorage.setItem('userData', JSON.stringify(userData));
+				navigate('/success-sub');
 			}
 		} catch (error) {
 			console.log(error);

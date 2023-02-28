@@ -53,11 +53,6 @@ export const getUserInfo = async token => {
 };
 
 export const requestEmail = async ({ email, user_name }) => {
-	console.log(
-		'🚀 ~ file: userService.js:56 ~ requestEmail ~ user_name:',
-		user_name
-	);
-	console.log('🚀 ~ file: userService.js:56 ~ requestEmail ~ email:', email);
 	try {
 		const resp = await fetch(
 			`${VITE_APP_BASE_URL}/users/send-email-verification`,
