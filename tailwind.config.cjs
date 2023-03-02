@@ -47,6 +47,7 @@ module.exports = {
 		extend: {
 			backgroundImage: {
 				chairs: "url('./src/assets/images/about.jpg')",
+				hamburger: "url('./src/assets/images/hamburger-bg.jpg')",
 			},
 			spacing: {
 				128: '32rem',

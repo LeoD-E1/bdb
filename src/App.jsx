@@ -4,7 +4,7 @@ import Home from './view/Home';
 import Login from './view/auth/login/Login';
 import Signup from './view/auth/signup/Signup';
 import NoResult from './view/NoResult';
-import VerificationEmail from './view/auth/VerificationEmail';
+import VerificationEmail from './view/auth/confirmation/VerificationEmail';
 import { useModalStore } from './store/modalStore';
 import Modal from './components/Content/Modal';
 import { useEffect } from 'react';

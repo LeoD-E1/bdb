@@ -1,4 +1,4 @@
-import { requestEmail } from '../../api/user/userService';
+import { requestEmail } from '../../../api/user/userService';
 
 const VerificationEmail = () => {
 	const resendEmail = async () => {
