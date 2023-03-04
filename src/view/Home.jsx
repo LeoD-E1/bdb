@@ -1,13 +1,25 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CardSlider from '../components/Content/CardSlider';
 import Offers from '../components/Content/Offers';
 import Slider from '../components/Content/Slider';
 // import Welcome from '../components/Content/Welcome';
 import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Header/Navbar';
+import Spinner from '../components/Spinner/Spinner';
 import { useFetch } from '../Hook/useFetch';
 
 const Home = () => {
 	const { data, error, loading } = useFetch('/images.json');
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		// find out if any address is already in the web
+		const address = JSON.parse(localStorage.getItem('addressData'));
+		if (!address) {
+			navigate('/');
+		}
+	}, []);
 
 	return (
 		<div className='App'>
@@ -20,7 +32,7 @@ const Home = () => {
 				</div>
 			) : loading ? (
 				<div className='flex justify-center items-center w-100 h-[100vh]'>
-					<h1 className='font-marker text-5xl text-orange'>Cargando...</h1>
+					<Spinner />
 				</div>
 			) : (
 				<>

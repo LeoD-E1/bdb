@@ -4,6 +4,7 @@ import { useUserStore } from '../../store/userStore';
 import { useNavigate } from 'react-router-dom';
 import { useModalStore } from '../../store/modalStore';
 import noUser from '../../assets/images/no-user.png';
+import CloseModalBtn from '../Content/CloseModalBtn';
 
 const BarsMenu = () => {
 	const dataSrc = noUser;
@@ -19,6 +20,7 @@ const BarsMenu = () => {
 
 	return (
 		<div className='max-w-sm w-full h-[100vh] bg-white p-5 lg:hidden'>
+			<CloseModalBtn />
 			{user.user_id !== null ? (
 				<div className='relative'>
 					<Profile

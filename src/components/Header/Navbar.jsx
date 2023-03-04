@@ -9,10 +9,8 @@ import { useUserStore } from '../../store/userStore';
 import { useModalStore } from '../../store/modalStore';
 import ProfileDropdown from '../Dashboard/navbar/ProfileDropdown';
 import logo from '../../../public/favicon.png';
-import { useState } from 'react';
 
 const Navbar = () => {
-	const [open, setOpen] = useState(false);
 	const user = useUserStore(state => state.user);
 	const updateVisibility = useModalStore(state => state.updateVisibility);
 	const updateModalType = useModalStore(state => state.updateModalType);
@@ -24,7 +22,8 @@ const Navbar = () => {
 	};
 
 	const handleAddressClick = () => {
-		setOpen(!open);
+		updateVisibility(true);
+		updateModalType('user-addresses', 'center');
 	};
 
 	return (
