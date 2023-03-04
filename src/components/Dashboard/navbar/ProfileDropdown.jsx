@@ -27,7 +27,7 @@ const ProfileDropdown = ({ user, bgColor }) => {
 			</div>
 			{dropdownOpen && (
 				<div className='absolute z-10 right-0 w-56 rounded-md'>
-					<ProfileMenu role={user.role_id} />
+					<ProfileMenu role={user.role} />
 				</div>
 			)}
 		</div>

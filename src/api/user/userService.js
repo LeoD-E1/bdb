@@ -3,7 +3,7 @@ const { VITE_APP_BASE_URL } = import.meta.env;
 export const createUser = async ({
 	email,
 	password,
-	role_id = 2,
+	role = 'CUSTOMER',
 	user_name = '',
 	dni = null,
 	user_address = '',
@@ -13,7 +13,7 @@ export const createUser = async ({
 			body: JSON.stringify({
 				email,
 				password,
-				role_id,
+				role,
 				user_name,
 				dni,
 				user_address,

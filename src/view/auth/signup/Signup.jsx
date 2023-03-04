@@ -123,10 +123,14 @@ const Signup = () => {
 	};
 
 	const roles = [
-		{ name: 'Comerciante', id: 1, description: 'Vendedor, dueño de negocio' },
+		{
+			name: 'Comerciante',
+			id: 'OWNER',
+			description: 'Vendedor, dueño de negocio',
+		},
 		{
 			name: 'Consumidor',
-			id: 2,
+			id: 'CUSTOMER',
 			description: 'Comprar comidas de los locales',
 		},
 	];
@@ -155,7 +159,7 @@ const Signup = () => {
 				email: data.email,
 				password: data.password,
 				user_name: data.username,
-				role_id: roleSelected.id,
+				role: roleSelected.id,
 				dni: data.dni,
 				user_address: data.address,
 			});

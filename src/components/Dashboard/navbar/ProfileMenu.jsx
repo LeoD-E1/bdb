@@ -12,7 +12,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useUserStore } from '../../../store/userStore';
 
-const ProfileMenu = ({ role = 2, showModalAction }) => {
+const ProfileMenu = ({ role = 'CUSTOMER', showModalAction }) => {
 	const signOut = useUserStore(state => state.signOut);
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
@@ -79,7 +79,7 @@ const ProfileMenu = ({ role = 2, showModalAction }) => {
 						<div
 							key={index}
 							className={`hover:text-accent ${
-								role === 2 && link.requireOwner && 'hidden'
+								role === 'CUSTOMER' && link.requireOwner && 'hidden'
 							}`}
 						>
 							{link.action ? (
