@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../components/Header/Navbar';
 import {
 	useJsApiLoader,
@@ -10,8 +10,6 @@ import {
 import Spinner from '../components/Spinner/Spinner';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const { VITE_APP_GOOGLE_MAPS_API_KEY } = import.meta.env;
 const coord = {
@@ -59,6 +57,14 @@ const Address = () => {
 		localStorage.setItem('addressData', JSON.stringify(data));
 		navigate('/home');
 	};
+
+	useEffect(() => {
+		// find out if any address is already in the web
+		const address = JSON.parse(localStorage.getItem('addressData'));
+		if (address) {
+			navigate('/home');
+		}
+	}, []);
 
 	return (
 		<>
