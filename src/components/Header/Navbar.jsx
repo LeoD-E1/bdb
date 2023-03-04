@@ -41,19 +41,21 @@ const Navbar = () => {
 					<img src={logo} alt='bocado-logo' className='hidden lg:block w-7' />
 				</section>
 
-				<section
-					className='flex items-center hover:cursor-default'
-					onClick={handleAddressClick}
-				>
-					<h3 className='font-kanit text-sm md:text-lg text-dark-gray'>
-						{storedLocation.locationName ||
-							storedLocation.address.slice(0, 15).concat('...')}
-					</h3>
-					<FontAwesomeIcon
-						icon={open ? faCaretUp : faCaretDown}
-						className='text-sm'
-					/>
-				</section>
+				{storedLocation && (
+					<section
+						className='flex items-center hover:cursor-default'
+						onClick={handleAddressClick}
+					>
+						<h3 className='font-kanit text-sm md:text-lg text-dark-gray'>
+							{storedLocation?.locationName ||
+								storedLocation?.address.slice(0, 15).concat('...')}
+						</h3>
+						<FontAwesomeIcon
+							icon={open ? faCaretUp : faCaretDown}
+							className='text-sm mx-1'
+						/>
+					</section>
+				)}
 
 				{!user.user_id ? (
 					<nav className='hidden lg:flex items-center text-md text-gray-800'>

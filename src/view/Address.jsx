@@ -99,7 +99,7 @@ const Address = () => {
 									/>
 
 									<input
-										{...register('location-name')}
+										{...register('locationName')}
 										placeholder='Nombre de la dirección'
 										className='w-full mt-1 px-2 py-1 border border-gray-100 rounded-sm focus:outline-none focus:border-accent'
 										type='text'
