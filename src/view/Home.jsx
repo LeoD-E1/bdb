@@ -1,34 +1,13 @@
-import { useState, useEffect } from 'react';
 import CardSlider from '../components/Content/CardSlider';
 import Offers from '../components/Content/Offers';
 import Slider from '../components/Content/Slider';
 // import Welcome from '../components/Content/Welcome';
 import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Header/Navbar';
+import { useFetch } from '../Hook/useFetch';
 
 const Home = () => {
-	const [photos, setPhotos] = useState([]);
-	const [error, setError] = useState(false);
-	const [loading, setLoading] = useState(true);
-
-	const fetchPhotos = async () => {
-		try {
-			const url = '/images.json';
-			const resp = await fetch(url);
-			const data = await resp.json();
-			setPhotos(data.slice(0, 10));
-		} catch (error) {
-			setError(error);
-		} finally {
-			setLoading(false);
-		}
-	};
-
-	useEffect(() => {
-		(async () => {
-			fetchPhotos();
-		})();
-	}, []);
+	const { data, error, loading } = useFetch('/images.json');
 
 	return (
 		<div className='App'>
@@ -46,10 +25,10 @@ const Home = () => {
 			) : (
 				<>
 					<Navbar />
-					<Slider data={photos} />
+					<Slider data={data} />
 					{/* <Welcome /> */}
-					<CardSlider data={photos} title='Nuestra recomendacion' />
-					<Offers data={photos} title='Promos mas vendidas' />
+					<CardSlider data={data} title='Nuestra recomendacion' />
+					<Offers data={data} title='Promos mas vendidas' />
 					<Footer />
 				</>
 			)}
