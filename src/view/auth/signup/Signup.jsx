@@ -243,7 +243,7 @@ const Signup = () => {
 										</ul>
 									</section>
 
-									{roleSelected.id === 1 && (
+									{roleSelected.id === 'OWNER' && (
 										<section className='w-full grid grid-flow-row sm:grid-cols-2 gap-2'>
 											{fields.owner.map(field => {
 												if (field.name === 'address') {
