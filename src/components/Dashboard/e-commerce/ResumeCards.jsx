@@ -1,4 +1,3 @@
-import React from 'react';
 import Card from './Card';
 import {
 	faCartShopping,
@@ -40,13 +39,11 @@ const ResumeCards = () => {
 	];
 
 	return (
-		<>
-			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 my-3'>
-				{cards.map((card, i) => (
-					<Card item={card} key={i} />
-				))}
-			</div>
-		</>
+		<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 my-3'>
+			{cards.map(card => (
+				<Card item={card} key={`dashboard-card-${card.title}`} />
+			))}
+		</div>
 	);
 };
 

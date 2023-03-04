@@ -80,26 +80,27 @@ const Address = () => {
 											? handleSubmit(addAddress)
 											: handleSubmit(onSubmit)
 									}
-									className='flex md:flex-col'
+									className='grid grid-cols-2 gap-1 md:flex md:flex-col'
 								>
 									<Autocomplete>
 										<input
 											{...register('address')}
 											type='text'
-											placeholder='Av.Rivadavia 3200'
-											className=' px-2 py-1 mt-1 border border-gray-100 rounded-sm focus:outline-none focus:border-blue-500'
+											placeholder='Dirección'
+											className='w-full px-2 py-1 mt-1 border border-gray-100 rounded-sm focus:outline-none focus:border-accent'
 										/>
 									</Autocomplete>
+
 									<input
 										{...register('extra')}
-										placeholder='5to 2, 52, fdo, etc'
-										className='mt-1 px-2 py-1 border border-gray-100 rounded-sm focus:outline-none focus:border-blue-500'
+										placeholder='dep, timbre, etc'
+										className='w-full mt-1 px-2 py-1 border border-gray-100 rounded-sm focus:outline-none focus:border-accent'
 										type='text'
 									/>
 									<div className='flex'>
 										<button
 											type='submit'
-											className='w-full px-3 py-1 my-1 bg-accent text-white rounded-sm hover:bg-blue-600 focus:outline-none focus:bg-blue-600'
+											className='w-full px-3 py-1 my-1 bg-accent text-white rounded-sm hover:bg-blue-600 focus:outline-none focus:bg-blue'
 										>
 											{center.lat !== coord.lat
 												? 'Agregar dirección'
