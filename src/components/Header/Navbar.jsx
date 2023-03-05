@@ -1,8 +1,4 @@
-import {
-	faBars,
-	faCaretDown,
-	faCaretUp,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { useUserStore } from '../../store/userStore';
@@ -49,10 +45,7 @@ const Navbar = () => {
 							{storedLocation?.locationName ||
 								storedLocation?.address.slice(0, 15).concat('...')}
 						</h3>
-						<FontAwesomeIcon
-							icon={open ? faCaretUp : faCaretDown}
-							className='text-sm mx-1'
-						/>
+						<FontAwesomeIcon icon={faCaretDown} className='text-sm mx-1' />
 					</section>
 				)}
 

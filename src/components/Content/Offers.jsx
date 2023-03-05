@@ -1,5 +1,5 @@
-import CardProduct from './CardProduct';
 import PropTypes from 'prop-types';
+import CardProduct from './CardProduct';
 
 const Offers = ({ data, title, stop = 8 }) => {
 	return (
@@ -7,7 +7,7 @@ const Offers = ({ data, title, stop = 8 }) => {
 			{title && (
 				<h2 className='text-3xl font-marker text-black mt-10'> {title} </h2>
 			)}
-			<div className='grid justify-items-center md:justify-items-stretch md:grid-cols-4 gap-3 '>
+			<div className='py-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 '>
 				{data.slice(0, stop).map(card => (
 					<CardProduct key={card.id} item={card} />
 				))}
