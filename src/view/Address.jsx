@@ -73,18 +73,18 @@ const Address = () => {
 					<Spinner />
 				</div>
 			) : (
-				<>
+				<main className='h-screen'>
 					<Navbar />
-					<div className='h-screen flex flex-col'>
+					<div className='h-full flex'>
 						<div className='relative flex-grow '>
-							<div className='bg-white top-10 z-10 absolute md:top-[20%] md:-translate-y-[20%] md:left-5 bg-opacity-80 p-5 w-full md:w-auto flex justify-center'>
+							<div className='w-full flex justify-center'>
 								<form
 									onSubmit={
 										center.lat !== coord.lat
 											? handleSubmit(addAddress)
 											: handleSubmit(onSubmit)
 									}
-									className=' md:flex md:flex-col'
+									className='mx-2 z-10 absolute bg-white top-5 md:flex md:flex-col p-2 rounded-lg'
 								>
 									<Autocomplete>
 										<input
@@ -166,7 +166,7 @@ const Address = () => {
 							</GoogleMap>
 						</div>
 					</div>
-				</>
+				</main>
 			)}
 		</>
 	);

@@ -23,7 +23,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<header className='z-10 absolute w-full bg-white text-dark-gray'>
+		<header className='z-10 w-full bg-white text-dark-gray'>
 			<div className='layout-container flex justify-between p-2'>
 				<section className='flex items-center'>
 					<button
