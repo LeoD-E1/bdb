@@ -75,18 +75,16 @@ const Address = () => {
 			) : (
 				<>
 					<Navbar />
-					<br />
-					<br />
 					<div className='h-screen flex flex-col'>
 						<div className='relative flex-grow '>
-							<div className='bg-white z-10 absolute md:top-[50%] md:-translate-y-[50%] md:left-5 bg-opacity-80 p-5 w-full md:w-auto flex justify-center'>
+							<div className='bg-white top-10 z-10 absolute md:top-[20%] md:-translate-y-[20%] md:left-5 bg-opacity-80 p-5 w-full md:w-auto flex justify-center'>
 								<form
 									onSubmit={
 										center.lat !== coord.lat
 											? handleSubmit(addAddress)
 											: handleSubmit(onSubmit)
 									}
-									className='grid grid-cols-2 gap-1 md:flex md:flex-col'
+									className=' md:flex md:flex-col'
 								>
 									<Autocomplete>
 										<input
@@ -97,23 +95,26 @@ const Address = () => {
 										/>
 									</Autocomplete>
 
-									<input
-										{...register('extra')}
-										placeholder='dep, timbre, etc'
-										className='w-full mt-1 px-2 py-1 border border-gray-100 rounded-sm focus:outline-none focus:border-accent'
-										type='text'
-									/>
+									<div className='grid grid-cols-2 gap-1'>
+										<input
+											{...register('extra')}
+											placeholder='dep, timbre, etc'
+											className='w-full mt-1 px-2 py-1 border border-gray-100 rounded-sm focus:outline-none focus:border-accent'
+											type='text'
+										/>
 
-									<input
-										{...register('locationName')}
-										placeholder='Nombre de la dirección'
-										className='w-full mt-1 px-2 py-1 border border-gray-100 rounded-sm focus:outline-none focus:border-accent'
-										type='text'
-									/>
-									<div className='flex'>
+										<input
+											{...register('locationName')}
+											placeholder='Nombre de la dirección'
+											className='w-full mt-1 px-2 py-1 border border-gray-100 rounded-sm focus:outline-none focus:border-accent'
+											type='text'
+										/>
+									</div>
+
+									<div className='flex gap-1'>
 										<button
 											type='submit'
-											className='w-full px-3 py-1 my-1 bg-accent text-white rounded-sm hover:bg-blue-600 focus:outline-none focus:bg-blue'
+											className='w-full px-3 py-1 my-1 bg-accent text-white rounded-sm hover:bg-blue-600 focus:outline-none focus:bg-blue '
 										>
 											{center.lat !== coord.lat
 												? 'Agregar dirección'
