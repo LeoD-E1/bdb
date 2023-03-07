@@ -34,6 +34,7 @@ const Slider = ({ data }) => {
 						backgroundRepeat: 'no-repeat',
 						backgroundOrigin: 'center',
 						backgroundSize: 'cover',
+						objectFit: 'cover',
 						backgroundPosition: '100% 50%',
 					}}
 				>

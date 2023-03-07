@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import {
 	useJsApiLoader,
-	Autocomplete,
 	GoogleMap,
 	Marker,
 	InfoWindow,
 } from '@react-google-maps/api';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import Spinner from '../Spinner/Spinner';
+import AddressForm from './AddressForm';
 
 const { VITE_APP_GOOGLE_MAPS_API_KEY } = import.meta.env;
 const coord = {
@@ -22,14 +20,12 @@ const Google = () => {
 		libraries: ['places'],
 	});
 
+	console.log('render');
+
 	const [center, setCenter] = useState(coord);
 
 	const [selectedMarker, setSelectedMarker] = useState(null);
 	const [mapZoom, setMapZoom] = useState(15);
-
-	const { handleSubmit, register } = useForm();
-
-	const navigate = useNavigate();
 
 	const onSubmit = data => {
 		const address = data.address;
@@ -52,72 +48,22 @@ const Google = () => {
 		setMapZoom(15);
 	}
 
-	const addAddress = data => {
-		if (data.address === '') return Error('Invalid address');
-		localStorage.setItem('addressData', JSON.stringify(data));
-		navigate('/home');
-	};
-
 	return (
 		<>
 			{!isLoaded ? (
-				<div className='h-full w-full flex justify-center items-center'>
+				<main className='h-full w-full flex justify-center items-center'>
 					<Spinner />
-				</div>
+				</main>
 			) : (
-				<div className='h-full flex'>
+				<main className='h-full flex'>
 					<div className='relative flex-grow '>
 						<div className='w-full flex justify-center'>
-							<form
-								onSubmit={
-									center.lat !== coord.lat
-										? handleSubmit(addAddress)
-										: handleSubmit(onSubmit)
-								}
-								className='mx-2 z-10 absolute bg-white top-5 md:flex md:flex-col p-2 rounded-lg'
-							>
-								<Autocomplete>
-									<input
-										{...register('address')}
-										type='text'
-										placeholder='Dirección'
-										className='w-full px-2 py-1 mt-1 border border-gray-100 rounded-sm focus:outline-none focus:border-accent'
-									/>
-								</Autocomplete>
-
-								<div className='grid grid-cols-2 gap-1'>
-									<input
-										{...register('extra')}
-										placeholder='dep, timbre, etc'
-										className='w-full mt-1 px-2 py-1 border border-gray-100 rounded-sm focus:outline-none focus:border-accent'
-										type='text'
-									/>
-
-									<input
-										{...register('locationName')}
-										placeholder='Nombre de la dirección'
-										className='w-full mt-1 px-2 py-1 border border-gray-100 rounded-sm focus:outline-none focus:border-accent'
-										type='text'
-									/>
-								</div>
-
-								<div className='flex gap-1'>
-									<button
-										type='submit'
-										className='w-full px-3 py-1 my-1 bg-accent text-white rounded-sm hover:bg-blue-600 focus:outline-none focus:bg-blue '
-									>
-										{center.lat !== coord.lat ? 'Agregar dirección' : 'Buscar'}
-									</button>
-									{center.lat !== coord.lat && (
-										<button
-											onClick={cleanSearch}
-											className='px-3 py-1 my-1 bg-red text-white rounded-sm hover:bg-blue-600 focus:outline-none focus:bg-blue-600'
-										>
-											X
-										</button>
-									)}
-								</div>
-							</form>
+							<AddressForm
+								center={center}
+								cleanFn={cleanSearch}
+								coord={coord}
+								onSubmit={onSubmit}
+							/>
 						</div>
 						<GoogleMap
 							center={center}
@@ -153,7 +99,7 @@ const Google = () => {
 							)}
 						</GoogleMap>
 					</div>
-				</div>
+				</main>
 			)}
 		</>
 	);
