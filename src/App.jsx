@@ -8,7 +8,7 @@ import VerificationEmail from './view/auth/confirmation/VerificationEmail';
 import { useModalStore } from './store/modalStore';
 import Modal from './components/Content/Modal';
 import { useEffect } from 'react';
-import Address from './view/Address';
+import Landing from './view/Landing';
 
 function App() {
 	const onUpdateFn = () => window.scrollTo(0, 0);
@@ -55,7 +55,7 @@ function App() {
 					path='/dashboard/*'
 					element={<Dashboard />}
 				/>
-				<Route onUpdate={onUpdateFn} path='/' element={<Address />} />
+				<Route onUpdate={onUpdateFn} path='/' element={<Landing />} />
 				<Route onUpdate={onUpdateFn} path='/home' element={<Home />} />
 				<Route onUpdate={onUpdateFn} path='/login' element={<Login />} />
 				<Route onUpdate={onUpdateFn} path='/signup' element={<Signup />} />
