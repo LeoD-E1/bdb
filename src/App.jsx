@@ -14,7 +14,8 @@ function App() {
 	const onUpdateFn = () => window.scrollTo(0, 0);
 	const visible = useModalStore(state => state.visible);
 	const modalType = useModalStore(state => state.modalType);
-	const modalAlignment = useModalStore(state => state.alignment);
+	const modalJustify = useModalStore(state => state.justify);
+	const modalItems = useModalStore(state => state.items);
 
 	useEffect(() => {
 		visible
@@ -48,7 +49,13 @@ function App() {
 
 	return (
 		<div className='App'>
-			{visible && <Modal modalType={modalType} alignment={modalAlignment} />}
+			{visible && (
+				<Modal
+					modalType={modalType}
+					justify={modalJustify}
+					items={modalItems}
+				/>
+			)}
 			<Routes>
 				<Route
 					onUpdate={onUpdateFn}

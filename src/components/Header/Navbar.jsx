@@ -14,12 +14,12 @@ const Navbar = () => {
 	const storedLocation = JSON.parse(localStorage.getItem('addressData'));
 	const handleClick = () => {
 		updateVisibility(true);
-		updateModalType('bars-menu');
+		updateModalType({ newModalType: 'bars-menu' });
 	};
 
 	const handleAddressClick = () => {
 		updateVisibility(true);
-		updateModalType('user-addresses', 'center');
+		updateModalType({ newModalType: 'user-addresses', newJustify: 'center' });
 	};
 
 	return (
@@ -55,13 +55,13 @@ const Navbar = () => {
 							to='/login'
 							className=' p-3 transition hover:bg-gray-100 rounded-lg'
 						>
-							Login
+							Iniciar Sesion
 						</Link>
 						<Link
 							to='/signup'
 							className='p-3 transition hover:bg-gray-100 rounded-lg'
 						>
-							Sign Up
+							Registrarme
 						</Link>
 					</nav>
 				) : (

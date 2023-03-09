@@ -8,7 +8,11 @@ const Presentation = () => {
 
 	const handleClick = () => {
 		updateVisibility(true);
-		updateModalType('choose-address', 'center');
+		updateModalType({
+			newModalType: 'choose-address',
+			newJustify: 'center',
+			newItems: 'end',
+		});
 	};
 
 	return (

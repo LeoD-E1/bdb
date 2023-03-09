@@ -20,7 +20,9 @@ const BarsMenu = () => {
 
 	return (
 		<div className='max-w-sm w-full h-[100vh] bg-white p-5 lg:hidden'>
-			<CloseModalBtn />
+			<div className='w-full flex justify-end'>
+				<CloseModalBtn />
+			</div>
 			{user.user_id !== null ? (
 				<div className='relative'>
 					<Profile

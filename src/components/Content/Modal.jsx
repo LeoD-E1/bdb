@@ -4,7 +4,7 @@ import BarsMenu from '../Header/BarsMenu';
 import ChooseAddressModal from './ChooseAddressModal';
 import ModalAddresses from './ModalAddresses';
 
-const Modal = ({ modalType, alignment = 'start' }) => {
+const Modal = ({ modalType, justify = 'start', items = 'center' }) => {
 	const modals = {
 		'create-product': <CreateProduct />,
 		'create-category': <CreateCategory />,
@@ -15,7 +15,7 @@ const Modal = ({ modalType, alignment = 'start' }) => {
 
 	return (
 		<div
-			className={`absolute z-20 bg-gray-dark bg-opacity-50 w-full h-screen flex justify-${alignment} items-center`}
+			className={`absolute z-20 bg-gray-dark bg-opacity-50 w-full h-screen flex justify-${justify} items-${items}`}
 		>
 			{modals[modalType]}
 		</div>
