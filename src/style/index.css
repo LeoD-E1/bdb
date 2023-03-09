@@ -76,7 +76,7 @@
 	}
 
 	.presentation {
-		border-bottom-left-radius: 50% 90px;
-		border-bottom-right-radius: 50% 90px;
+		border-bottom-left-radius: 50% 50px;
+		border-bottom-right-radius: 50% 50px;
 	}
 }
