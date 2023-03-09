@@ -1,6 +1,7 @@
 import CreateCategory from '../Dashboard/e-commerce/products/CreateCategory';
 import CreateProduct from '../Dashboard/e-commerce/products/CreateProduct';
 import BarsMenu from '../Header/BarsMenu';
+import ChooseAddressModal from './ChooseAddressModal';
 import ModalAddresses from './ModalAddresses';
 
 const Modal = ({ modalType, alignment = 'start' }) => {
@@ -9,6 +10,7 @@ const Modal = ({ modalType, alignment = 'start' }) => {
 		'create-category': <CreateCategory />,
 		'bars-menu': <BarsMenu />,
 		'user-addresses': <ModalAddresses />,
+		'choose-address': <ChooseAddressModal />,
 	};
 
 	return (

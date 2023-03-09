@@ -74,4 +74,9 @@
 		justify-content: space-evenly;
 		flex-direction: column;
 	}
+
+	.presentation {
+		border-bottom-left-radius: 50% 90px;
+		border-bottom-right-radius: 50% 90px;
+	}
 }
