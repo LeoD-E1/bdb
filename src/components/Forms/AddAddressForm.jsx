@@ -1,8 +1,13 @@
 import { IconArrowLeft } from '@tabler/icons-react';
+import { useForm } from 'react-hook-form';
 
 const AddAddressForm = ({ onSubmit, prevFn, address }) => {
-	const saveAddress = () => {
-		onSubmit();
+	const { register, handleSubmit } = useForm();
+	const saveAddress = data => {
+		onSubmit({
+			...address,
+			data,
+		});
 	};
 
 	const handlePrevClick = () => {
@@ -10,7 +15,7 @@ const AddAddressForm = ({ onSubmit, prevFn, address }) => {
 	};
 
 	return (
-		<article className='relative flex flex-col  items-center'>
+		<article className='relative flex flex-col'>
 			<header className='flex gap-2 justify-start my-2 border-b'>
 				<IconArrowLeft
 					width={40}
@@ -20,31 +25,44 @@ const AddAddressForm = ({ onSubmit, prevFn, address }) => {
 				/>
 				<h2 className='text-3xl'>Agregar dirección</h2>
 			</header>
-			<span className='p-3'>{address.formatted_address}</span>
-			<div className=''>
-				<label>Piso | Oficina | Dpto (opcional)</label>
-				<input
-					type='text'
-					placeholder='Descripción de la dirección'
-					className='w-full px-2 py-1 mt-1 border-b border-gray-100 rounded-sm outline-none focus:border-accent'
-				/>
-			</div>
+			<form onSubmit={handleSubmit(saveAddress)}>
+				<div className='my-3'>
+					<label>Dirección</label> <br />
+					<input
+						type='text'
+						disabled
+						className='p-3 w-full'
+						{...register('address')}
+						value={address.formatted_address}
+					/>
+				</div>
+				<div className='my-3'>
+					<label>Piso | Oficina | Dpto (opcional)</label>
+					<input
+						{...register('description')}
+						type='text'
+						placeholder='Descripción de la dirección'
+						className='w-full px-2 py-1 mt-1 border-b border-gray-100 rounded-sm outline-none focus:border-accent'
+					/>
+				</div>
 
-			<div className=''>
-				<label>Etiqueta (opcional)</label>
-				<input
-					type='text'
-					placeholder='Ej. Casa de mama'
-					className='w-full px-2 py-1 mt-1 border-b border-gray-100 rounded-sm outline-none focus:border-accent'
-				/>
-			</div>
+				<div className='my-3'>
+					<label>Etiqueta (opcional)</label>
+					<input
+						{...register('label')}
+						type='text'
+						placeholder='Ej. Casa de mama'
+						className='w-full px-2 py-1 mt-1 border-b border-gray-100 rounded-sm outline-none focus:border-accent'
+					/>
+				</div>
 
-			<button
-				className='w-auto flex justify-center p-5 text-white my-2 rounded-xl bg-accent'
-				onClick={saveAddress}
-			>
-				Guardar dirección
-			</button>
+				<button
+					className='w-auto flex justify-center p-5 text-white my-2 rounded-xl bg-accent'
+					onClick={saveAddress}
+				>
+					Guardar dirección
+				</button>
+			</form>
 		</article>
 	);
 };

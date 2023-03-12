@@ -17,7 +17,7 @@ const MultiStepAddressForm = () => {
 	};
 
 	const onSubmit = direccion => {
-		alert(`Tu dirección es: ${direccion}`);
+		console.log({ direccion });
 	};
 
 	const formByStep = {
