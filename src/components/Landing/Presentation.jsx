@@ -11,7 +11,7 @@ const Presentation = () => {
 		updateModalType({
 			newModalType: 'choose-address',
 			newJustify: 'center',
-			newItems: 'end',
+			newItems: 'center',
 		});
 	};
 
