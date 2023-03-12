@@ -18,12 +18,12 @@ const Presentation = () => {
 	return (
 		<div className='presentation w-full relative h-[50vh] bg-yellow mb-6 overflow-hidden bg'>
 			<article className='flex flex-col justify-center items-center h-full w-full gap-5 px-10'>
-				<h1 className='text-4xl text-white text-left'>
-					Los mejores restaurantes de la Argentina
+				<h1 className='text-4xl text-white text-left max-w-lg'>
+					Los mejores restaurantes de la Argentina en tu bolsillo
 				</h1>
 				<div className='relative w-full max-w-md p-2'>
 					<input
-						type='text'
+						type='search'
 						className='w-full py-2 pl-16 text-gray-700 rounded-md focus:outline-none focus:bg-white'
 						placeholder='¿Cuál es tu dirección?'
 						onClick={handleClick}
