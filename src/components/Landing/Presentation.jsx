@@ -7,6 +7,7 @@ const Presentation = () => {
 	const updateModalType = useModalStore(state => state.updateModalType);
 
 	const handleClick = () => {
+		window.scrollTo(0, 0);
 		updateVisibility(true);
 		updateModalType({
 			newModalType: 'choose-address',

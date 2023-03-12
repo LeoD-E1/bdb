@@ -4,6 +4,10 @@ import CloseModalBtn from './CloseModalBtn';
 
 const ModalAddresses = () => {
 	const storedAddress = JSON.parse(localStorage.getItem('addressData'));
+	console.log(
+		'🚀 ~ file: ModalAddresses.jsx:7 ~ ModalAddresses ~ storedAddress:',
+		storedAddress
+	);
 	const handleClick = () => {
 		localStorage.removeItem('addressData');
 		window.location.reload();
@@ -16,11 +20,9 @@ const ModalAddresses = () => {
 			{storedAddress ? (
 				<article className='p-3 hover:bg-lightGrey rounded-lg flex justify-between items-center'>
 					<div>
-						<h5 className='text-lg text-black'>
-							{storedAddress?.locationName}
-						</h5>
-						<p className='text-md'>{storedAddress?.address}</p>
-						<span className='text-sm'>{storedAddress?.extra}</span>
+						<h5 className='text-lg text-black'>{storedAddress?.label}</h5>
+						<p className='text-md'>{storedAddress?.formatted_address}</p>
+						<span className='text-sm'>{storedAddress?.desc}</span>
 					</div>
 
 					<FontAwesomeIcon

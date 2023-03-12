@@ -4,15 +4,15 @@ import { useForm } from 'react-hook-form';
 const AddAddressForm = ({ onSubmit, prevFn, address }) => {
 	const { register, handleSubmit } = useForm();
 	const saveAddress = data => {
+		console.log('🚀 ~ file: AddAddressForm.jsx:7 ~ saveAddress ~ data:', data);
 		onSubmit({
 			...address,
-			data,
+			desc: data.description,
+			label: data.label,
 		});
 	};
 
-	const handlePrevClick = () => {
-		prevFn();
-	};
+	const handlePrevClick = () => prevFn();
 
 	return (
 		<article className='relative flex flex-col'>
@@ -32,7 +32,6 @@ const AddAddressForm = ({ onSubmit, prevFn, address }) => {
 						type='text'
 						disabled
 						className='p-3 w-full'
-						{...register('address')}
 						value={address.formatted_address}
 					/>
 				</div>

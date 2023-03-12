@@ -32,18 +32,15 @@ function App() {
 
 	const handleUnload = async event => {
 		const clients = await navigator.serviceWorker.getRegistrations();
-
 		// Verificar si hay más de una pestaña abierta del mismo dominio
 		if (clients.length > 1) {
 			return;
 		}
-
 		// Verificar si la pestaña que se está cerrando es la última pestaña abierta
 		const currentClient = await clients[0].getWindowClient();
 		if (currentClient.id !== event.currentTarget.window.id) {
 			return;
 		}
-
 		localStorage.removeItem('addressData');
 	};
 

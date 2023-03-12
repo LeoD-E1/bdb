@@ -11,8 +11,7 @@ const InputAutocomplete = ({ retrieveAddress }) => {
 		googleMapsApiKey: VITE_APP_GOOGLE_MAPS_API_KEY,
 		libraries,
 	});
-	const [searchResult, setSearchResult] = useState('Result: none');
-	// const setNewAddress = useAddressStore(state => state.setNewAddress);
+	const [searchResult, setSearchResult] = useState(null);
 
 	function onLoad(autocomplete) {
 		setSearchResult(autocomplete);
@@ -21,8 +20,6 @@ const InputAutocomplete = ({ retrieveAddress }) => {
 	function onPlaceChanged() {
 		if (searchResult != null) {
 			const place = searchResult.getPlace();
-			// setNewAddress(place);
-			// const formattedAddress = place.formatted_address;
 			retrieveAddress(place);
 		} else {
 			alert('Please enter text');

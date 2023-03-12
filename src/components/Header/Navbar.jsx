@@ -43,7 +43,7 @@ const Navbar = () => {
 					>
 						<h3 className='font-kanit text-sm md:text-lg text-dark-gray'>
 							{storedLocation?.locationName ||
-								storedLocation?.address.slice(0, 15).concat('...')}
+								storedLocation?.formatted_address.slice(0, 15).concat('...')}
 						</h3>
 						<FontAwesomeIcon icon={faCaretDown} className='text-sm mx-1' />
 					</section>
