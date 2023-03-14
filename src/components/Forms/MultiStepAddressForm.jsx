@@ -41,8 +41,8 @@ const MultiStepAddressForm = () => {
 			'🚀 ~ file: MultiStepAddressForm.jsx:40 ~ onSubmit ~ direccion:',
 			direccion
 		);
-		// localStorage.setItem('addressData', stringify(direccion));
-		// updateVisibility(false);
+		localStorage.setItem('addressData', stringify(direccion));
+		updateVisibility(false);
 	};
 
 	const formByStep = {

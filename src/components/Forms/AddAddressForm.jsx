@@ -40,6 +40,7 @@ const AddAddressForm = ({ onSubmit, prevFn, address }) => {
 					<input
 						{...register('description')}
 						type='text'
+						name='description'
 						placeholder='Descripción de la dirección'
 						className='w-full px-2 py-1 mt-1 border-b border-gray-100 rounded-sm outline-none focus:border-accent'
 					/>
@@ -50,6 +51,7 @@ const AddAddressForm = ({ onSubmit, prevFn, address }) => {
 					<input
 						{...register('label')}
 						type='text'
+						name='label'
 						placeholder='Ej. Casa de mama'
 						className='w-full px-2 py-1 mt-1 border-b border-gray-100 rounded-sm outline-none focus:border-accent'
 					/>

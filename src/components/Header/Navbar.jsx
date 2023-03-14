@@ -5,6 +5,7 @@ import { useUserStore } from '../../store/userStore';
 import { useModalStore } from '../../store/modalStore';
 import ProfileDropdown from '../Dashboard/navbar/ProfileDropdown';
 import logo from '../../../public/favicon.png';
+import { IconUser, IconShoppingCart } from '@tabler/icons-react';
 
 const Navbar = () => {
 	const user = useUserStore(state => state.user);
@@ -43,25 +44,27 @@ const Navbar = () => {
 					>
 						<h3 className='font-kanit text-sm md:text-lg text-dark-gray'>
 							{storedLocation?.locationName ||
-								storedLocation?.formatted_address.slice(0, 15).concat('...')}
+								storedLocation?.formatted_address.slice(0, 25).concat('...')}
 						</h3>
 						<FontAwesomeIcon icon={faCaretDown} className='text-sm mx-1' />
 					</section>
 				)}
 
 				{!user.user_id ? (
-					<nav className='hidden lg:flex items-center text-md text-gray-800'>
+					<nav className='flex items-center text-md text-gray-800'>
 						<Link
 							to='/login'
-							className=' p-3 transition hover:bg-gray-100 rounded-lg'
+							className=' p-3 transition hover:bg-gray-100 rounded-lg flex items-center'
 						>
-							Iniciar Sesion
+							<IconUser width={25} height={25} className='md:mx-1' />
+							<span className='hidden lg:flex'>Ingreso</span>
 						</Link>
+
 						<Link
-							to='/signup'
-							className='p-3 transition hover:bg-gray-100 rounded-lg'
+							to='/cart'
+							className='p-3 transition hover:bg-gray-100 rounded-lg flex items-center'
 						>
-							Registrarme
+							<IconShoppingCart width={25} height={25} className='md:mx-2' />
 						</Link>
 					</nav>
 				) : (
