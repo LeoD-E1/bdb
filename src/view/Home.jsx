@@ -12,13 +12,10 @@ import { useFetch } from '../Hook/useFetch';
 const Home = () => {
 	const { data, error, loading } = useFetch('/images.json');
 	const navigate = useNavigate();
+	const address = JSON.parse(localStorage.getItem('addressData'));
 
 	useEffect(() => {
-		// find out if any address is already in the web
-		const address = JSON.parse(localStorage.getItem('addressData'));
-		if (!address) {
-			navigate('/');
-		}
+		!address && navigate('/');
 	}, []);
 
 	return (
