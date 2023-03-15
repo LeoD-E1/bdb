@@ -11,20 +11,19 @@ const FeaturesSection = () => {
 				'https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
 		},
 		{
-			title: 'Registra tu restaurante',
+			title: 'Pedi sin complicaciones',
 			bgColor: '#31B77E',
 			description:
-				'Asociate con Bocado de Barrio para atraer más clientes con facilidad y llevar tu negocio al siguiente nivel.',
-			imageUrl:
-				'https://images.pexels.com/photos/5920774/pexels-photo-5920774.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+				'¿Quieres helado, una hamburguesa o una pizza? Con Bocado de Barrio pedir es fácil y rápido. ¿No tienes efectivo? No te preocupes, también podes pagar con mercado pago.',
+			imageUrl: 'https://www.zonamovilidad.es/fotos/2/aumento-uso-movil.jpg',
 		},
 		{
-			title: 'Pedi de tus restaurantes',
+			title: 'Entrega Express',
 			bgColor: '#333740',
 			description:
-				'En BDB podrás encontrar una gran variedad de restaurantes y tipos de comidas. Tu restaurante favorito esta a un clic de distancia.',
+				'Con Bocado de Barrio no hace falta que pagues envios, estas a metros del tu restaurante favorito.',
 			imageUrl:
-				'https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+				'https://images.pexels.com/photos/5953555/pexels-photo-5953555.jpeg',
 		},
 	];
 
