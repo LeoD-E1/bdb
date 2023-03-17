@@ -33,7 +33,7 @@ const BarsMenu = () => {
 						col={true}
 					/>
 					<ProfileMenu
-						role={user.role_id}
+						role={user.role}
 						showModalAction={arg => updateVisibility(arg)}
 					/>
 				</div>
