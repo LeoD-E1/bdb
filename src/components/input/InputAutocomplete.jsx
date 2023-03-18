@@ -1,6 +1,5 @@
 import { Autocomplete, useJsApiLoader } from '@react-google-maps/api';
 import { useState } from 'react';
-// import { useAddressStore } from '../../store/addressStore';
 import Spinner from '../Spinner/Spinner';
 
 const { VITE_APP_GOOGLE_MAPS_API_KEY } = import.meta.env;

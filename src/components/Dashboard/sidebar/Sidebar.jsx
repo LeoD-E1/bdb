@@ -11,6 +11,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLocation } from 'react-router-dom';
 import SideLinks from './SideLinks';
+import logo from '../../../../public/favicon.png';
 
 const Sidebar = ({ open, onClose }) => {
 	const { pathname } = useLocation();
@@ -18,39 +19,39 @@ const Sidebar = ({ open, onClose }) => {
 	const places = [
 		{
 			id: 0,
-			name: 'Dashboard',
+			name: 'Tablero',
 			icon: faChartSimple,
 			path: '/dashboard',
 		},
 		{
 			id: 1,
-			name: 'Settings',
+			name: 'Configuracion',
 			icon: faGear,
 			path: '/dashboard/settings',
 		},
 		{
 			id: 2,
-			name: 'Products',
+			name: 'Productos',
 			icon: faTable,
 			path: '/dashboard/products',
 		},
 		{
 			id: 3,
-			name: 'Map',
+			name: 'Mapa',
 			icon: faMap,
 			path: '/map',
 		},
 		{
 			id: 4,
-			name: 'Notifications',
+			name: 'Notificationes',
 			icon: faBell,
 			path: '/notifications',
 		},
 		{
 			id: 5,
-			name: 'Page',
+			name: 'Mi página',
 			icon: faPager,
-			path: '/landing',
+			path: '/',
 		},
 	];
 
@@ -60,10 +61,9 @@ const Sidebar = ({ open, onClose }) => {
 				open ? 'w-60' : 'w-20'
 			}`}
 		>
-			<div className=' relative flex flex-col justify-between items-center h-[100vh] overflow-y-auto w-full'>
+			<div className=' relative flex flex-col justify-between items-center h-[100vh] overflow-y-auto w-full pt-5'>
 				<div className='flex items-center justify-center'>
-					<h1>LOGO</h1>
-					{open && <h2 className='text-xl font-bold'>Dashboard</h2>}
+					<img src={logo} alt='logo-BDB' className='w-14' />
 				</div>
 				<SideLinks items={places} open={open} pathname={pathname} />
 				<div

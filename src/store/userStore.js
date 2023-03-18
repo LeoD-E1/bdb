@@ -13,9 +13,15 @@ const initialState = {
 		password: null,
 		creation_date: null,
 		dni: null,
-		role_id: null,
-		mobile_number: null,
+		role: null,
+		phone: null,
 		user_address: null,
+		verified: null,
+		updated_at: null,
+		profile_image_url: null,
+		phone_confirmed_at: null,
+		last_sign_in: null,
+		bio: null,
 	},
 };
 
@@ -23,19 +29,7 @@ export const useUserStore = create(
 	persist(
 		set => ({
 			token: null,
-			user: {
-				user_id: null,
-				first_name: null,
-				last_name: null,
-				user_name: null,
-				email: null,
-				password: null,
-				creation_date: null,
-				dni: null,
-				role_id: null,
-				mobile_number: null,
-				user_address: null,
-			},
+			user: initialState.user,
 			pushToken: newToken =>
 				set(state => ({
 					...state,
@@ -54,7 +48,7 @@ export const useUserStore = create(
 						...payload,
 					},
 				})),
-			signOut: () => set(state => initialState),
+			signOut: () => set(() => initialState),
 		}),
 		{
 			name: 'user-storage',

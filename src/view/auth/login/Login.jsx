@@ -70,6 +70,7 @@ const Login = () => {
 			if (login.data.token) {
 				pushToken(login.data.token);
 				const { user } = await getUserInfo(login.data.token);
+				console.log('🚀 ~ file: Login.jsx:73 ~ onSubmit ~ user:', user);
 				fillWithUser(user);
 				user.role !== 'OWNER' ? navigate('/') : navigate('/dashboard');
 			}
