@@ -21,6 +21,7 @@ const Google = ({ address }) => {
 		lat: address.geometry.location.lat(),
 		lng: address.geometry.location.lng(),
 	});
+	console.log('🚀 ~ file: Google.jsx:24 ~ Google ~ center:', center);
 
 	const [selectedMarker, setSelectedMarker] = useState(null);
 	const [mapZoom] = useState(17);

@@ -56,7 +56,7 @@ function App() {
 			<Routes>
 				<Route
 					onUpdate={onUpdateFn}
-					path='/dashboard/*'
+					path='/business/*'
 					element={<Dashboard />}
 				/>
 				<Route onUpdate={onUpdateFn} path='/' element={<Landing />} />

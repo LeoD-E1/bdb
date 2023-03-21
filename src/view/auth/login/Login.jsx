@@ -70,9 +70,8 @@ const Login = () => {
 			if (login.data.token) {
 				pushToken(login.data.token);
 				const { user } = await getUserInfo(login.data.token);
-				console.log('🚀 ~ file: Login.jsx:73 ~ onSubmit ~ user:', user);
 				fillWithUser(user);
-				user.role !== 'OWNER' ? navigate('/') : navigate('/dashboard');
+				user.role === 'OWNER' ? navigate('/business') : navigate('/');
 			}
 		} catch (error) {
 			console.log(error);
@@ -82,50 +81,52 @@ const Login = () => {
 		}
 	};
 
-	return (
-		<div className='loader-div flex-col'>
-			{loading ? (
+	if (loading) {
+		return (
+			<div className='loader-div'>
 				<Spinner />
-			) : (
-				<>
-					<div className='text-end'>
-						<span> ¿Aun no tenés cuenta? </span>
-						<Link
-							className='inline-block text-sm text-accent align-baseline hover:underline'
-							to='/signup'
-						>
-							Registrarme
-						</Link>
+			</div>
+		);
+	}
+
+	return (
+		<main className='loader-div flex-col'>
+			<div className='text-end'>
+				<span> ¿Aun no tenés cuenta? </span>
+				<Link
+					className='inline-block text-sm text-accent align-baseline hover:underline'
+					to='/signup'
+				>
+					Registrarme
+				</Link>
+			</div>
+			<h3 className='text-2xl my-10 text-gray-700'>Ingresar</h3>
+			<FormProvider {...methods}>
+				<form
+					onSubmit={methods.handleSubmit(onSubmit)}
+					className='w-full p-6 bg-white max-w-xl'
+				>
+					<div className='mb-4'>
+						{fields.map(field => (
+							<Input key={field.name} field={field} />
+						))}
 					</div>
-					<h3 className='text-2xl my-10 text-gray-700'>Ingresar</h3>
-					<FormProvider {...methods}>
-						<form
-							onSubmit={methods.handleSubmit(onSubmit)}
-							className='w-full p-6 bg-white max-w-xl'
+					<div className='mb-6 text-center'>
+						<button
+							className='w-full px-4 py-2 font-bold text-white bg-accent rounded-xl'
+							type='submit'
 						>
-							<div className='mb-4'>
-								{fields.map(field => (
-									<Input key={field.name} field={field} />
-								))}
+							{!loading ? 'Ingresar' : <Spinner />}
+						</button>
+						{loginError.status && (
+							<div className='w-full px-4 py-2 text-red bg-gray-100 mt-3'>
+								{loginError.message}
 							</div>
-							<div className='mb-6 text-center'>
-								<button
-									className='w-full px-4 py-2 font-bold text-white bg-accent rounded-xl'
-									type='submit'
-								>
-									{!loading ? 'Ingresar' : <Spinner />}
-								</button>
-								{loginError.status && (
-									<div className='w-full px-4 py-2 text-red bg-gray-100 mt-3'>
-										{loginError.message}
-									</div>
-								)}
-							</div>
-						</form>
-					</FormProvider>
-				</>
-			)}
-		</div>
+						)}
+					</div>
+				</form>
+			</FormProvider>
+		</main>
 	);
 };
 

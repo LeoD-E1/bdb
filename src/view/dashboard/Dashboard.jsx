@@ -3,12 +3,18 @@ import NoResult from '../../view/NoResult';
 import ConfigView from './Configurations';
 import EcommerceView from './E-commerce';
 import ProductsView from './Products';
+import SelectBusiness from './SelectBusiness';
 
 const Dashboard = () => {
 	const onUpdateFn = () => window.scrollTo(0, 0);
 	return (
 		<Routes>
-			<Route onUpdate={onUpdateFn} path='/' element={<EcommerceView />} />
+			<Route onUpdate={onUpdateFn} path='/' element={<SelectBusiness />} />
+			<Route
+				onUpdate={onUpdateFn}
+				path='/dashboard'
+				element={<EcommerceView />}
+			/>
 			<Route
 				onUpdate={onUpdateFn}
 				path='/products'
