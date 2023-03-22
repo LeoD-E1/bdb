@@ -15,7 +15,7 @@ const Modal = ({ modalType, justify = 'start', items = 'center' }) => {
 
 	return (
 		<div
-			className={`absolute z-20 bg-gray-dark bg-opacity-50 w-full h-screen flex justify-${justify} items-${items}`}
+			className={`fixed z-20 bg-gray-dark bg-opacity-50 w-full h-screen flex justify-${justify} items-${items}`}
 		>
 			{modals[modalType]}
 		</div>

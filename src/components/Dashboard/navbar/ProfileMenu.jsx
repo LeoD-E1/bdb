@@ -20,7 +20,7 @@ const ProfileMenu = ({ role = 'CUSTOMER', showModalAction }) => {
 	const links = [
 		{
 			title: 'Tablero',
-			to: '/dashboard',
+			to: '/business',
 			icon: faChartLine,
 			requireOwner: true,
 		},

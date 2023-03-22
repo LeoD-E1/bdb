@@ -87,7 +87,7 @@ const Footer = () => {
 										key={link.title}
 										className={`px-2 py-1 ${
 											!link.logo && !link.disabled && 'hover:underline'
-										} hover:text-green duration-500 md:text-sm`}
+										} hover:text-green duration-300 md:text-sm`}
 									>
 										{!link.disabled ? (
 											<Link to={link.link}>{link.logo ?? link.title}</Link>
@@ -103,20 +103,12 @@ const Footer = () => {
 					))}
 				</div>
 
-				<div className=' p-6'>
-					<div className=''>
-						<button
-							type='button'
-							className='inline-block px-6 py-2 border-2 border-white text-white font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out'
-						>
-							Sign up!
-						</button>
-					</div>
-				</div>
-
-				<div className='text-center p-4 bg-darkMarinBlue'>
-					© 2021 Copyright:
-					<a className='text-white' href='https://leoda.vercel.app/'>
+				<div className='text-center p-4'>
+					© {new Date().getFullYear()} Copyright{' '}
+					<a
+						href='https://leoda.vercel.app/'
+						className='hover:text-green underline duration-300'
+					>
 						Leoda
 					</a>
 				</div>

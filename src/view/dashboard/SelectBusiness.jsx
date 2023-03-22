@@ -3,17 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { getBusinessByUserId } from '../../api/user/businessService';
 import Navbar from '../../components/Header/Navbar';
 import Spinner from '../../components/Spinner/Spinner';
-// import { useBusinessStore } from '../../store/businessStore';
 import { useUserStore } from '../../store/userStore';
 import BusinessCard from './BusinessCard';
-
-// const { VITE_APP_BASE_URL } = import.meta.env;
 
 const SelectBusiness = () => {
 	const user = useUserStore(state => state.user);
 	const token = useUserStore(state => state.token);
 	const navigate = useNavigate();
-	// const fillWithBusiness = useBusinessStore(state => state.fillWithBusiness);
 	const [data, setData] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -72,8 +68,16 @@ const SelectBusiness = () => {
 							</button>
 						))
 					) : (
-						<div className='loader-div'>
-							<button>add business</button>
+						<div className='loader-div max-h-[100vh]'>
+							<button className='mt-5'>
+								<a className='relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring'>
+									<span className='absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-[#FF6A3D] group-hover:translate-y-0 group-hover:translate-x-0'></span>
+
+									<span className='relative block px-8 py-3 bg-[#1A2238] border border-current'>
+										Crear negocio
+									</span>
+								</a>
+							</button>
 						</div>
 					)}
 				</section>

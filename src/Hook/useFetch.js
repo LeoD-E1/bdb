@@ -19,7 +19,7 @@ export const useFetch = url => {
 					},
 				});
 				const json = await response.json();
-				setData(json);
+				setData(json.slice(0, 20));
 			} catch (error) {
 				setError(error);
 			}
