@@ -1,38 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getBusinessByUserId } from '../../api/user/businessService';
+import { Link } from 'react-router-dom';
 import Navbar from '../../components/Header/Navbar';
 import Spinner from '../../components/Spinner/Spinner';
 import { useUserStore } from '../../store/userStore';
 import BusinessCard from './BusinessCard';
+import { useFetch } from '../../Hook/useFetch';
+const { VITE_APP_BASE_URL } = import.meta.env;
 
 const SelectBusiness = () => {
 	const user = useUserStore(state => state.user);
-	const token = useUserStore(state => state.token);
-	const navigate = useNavigate();
-	const [data, setData] = useState(null);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(null);
-
-	useEffect(() => {
-		const fetchBusiness = async () => {
-			setLoading(true);
-			try {
-				const { data } = await getBusinessByUserId({ id: user.user_id, token });
-				setData(data);
-			} catch (error) {
-				console.log(error);
-				setError(error);
-			} finally {
-				setLoading(false);
-			}
-		};
-		fetchBusiness();
-	}, []);
-
-	const handleSelect = businessID => {
-		navigate(`/business/${businessID}/branch`);
-	};
+	const { data, loading, error } = useFetch(
+		`${VITE_APP_BASE_URL}/business/${user.user_id}`
+	);
 
 	if (loading) {
 		return (
@@ -60,12 +38,12 @@ const SelectBusiness = () => {
 				<section className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-2 '>
 					{data ? (
 						data.map(brand => (
-							<button
+							<Link
+								to={`/business/${brand.business_id}/branch`}
 								key={`${brand.business_name} - ${brand.business_id}`}
-								onClick={() => handleSelect(brand.business_id)}
 							>
 								<BusinessCard businessItem={brand} />
-							</button>
+							</Link>
 						))
 					) : (
 						<div className='loader-div max-h-[100vh]'>

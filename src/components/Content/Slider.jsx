@@ -17,7 +17,7 @@ const Slider = ({ data }) => {
 			effect={'fade'}
 			loop={true}
 			autoplay={{
-				delay: 5000,
+				delay: 3000,
 				disableOnInteraction: false,
 			}}
 			pagination={{
@@ -25,7 +25,7 @@ const Slider = ({ data }) => {
 			}}
 			modules={[Pagination, EffectFade, Autoplay]}
 		>
-			{data.map(slide => (
+			{data?.slice(0, 5).map(slide => (
 				<SwiperSlide
 					key={slide.id}
 					style={{
@@ -39,10 +39,8 @@ const Slider = ({ data }) => {
 					}}
 				>
 					<div className='w-full h-full flex justify-start items-center layout-container'>
-						<div className='max-w-3xl'>
-							<h1 className='text-orange text-6xl font-marker'>
-								{slide.title.toUpperCase()}
-							</h1>
+						<div className='md:max-w-2xl'>
+							<h1 className='text-orange text-4xl'>{slide.title}</h1>
 							<br />
 							<button className='px-7 py-3 bg-orange rounded-lg text-white'>
 								Pedir ya!

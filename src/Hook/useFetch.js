@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useUserStore } from '../store/userStore';
 
 export const useFetch = url => {
-	const [data, setData] = useState(null);
+	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 
@@ -19,8 +19,9 @@ export const useFetch = url => {
 					},
 				});
 				const json = await response.json();
-				setData(json.slice(0, 20));
+				setData(json.data);
 			} catch (error) {
+				console.log('🚀 ~ file: useFetch.js:24 ~ fetchData ~ error:', error);
 				setError(error);
 			}
 			setLoading(false);

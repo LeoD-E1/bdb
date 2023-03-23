@@ -7,6 +7,7 @@ import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Header/Navbar';
 import Spinner from '../components/Spinner/Spinner';
 import { useFetch } from '../Hook/useFetch';
+import NearBusiness from './NearBusiness';
 
 const Home = () => {
 	const { data, error, loading } = useFetch('/images.json');
@@ -40,9 +41,10 @@ const Home = () => {
 		<div className='App'>
 			<>
 				<Navbar />
+				<Slider data={data} />
+				<NearBusiness />
 				{data && (
 					<>
-						<Slider data={data} />
 						<CardSlider data={data} title='Nuestra recomendacion' />
 						<Offers data={data} title='Promos mas vendidas' />
 					</>
