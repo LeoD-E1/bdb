@@ -28,13 +28,13 @@ const Navbar = () => {
 
 	return (
 		<header className='z-10 w-full bg-white text-dark-gray fixed'>
-			<div className='flex justify-between p-4 items-center'>
-				<section className='flex'>
+			<div className='flex justify-between px-4 items-center'>
+				<section className='flex justify-center'>
 					<button
 						className='flex appearance-none p-1 text-gray-500 lg:hidden mr-3'
 						onClick={handleClick}
 					>
-						<IconMenu2 className='h-7 w-7 text-black' />
+						<IconMenu2 className=' text-black  hover:text-green' />
 					</button>
 
 					<img src={logo} alt='bdb-logo' className='hidden lg:block w-7 ml-4' />
@@ -42,28 +42,26 @@ const Navbar = () => {
 
 				{storedLocation && (
 					<section
-						className='flex hover:cursor-default items-center'
+						className='flex hover:cursor-default items-center hover:text-green'
 						onClick={handleAddressClick}
 					>
 						<h3 className='font-kanit text-sm md:text-md text-dark-gray'>
 							{storedLocation?.locationName ||
-								storedLocation?.formatted_address.slice(0, 25).concat('...')}
+								storedLocation?.formatted_address.split(',')[0]}
 						</h3>
 						<IconCaretDown className='text-sm mx-1 w-5 h-5' />
 					</section>
 				)}
 
-				<nav className='flex text-md text-gray-800'>
+				<nav className='flex text-md text-gray-800 items-center'>
 					{!user.user_id ? (
-						<>
-							<Link
-								to='/login'
-								className='p-5 transition flex items-center hover:text-green'
-							>
-								<IconUser width={25} height={25} className='md:mx-1' />
-								<span className='hidden lg:flex'>Ingreso</span>
-							</Link>
-						</>
+						<Link
+							to='/login'
+							className='p-5 transition flex items-center hover:text-green'
+						>
+							<IconUser width={25} height={25} className='md:mx-1' />
+							<span className='hidden lg:flex'>Ingreso</span>
+						</Link>
 					) : (
 						<section className='hidden lg:flex'>
 							<ProfileDropdown user={user} bgColor='white' />

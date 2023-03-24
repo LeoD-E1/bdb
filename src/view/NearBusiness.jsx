@@ -33,7 +33,7 @@ const NearBusiness = () => {
 		<main className='sm:layout-container'>
 			<h2 className='text-3xl py-5'>Bocados de barrio cerca</h2>
 			{data.length ? (
-				<section className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-2 '>
+				<section className='grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-2 '>
 					{data.map(business => (
 						<Link
 							to={`/store?name=${business.business_name}&lat=${latitude}&lng=${longitude}`}
