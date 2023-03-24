@@ -40,7 +40,7 @@ const SelectBranch = () => {
 					{data ? (
 						data.map(branch => (
 							<Link
-								to={`/business/${branch.branch_id}/branch`}
+								to={`/business/${branch.branch_id}/branch/:branch_id`}
 								key={`${branch.branch_address} - ${branch.branch_id}`}
 							>
 								<BusinessCard businessItem={branch} />
