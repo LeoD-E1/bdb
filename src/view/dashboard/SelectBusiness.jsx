@@ -4,6 +4,7 @@ import Spinner from '../../components/Spinner/Spinner';
 import { useUserStore } from '../../store/userStore';
 import BusinessCard from './BusinessCard';
 import { useFetch } from '../../Hook/useFetch';
+import CommonBtn from '../../components/Content/CommonBtn';
 const { VITE_APP_BASE_URL } = import.meta.env;
 
 const SelectBusiness = () => {
@@ -47,15 +48,10 @@ const SelectBusiness = () => {
 						))
 					) : (
 						<div className='flex justify-center'>
-							<button className='mt-5'>
-								<a className='relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring'>
-									<span className='absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-green group-hover:translate-y-0 group-hover:translate-x-0'></span>
-
-									<span className='relative block px-8 py-3 bg-[#1A2238] text-white border border-current'>
-										Crear negocio
-									</span>
-								</a>
-							</button>
+							<CommonBtn
+								action={() => console.log('action')}
+								title='Crear Negocio'
+							/>
 						</div>
 					)}
 				</section>

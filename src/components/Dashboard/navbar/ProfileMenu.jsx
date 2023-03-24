@@ -67,6 +67,7 @@ const ProfileMenu = ({ role = 'CUSTOMER', showModalAction }) => {
 			action: () => {
 				signOut();
 				navigate('/login');
+				localStorage.removeItem('addressData');
 				showModalAction(false);
 			},
 		},

@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+import CommonBtn from '../../components/Content/CommonBtn';
 import Navbar from '../../components/Header/Navbar';
 import Spinner from '../../components/Spinner/Spinner';
 import { useFetch } from '../../Hook/useFetch';
@@ -46,16 +47,11 @@ const SelectBranch = () => {
 							</Link>
 						))
 					) : (
-						<div className=''>
-							<button className='mt-5'>
-								<a className='relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring'>
-									<span className='absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-[#FF6A3D] group-hover:translate-y-0 group-hover:translate-x-0'></span>
-
-									<span className='relative block px-8 py-3 bg-[#1A2238] border border-current'>
-										Crear Sucursal
-									</span>
-								</a>
-							</button>
+						<div className='flex justify-center'>
+							<CommonBtn
+								title='Crear sucursal'
+								action={() => console.log('action')}
+							/>
 						</div>
 					)}
 				</section>
