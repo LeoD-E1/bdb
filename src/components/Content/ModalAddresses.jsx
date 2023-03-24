@@ -4,10 +4,6 @@ import CloseModalBtn from './CloseModalBtn';
 
 const ModalAddresses = () => {
 	const storedAddress = JSON.parse(localStorage.getItem('addressData'));
-	console.log(
-		'🚀 ~ file: ModalAddresses.jsx:7 ~ ModalAddresses ~ storedAddress:',
-		storedAddress
-	);
 	const handleClick = () => {
 		localStorage.removeItem('addressData');
 		window.location.reload();
@@ -32,7 +28,7 @@ const ModalAddresses = () => {
 					/>
 				</article>
 			) : (
-				<h2>No addresses</h2>
+				<h2>No hay direcciones registradas</h2>
 			)}
 		</article>
 	);
