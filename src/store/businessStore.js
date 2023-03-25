@@ -13,8 +13,9 @@ export const useBusinessStore = create(
 			fillWithBusiness: payload =>
 				set(state => ({
 					...state,
-					business: [...state.business, payload],
+					business: payload,
 				})),
+			deleteBusinessState: () => set(() => initialState),
 		}),
 		{
 			name: 'business-storage',

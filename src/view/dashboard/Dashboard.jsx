@@ -4,7 +4,6 @@ import ConfigView from './Configurations';
 import EcommerceView from './E-commerce';
 import ProductsView from './Products';
 import SelectBusiness from './SelectBusiness';
-import SelectBranch from './SelectBranch';
 
 const Dashboard = () => {
 	const onUpdateFn = () => window.scrollTo(0, 0);
@@ -13,12 +12,7 @@ const Dashboard = () => {
 			<Route onUpdate={onUpdateFn} path='/' element={<SelectBusiness />} />
 			<Route
 				onUpdate={onUpdateFn}
-				path='/:businessId/branch'
-				element={<SelectBranch />}
-			/>
-			<Route
-				onUpdate={onUpdateFn}
-				path='/dashboard'
+				path='/:businessId/branch/:branch_id/dashboard'
 				element={<EcommerceView />}
 			/>
 			<Route

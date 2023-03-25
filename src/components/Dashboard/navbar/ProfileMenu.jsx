@@ -11,9 +11,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useUserStore } from '../../../store/userStore';
+import { useBusinessStore } from '../../../store/businessStore';
 
 const ProfileMenu = ({ role = 'CUSTOMER', showModalAction }) => {
 	const signOut = useUserStore(state => state.signOut);
+	const deleteBusinessState = useBusinessStore(
+		state => state.deleteBusinessState
+	);
 	const navigate = useNavigate();
 	const { pathname } = useLocation();
 
@@ -66,12 +70,14 @@ const ProfileMenu = ({ role = 'CUSTOMER', showModalAction }) => {
 			requireOwner: false,
 			action: () => {
 				signOut();
-				navigate('/login');
+				deleteBusinessState();
 				localStorage.removeItem('addressData');
+				navigate('/login');
 				showModalAction(false);
 			},
 		},
 	];
+
 	return (
 		<div className='flex justify-center my-2 w-full rounded-b-md bg-white'>
 			<div className='mb-3'>

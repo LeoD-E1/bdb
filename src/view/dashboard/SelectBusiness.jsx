@@ -5,6 +5,9 @@ import { useUserStore } from '../../store/userStore';
 import BusinessCard from './BusinessCard';
 import { useFetch } from '../../Hook/useFetch';
 import CommonBtn from '../../components/Content/CommonBtn';
+import { useEffect } from 'react';
+import { useBusinessStore } from '../../store/businessStore';
+
 const { VITE_APP_BASE_URL } = import.meta.env;
 
 const SelectBusiness = () => {
@@ -12,6 +15,15 @@ const SelectBusiness = () => {
 	const { data, loading, error } = useFetch(
 		`${VITE_APP_BASE_URL}/business/${user.user_id}`
 	);
+	console.log(
+		'🚀 ~ file: SelectBusiness.jsx:13 ~ SelectBusiness ~ data:',
+		data
+	);
+	const fillWithBusiness = useBusinessStore(state => state.fillWithBusiness);
+
+	useEffect(() => {
+		data.length && fillWithBusiness(data);
+	}, [data]);
 
 	if (loading) {
 		return (
@@ -40,7 +52,7 @@ const SelectBusiness = () => {
 					{data ? (
 						data.map(brand => (
 							<Link
-								to={`/business/${brand.business_id}/branch`}
+								to={`/business/${brand.business_id}/branch/${brand.branch[0].branch_id}/dashboard`}
 								key={`${brand.business_name} - ${brand.business_id}`}
 							>
 								<BusinessCard businessItem={brand} />

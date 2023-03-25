@@ -55,7 +55,7 @@ const Login = () => {
 	});
 
 	const onSubmit = async data => {
-		!loading && setLoading(true);
+		setLoading(true);
 		error && setError(false);
 		try {
 			const login = await loginUser({
@@ -68,8 +68,9 @@ const Login = () => {
 			}
 
 			if (login.data.token) {
-				pushToken(login.data.token);
-				const { user } = await getUserInfo(login.data.token);
+				const { token } = login.data;
+				pushToken(token);
+				const { user } = await getUserInfo(token);
 				fillWithUser(user);
 				user.role === 'OWNER' ? navigate('/business') : navigate('/');
 			}
