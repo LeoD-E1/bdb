@@ -4,21 +4,28 @@ import { mountStoreDevtool } from 'simple-zustand-devtools';
 
 const initialState = {
 	business: [],
+	selectedBusiness: {},
 };
 
 export const useBusinessStore = create(
 	persist(
 		set => ({
-			business: initialState,
+			business: initialState.business,
+			selectedBusiness: initialState.selectedBusiness,
 			fillWithBusiness: payload =>
 				set(state => ({
 					...state,
-					business: payload,
+					business: [...state.business, ...payload],
+				})),
+			selectBusiness: newBusiness =>
+				set(state => ({
+					...state,
+					selectedBusiness: newBusiness,
 				})),
 			deleteBusinessState: () => set(() => initialState),
 		}),
 		{
-			name: 'business-storage',
+			name: 'business-store',
 			storage: createJSONStorage(() => localStorage),
 		}
 	)

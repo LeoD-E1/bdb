@@ -32,7 +32,7 @@ const NearBusiness = () => {
 	return (
 		<main className='sm:layout-container'>
 			<h2 className='text-3xl py-5'>Bocados de barrio cerca</h2>
-			{data.length ? (
+			{data ? (
 				<section className='grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-2 '>
 					{data.map(business => (
 						<Link

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Header/Navbar';
 import Spinner from '../../components/Spinner/Spinner';
 import { useUserStore } from '../../store/userStore';
@@ -15,14 +15,26 @@ const SelectBusiness = () => {
 	const { data, loading, error } = useFetch(
 		`${VITE_APP_BASE_URL}/business/${user.user_id}`
 	);
-	console.log(
-		'🚀 ~ file: SelectBusiness.jsx:13 ~ SelectBusiness ~ data:',
-		data
-	);
+	const navigate = useNavigate();
 	const fillWithBusiness = useBusinessStore(state => state.fillWithBusiness);
+	const business = useBusinessStore(state => state.business);
+	const selectBusiness = useBusinessStore(state => state.selectBusiness);
+
+	const handleSelect = businessItem => {
+		selectBusiness(businessItem);
+		navigate(
+			`/business/${businessItem.business_id}/branch/${businessItem.branch[0].branch_id}/dashboard`
+		);
+	};
 
 	useEffect(() => {
-		data.length && fillWithBusiness(data);
+		if (!business.length) {
+			const filteredItems =
+				data?.filter(item => {
+					return !business.includes(item);
+				}) || [];
+			fillWithBusiness(filteredItems);
+		}
 	}, [data]);
 
 	if (loading) {
@@ -46,27 +58,27 @@ const SelectBusiness = () => {
 			<Navbar />
 			<main className='sm:layout-container pt-20'>
 				<h1 className='text-xl mx-3 font-bold text-black'>
-					¿Qué negocio, socio?
+					{data ? '¿Qué negocio, socio?' : 'No tenés ningun negocio pa'}
 				</h1>
-				<section className='grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 p-2 '>
-					{data ? (
-						data.map(brand => (
-							<Link
-								to={`/business/${brand.business_id}/branch/${brand.branch[0].branch_id}/dashboard`}
+				{data ? (
+					<section className='grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 p-2 '>
+						{data.map(brand => (
+							<button
+								onClick={() => handleSelect(brand)}
 								key={`${brand.business_name} - ${brand.business_id}`}
 							>
 								<BusinessCard businessItem={brand} />
-							</Link>
-						))
-					) : (
-						<div className='flex justify-center'>
-							<CommonBtn
-								action={() => console.log('action')}
-								title='Crear Negocio'
-							/>
-						</div>
-					)}
-				</section>
+							</button>
+						))}
+					</section>
+				) : (
+					<div className='flex justify-center'>
+						<CommonBtn
+							action={() => console.log('action')}
+							title='Crear Negocio'
+						/>
+					</div>
+				)}
 			</main>
 		</>
 	);
