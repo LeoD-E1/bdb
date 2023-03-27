@@ -6,7 +6,7 @@ const SideItem = ({ item, pathname, open }) => {
 		<Link
 			to={item.path}
 			className={`flex items-center px-4 py-4  my-1 rounded-md hover:bg-darkBlue ${
-				item.path === pathname && 'bg-darkBlue text-green'
+				item.path === pathname && 'text-green'
 			}`}
 		>
 			<FontAwesomeIcon icon={item.icon} className='w-5 h-5' />
@@ -14,7 +14,7 @@ const SideItem = ({ item, pathname, open }) => {
 				<div className='mx-5'>
 					<span
 						className={`mx-4 text-white ${
-							item.path === pathname && 'bg-darkBlue text-green'
+							item.path === pathname && 'text-green'
 						}`}
 					>
 						{item.name}

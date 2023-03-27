@@ -5,7 +5,7 @@ import { useUserStore } from '../../store/userStore';
 import BusinessCard from './BusinessCard';
 import { useFetch } from '../../Hook/useFetch';
 import CommonBtn from '../../components/Content/CommonBtn';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useBusinessStore } from '../../store/businessStore';
 import { getBranchById } from '../../api/branch/branchService';
 import { useBranchStore } from '../../store/branchStore';
@@ -13,6 +13,9 @@ import { useBranchStore } from '../../store/branchStore';
 const { VITE_APP_BASE_URL } = import.meta.env;
 
 const SelectBusiness = () => {
+	const [isloading, setIsLoading] = useState(false);
+	const [hasError, setHasError] = useState(null);
+
 	const user = useUserStore(state => state.user);
 	const { data, loading, error } = useFetch(
 		`${VITE_APP_BASE_URL}/business/${user.user_id}`
@@ -24,12 +27,19 @@ const SelectBusiness = () => {
 	const selectBranch = useBranchStore(state => state.selectBranch);
 
 	const handleSelect = async businessItem => {
-		selectBusiness(businessItem);
-		await getBranchById(businessItem.branch[0].branch_id);
-		selectBranch(businessItem.branch[0]);
-		navigate(
-			`/business/${businessItem.business_id}/branch/${businessItem.branch[0].branch_id}/dashboard`
-		);
+		try {
+			setIsLoading(true);
+			selectBusiness(businessItem);
+			await getBranchById(businessItem.branch[0].branch_id);
+			selectBranch(businessItem.branch[0]);
+			navigate(
+				`/business/${businessItem.business_id}/branch/${businessItem.branch[0].branch_id}/dashboard`
+			);
+		} catch (error) {
+			setHasError(error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	useEffect(() => {
@@ -43,7 +53,7 @@ const SelectBusiness = () => {
 		}
 	}, [data]);
 
-	if (loading) {
+	if (loading || isloading) {
 		return (
 			<div className='loader-div'>
 				<Spinner />
@@ -51,7 +61,7 @@ const SelectBusiness = () => {
 		);
 	}
 
-	if (error) {
+	if (error || hasError) {
 		return (
 			<div className='loader-div'>
 				<h1 className='text-3xl'> error </h1>

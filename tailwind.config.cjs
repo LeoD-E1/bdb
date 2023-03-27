@@ -11,9 +11,9 @@ module.exports = {
 		colors: {
 			transparent: 'transparent',
 			lightGrey: '#F6F5FF',
-			accent: '#3D5BF0',
+			accent: '#1A2238',
 			darkBlue: '#3651D4',
-			blue: '#1fb6ff',
+			blue: '#3D5BF0',
 			darkMarinBlue: '#333740',
 			black: '#000',
 			purple: '#7e5bef',

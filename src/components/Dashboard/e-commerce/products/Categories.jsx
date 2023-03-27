@@ -15,7 +15,7 @@ const Categories = ({ categories, setCategory }) => {
 						updateModalType('create-category');
 					}}
 				>
-					+ Add new
+					+ Agregar sección
 				</button>
 			</div>
 			{categories.length &&
