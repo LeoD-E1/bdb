@@ -1,7 +1,7 @@
+import noImage from '../../assets/images/no-image.png';
+
 const BusinessCard = ({ businessItem }) => {
-	const image =
-		businessItem.image_url ??
-		'https://images.unsplash.com/photo-1489516408517-0c0a15662682?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80';
+	const image = businessItem.image_url ?? noImage;
 
 	return (
 		<main className='max-h-96 rounded-xl hover:shadow-xl overflow-hidden relative'>

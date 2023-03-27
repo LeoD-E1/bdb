@@ -7,6 +7,8 @@ import { useFetch } from '../../Hook/useFetch';
 import CommonBtn from '../../components/Content/CommonBtn';
 import { useEffect } from 'react';
 import { useBusinessStore } from '../../store/businessStore';
+import { getBranchById } from '../../api/branch/branchService';
+import { useBranchStore } from '../../store/branchStore';
 
 const { VITE_APP_BASE_URL } = import.meta.env;
 
@@ -19,9 +21,12 @@ const SelectBusiness = () => {
 	const fillWithBusiness = useBusinessStore(state => state.fillWithBusiness);
 	const business = useBusinessStore(state => state.business);
 	const selectBusiness = useBusinessStore(state => state.selectBusiness);
+	const selectBranch = useBranchStore(state => state.selectBranch);
 
-	const handleSelect = businessItem => {
+	const handleSelect = async businessItem => {
 		selectBusiness(businessItem);
+		await getBranchById(businessItem.branch[0].branch_id);
+		selectBranch(businessItem.branch[0]);
 		navigate(
 			`/business/${businessItem.business_id}/branch/${businessItem.branch[0].branch_id}/dashboard`
 		);
@@ -29,6 +34,7 @@ const SelectBusiness = () => {
 
 	useEffect(() => {
 		if (!business.length) {
+			console.log('entro aca');
 			const filteredItems =
 				data?.filter(item => {
 					return !business.includes(item);

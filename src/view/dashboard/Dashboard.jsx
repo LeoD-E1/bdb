@@ -12,12 +12,12 @@ const Dashboard = () => {
 			<Route onUpdate={onUpdateFn} path='/' element={<SelectBusiness />} />
 			<Route
 				onUpdate={onUpdateFn}
-				path='/:businessId/branch/:branch_id/dashboard'
+				path='/:business_id/branch/:branch_id/dashboard'
 				element={<EcommerceView />}
 			/>
 			<Route
 				onUpdate={onUpdateFn}
-				path='/products'
+				path='/:business_id/branch/:branch_id/products'
 				element={<ProductsView />}
 			/>
 			<Route onUpdate={onUpdateFn} path='/settings' element={<ConfigView />} />

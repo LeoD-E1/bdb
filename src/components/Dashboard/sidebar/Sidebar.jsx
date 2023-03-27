@@ -9,43 +9,45 @@ import {
 	faAnglesRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import SideLinks from './SideLinks';
 import logo from '../../../../public/favicon.png';
 
 const Sidebar = ({ open, onClose }) => {
 	const { pathname } = useLocation();
+	const { business_id, branch_id } = useParams();
+	const basePath = `/business/${business_id}/branch/${branch_id}`;
 
 	const places = [
 		{
 			id: 0,
 			name: 'Tablero',
 			icon: faChartSimple,
-			path: '/dashboard',
+			path: `${basePath}/dashboard`,
 		},
 		{
 			id: 1,
 			name: 'Configuracion',
 			icon: faGear,
-			path: '/dashboard/settings',
+			path: `${basePath}/settings`,
 		},
 		{
 			id: 2,
 			name: 'Productos',
 			icon: faTable,
-			path: '/dashboard/products',
+			path: `${basePath}/products`,
 		},
 		{
 			id: 3,
 			name: 'Mapa',
 			icon: faMap,
-			path: '/map',
+			path: `${basePath}/map`,
 		},
 		{
 			id: 4,
 			name: 'Notificationes',
 			icon: faBell,
-			path: '/notifications',
+			path: `${basePath}/notifications`,
 		},
 		{
 			id: 5,

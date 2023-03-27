@@ -18,18 +18,19 @@ const Categories = ({ categories, setCategory }) => {
 					+ Add new
 				</button>
 			</div>
-			{categories.map((category, i) => (
-				<div
-					key={i}
-					className='flex justify-start p-3 hover:bg-gray-100 hover:cursor-default rounded-lg'
-					onClick={() => setCategory(category.name)}
-				>
-					<FontAwesomeIcon icon={faCircle} className='h-5 w-5 text-accent' />
-					<h4 className='text-md font-kanit text-gray font-semibold ml-3'>
-						{category.name}
-					</h4>
-				</div>
-			))}
+			{categories.length &&
+				categories.map((category, i) => (
+					<div
+						key={i}
+						className='flex justify-start p-3 hover:bg-gray-100 hover:cursor-default rounded-lg'
+						onClick={() => setCategory(category.name)}
+					>
+						<FontAwesomeIcon icon={faCircle} className='h-5 w-5 text-accent' />
+						<h4 className='text-md font-kanit text-gray font-semibold ml-3'>
+							{category.name}
+						</h4>
+					</div>
+				))}
 		</div>
 	);
 };
