@@ -12,16 +12,13 @@ import Landing from './view/Landing';
 
 function App() {
 	const onUpdateFn = () => window.scrollTo(0, 0);
-	const visible = useModalStore(state => state.visible);
-	const modalType = useModalStore(state => state.modalType);
-	const modalJustify = useModalStore(state => state.justify);
-	const modalItems = useModalStore(state => state.items);
+	const currentModal = useModalStore(state => state.currentModal);
 
 	useEffect(() => {
-		visible
+		currentModal.visible
 			? document.body.setAttribute('style', 'overflow: hidden;')
 			: document.body.setAttribute('style', 'overflow-y: auto;');
-	}, [visible]);
+	}, [currentModal.visible]);
 
 	useEffect(() => {
 		window.addEventListener('beforeunload', handleUnload);
@@ -46,11 +43,11 @@ function App() {
 
 	return (
 		<div className='App'>
-			{visible && (
+			{currentModal.visible && (
 				<Modal
-					modalType={modalType}
-					justify={modalJustify}
-					items={modalItems}
+					modalType={currentModal.modalType}
+					justify={currentModal.justify}
+					items={currentModal.items}
 				/>
 			)}
 			<Routes>

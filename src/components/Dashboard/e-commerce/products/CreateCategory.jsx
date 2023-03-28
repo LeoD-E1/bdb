@@ -1,12 +1,13 @@
 import { useForm } from 'react-hook-form';
-import { createCategory } from '../../../../api/categories';
+import { REQUIRED_FIELD } from '../../../../constants/constants';
+import CloseModalBtn from '../../../Content/CloseModalBtn';
 
 const CreateCategory = () => {
 	const { handleSubmit, register, errors } = useForm();
 
 	const fields = [
 		{
-			title: 'Category name',
+			title: 'Nombre de la sección',
 			name: 'category_name',
 			fieldType: 'text',
 			ex: 'Empanadas',
@@ -15,13 +16,15 @@ const CreateCategory = () => {
 	];
 
 	const onSubmit = data => {
-		createCategory(data.category_name);
+		console.log(data);
 	};
+
 	return (
-		<div className='bg-white rounded-lg p-4'>
-			<form onSubmit={handleSubmit(data => onSubmit(data))}>
+		<main className='bg-white h-screen w-full shadow-lg md:rounded-lg p-5 md:max-w-2xl md:h-auto md:min-h-[500px] relative'>
+			<CloseModalBtn />
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<h3 className='text-lg font-kanit font-semibold text-dark-gray my-2'>
-					Create category
+					Crear Sección
 				</h3>
 				<div className='flex flex-col'>
 					{fields.map((field, i) => (
@@ -31,10 +34,19 @@ const CreateCategory = () => {
 							</h3>
 							<input
 								type={field.fieldType}
-								{...register(`${field.name}`)}
+								{...register(`${field.name}`, {
+									required: {
+										value: true,
+										message: REQUIRED_FIELD,
+									},
+								})}
+								name={field.name}
 								placeholder={field.ex}
 								className='p-2 px-4 border outline-none border-gray-300 rounded-md hover:outline-0 focus:border-accent'
 							/>
+							{/* <span className='text-xs text-red font-kanit'>
+								{errors[field.name] && errors[field.name].message}
+							</span> */}
 						</div>
 					))}
 				</div>
@@ -42,10 +54,10 @@ const CreateCategory = () => {
 					type='submit'
 					className='bg-accent p-3 w-full rounded-lg text-md text-white my-2'
 				>
-					Create category
+					Guardar
 				</button>
 			</form>
-		</div>
+		</main>
 	);
 };
 

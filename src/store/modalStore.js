@@ -1,14 +1,20 @@
 import create from 'zustand';
-
-export const useModalStore = create(set => ({
+const initialState = {
 	visible: false,
 	modalType: 'create-product',
 	justify: 'start',
 	items: 'center',
+};
+
+export const useModalStore = create(set => ({
+	currentModal: initialState,
 	updateVisibility: visibility =>
 		set(state => ({
 			...state,
-			visible: visibility,
+			currentModal: {
+				...state.currentModal,
+				visible: visibility,
+			},
 		})),
 	updateModalType: ({
 		newModalType,
@@ -17,8 +23,11 @@ export const useModalStore = create(set => ({
 	}) =>
 		set(state => ({
 			...state,
-			modalType: newModalType,
-			justify: newJustify,
-			items: newItems,
+			currentModal: {
+				...state.currentModal,
+				modalType: newModalType,
+				justify: newJustify,
+				items: newItems,
+			},
 		})),
 }));
