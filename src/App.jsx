@@ -9,8 +9,10 @@ import { useModalStore } from './store/modalStore';
 import Modal from './components/Content/Modal';
 import { useEffect } from 'react';
 import Landing from './view/Landing';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 function App() {
+	const queryClient = new QueryClient();
 	const onUpdateFn = () => window.scrollTo(0, 0);
 	const currentModal = useModalStore(state => state.currentModal);
 
@@ -42,32 +44,34 @@ function App() {
 	};
 
 	return (
-		<div className='App'>
-			{currentModal.visible && (
-				<Modal
-					modalType={currentModal.modalType}
-					justify={currentModal.justify}
-					items={currentModal.items}
-				/>
-			)}
-			<Routes>
-				<Route
-					onUpdate={onUpdateFn}
-					path='/business/*'
-					element={<Dashboard />}
-				/>
-				<Route onUpdate={onUpdateFn} path='/' element={<Landing />} />
-				<Route onUpdate={onUpdateFn} path='/home' element={<Home />} />
-				<Route onUpdate={onUpdateFn} path='/login' element={<Login />} />
-				<Route onUpdate={onUpdateFn} path='/signup' element={<Signup />} />
-				<Route
-					onUpdate={onUpdateFn}
-					path='/success-sub'
-					element={<VerificationEmail />}
-				/>
-				<Route onUpdate={onUpdateFn} path='*' element={<NoResult />} />
-			</Routes>
-		</div>
+		<QueryClientProvider client={queryClient}>
+			<div className='App'>
+				{currentModal.visible && (
+					<Modal
+						modalType={currentModal.modalType}
+						justify={currentModal.justify}
+						items={currentModal.items}
+					/>
+				)}
+				<Routes>
+					<Route
+						onUpdate={onUpdateFn}
+						path='/business/*'
+						element={<Dashboard />}
+					/>
+					<Route onUpdate={onUpdateFn} path='/' element={<Landing />} />
+					<Route onUpdate={onUpdateFn} path='/home' element={<Home />} />
+					<Route onUpdate={onUpdateFn} path='/login' element={<Login />} />
+					<Route onUpdate={onUpdateFn} path='/signup' element={<Signup />} />
+					<Route
+						onUpdate={onUpdateFn}
+						path='/success-sub'
+						element={<VerificationEmail />}
+					/>
+					<Route onUpdate={onUpdateFn} path='*' element={<NoResult />} />
+				</Routes>
+			</div>
+		</QueryClientProvider>
 	);
 }
 
