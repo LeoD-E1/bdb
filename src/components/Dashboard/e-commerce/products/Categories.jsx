@@ -1,39 +1,42 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
-import { useModalStore } from '../../../../store/modalStore';
+import { IconPointFilled } from '@tabler/icons-react';
+import CreateCategory from './CreateCategory';
+import { useState } from 'react';
 
 const Categories = ({ categories, setCategory }) => {
-	const updateVisibility = useModalStore(state => state.updateVisibility);
-	const updateModalType = useModalStore(state => state.updateModalType);
+	const [visible, setVisible] = useState(false);
+
+	const handleClick = () => setVisible(true);
+
 	return (
-		<div className='bg-white w-full h-auto p-2 shadow-lg'>
-			<div className='my-2'>
-				<button
-					className='p-2 w-full text-white rounded-md bg-accent font-kanit text-md font-semibold'
-					onClick={() => {
-						updateVisibility(true);
-						updateModalType({
-							newModalType: 'create-category',
-							newJustify: 'center',
-						});
-					}}
-				>
-					+ Agregar sección
-				</button>
-			</div>
-			{categories?.map((category, i) => (
-				<div
-					key={i}
-					className='flex justify-start p-3 hover:bg-gray-100 hover:cursor-default rounded-lg'
-					onClick={() => setCategory(category.name)}
-				>
-					<FontAwesomeIcon icon={faCircle} className='h-5 w-5 text-accent' />
-					<h4 className='text-md font-kanit text-gray font-semibold ml-3'>
-						{category.name}
-					</h4>
+		<main className='relative sm:flex sm:gap-4'>
+			<div className='bg-white w-full p-2 shadow-lg rounded-lg max-h-[600px] overflow-y-auto'>
+				<div className='my-2'>
+					<button
+						className='p-2 w-full text-white rounded-md bg-accent font-kanit text-md font-semibold'
+						onClick={handleClick}
+					>
+						+ Agregar sección
+					</button>
 				</div>
-			))}
-		</div>
+				{categories?.map((category, i) => (
+					<div
+						key={i}
+						className='flex justify-start p-3 hover:bg-gray-100 hover:cursor-default rounded-lg'
+						onClick={() => setCategory(category.name)}
+					>
+						<IconPointFilled />
+						<h4 className='text-md font-kanit text-gray font-semibold ml-3'>
+							{category.category_name}
+						</h4>
+					</div>
+				))}
+			</div>
+			{visible && (
+				<section className='lg:z-20 lg:w-[30vw] lg:top-0 lg:absolute lg:left-[100%] lg:ml-5 sm:h-[600px]'>
+					<CreateCategory close={() => setVisible(false)} />
+				</section>
+			)}
+		</main>
 	);
 };
 

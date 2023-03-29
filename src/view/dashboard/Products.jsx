@@ -14,9 +14,8 @@ const Products = () => {
 		queryKey: ['branch'],
 		queryFn: () => getBranchById(branch.branch_id),
 	});
-	const [selectedCategory, setSelectedCategory] = useState('');
 
-	console.log('🚀 ~ file: Products.jsx:8 ~ Products ~ branch:', data);
+	const [selectedCategory, setSelectedCategory] = useState('');
 
 	if (isLoading) {
 		return (
@@ -43,16 +42,16 @@ const Products = () => {
 			<h3 className='text-xl text-gray font-semibold'>Manage products</h3>
 			<div className='grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6 my-3'>
 				<Categories
-					categories={data?.categories || []}
+					categories={data.data.categories ?? []}
 					setCategory={selectCat}
 					selectedCat={selectedCategory}
 				/>
-				<div className='lg:col-span-3'>
+				<section className='lg:col-span-3'>
 					<ProductTable
 						category={selectedCategory}
-						products={data?.products || []}
+						products={data.data?.products ?? []}
 					/>
-				</div>
+				</section>
 			</div>
 		</div>
 	);
