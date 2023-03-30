@@ -15,7 +15,7 @@ const Products = () => {
 		queryFn: () => getBranchById(branch.branch_id),
 	});
 
-	const [selectedCategory, setSelectedCategory] = useState('');
+	const [selectedCategory, setSelectedCategory] = useState({});
 
 	if (isLoading) {
 		return (
@@ -39,7 +39,9 @@ const Products = () => {
 
 	return (
 		<div className='w-full'>
-			<h3 className='text-xl text-gray font-semibold'>Manage products</h3>
+			<h3 className='text-xl text-gray font-semibold'>
+				Administra tus productos
+			</h3>
 			<div className='grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6 my-3'>
 				<Categories
 					categories={data.data.categories ?? []}
@@ -47,10 +49,19 @@ const Products = () => {
 					selectedCat={selectedCategory}
 				/>
 				<section className='lg:col-span-3'>
-					<ProductTable
-						category={selectedCategory}
-						products={data.data?.products ?? []}
-					/>
+					{data.data.categories.length ? (
+						<ProductTable
+							category={selectedCategory}
+							products={data.data?.products ?? []}
+							setCategory={selectCat}
+						/>
+					) : (
+						<article className='w-full flex justify-center items-center bg-white p-2 shadow-lg rounded-lg h-[300px]'>
+							<h3 className='text-gray font-semibold text-xl'>
+								Crea una sección para agregar productos
+							</h3>
+						</article>
+					)}
 				</section>
 			</div>
 		</div>

@@ -1,19 +1,17 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const CreateProduct = () => {
-	const { handleSubmit, register, errors } = useForm();
-	const [data, setData] = useState('');
+	const { handleSubmit, register } = useForm();
 	const fields = [
 		{
-			title: 'Product name',
+			title: 'Nombre del Producto',
 			name: 'product-name',
 			fieldType: 'text',
 			ex: 'Empanada Jamon Queso',
 			required: true,
 		},
 		{
-			title: 'Description',
+			title: 'Descripción',
 			name: 'product-description',
 			fieldType: 'text',
 			ex: 'Lorem Ipsum...',
@@ -21,9 +19,11 @@ const CreateProduct = () => {
 		},
 	];
 
+	const onSubmit = data => {};
+
 	return (
-		<div className='bg-white rounded-lg p-4'>
-			<form onSubmit={handleSubmit(data => setData(JSON.stringify(data)))}>
+		<div className='bg-white h-full w-full shadow-lg rounded-lg my-1 p-5 md:max-w-2xl md:h-auto md:min-h-[500px] relative'>
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<h3 className='text-lg font-kanit font-semibold text-dark-gray my-2'>
 					Create Product
 				</h3>

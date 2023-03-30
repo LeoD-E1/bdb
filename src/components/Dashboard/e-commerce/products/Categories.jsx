@@ -2,9 +2,12 @@ import { IconPointFilled } from '@tabler/icons-react';
 import CreateCategory from './CreateCategory';
 import { useState } from 'react';
 
-const Categories = ({ categories, setCategory }) => {
+const Categories = ({ categories, setCategory, selectedCat }) => {
+	console.log(
+		'🚀 ~ file: Categories.jsx:6 ~ Categories ~ selectedCat:',
+		selectedCat
+	);
 	const [visible, setVisible] = useState(false);
-
 	const handleClick = () => setVisible(true);
 
 	return (
@@ -12,7 +15,9 @@ const Categories = ({ categories, setCategory }) => {
 			<div className='bg-white w-full p-2 shadow-lg rounded-lg max-h-[600px] overflow-y-auto'>
 				<div className='my-2'>
 					<button
-						className='p-2 w-full text-white rounded-md bg-accent font-kanit text-md font-semibold'
+						className={`${
+							visible && 'bg-gray'
+						} p-2 w-full text-white rounded-md bg-accent font-kanit text-md font-semibold`}
 						onClick={handleClick}
 					>
 						+ Agregar sección
@@ -21,8 +26,11 @@ const Categories = ({ categories, setCategory }) => {
 				{categories?.map((category, i) => (
 					<div
 						key={i}
-						className='flex justify-start p-3 hover:bg-gray-100 hover:cursor-default rounded-lg'
-						onClick={() => setCategory(category.name)}
+						className={`flex justify-start p-2 my-1 hover:bg-gray-100 hover:cursor-default rounded-lg ${
+							selectedCat.category_name === category.category_name &&
+							'bg-gray-light'
+						}`}
+						onClick={() => setCategory(category)}
 					>
 						<IconPointFilled />
 						<h4 className='text-md font-kanit text-gray font-semibold ml-3'>

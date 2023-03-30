@@ -60,7 +60,7 @@ const CreateCategory = ({ close }) => {
 	}
 
 	return (
-		<main className='bg-white h-full w-full shadow-lg md:rounded-lg my-1 p-5 md:max-w-2xl md:h-auto md:min-h-[500px] relative'>
+		<main className='bg-white h-full w-full shadow-lg rounded-lg my-1 p-5 md:max-w-2xl md:h-auto md:min-h-[500px] relative'>
 			<IconX onClick={handleClick} />
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<h3 className='text-lg font-kanit font-semibold text-dark-gray my-2'>
