@@ -1,12 +1,15 @@
 import ProductTableItem from './ProductTableItem';
-import { useModalStore } from '../../../../store/modalStore';
 import { useEffect, useState } from 'react';
 import { IconX } from '@tabler/icons-react';
+import CreateProduct from './CreateProduct';
 
 const ProductTable = ({ products, category, setCategory }) => {
-	const updateVisibility = useModalStore(state => state.updateVisibility);
-	const updateModalType = useModalStore(state => state.updateModalType);
+	console.log(
+		'🚀 ~ file: ProductTable.jsx:7 ~ ProductTable ~ products:',
+		products
+	);
 	const [renderProducts, setRenderProducts] = useState([...products]);
+	const [visible, setVisible] = useState(false);
 
 	const EditProduct = id => {
 		console.log('Edit Product', id);
@@ -23,11 +26,7 @@ const ProductTable = ({ products, category, setCategory }) => {
 		Edit: EditProduct,
 		Delete: DeleteProduct,
 	};
-
-	const handleCreate = () => {
-		updateVisibility(true);
-		updateModalType({ newModalType: 'create-product', newJustify: 'center' });
-	};
+	const handleShow = () => setVisible(true);
 
 	useEffect(() => {
 		setRenderProducts(
@@ -36,8 +35,8 @@ const ProductTable = ({ products, category, setCategory }) => {
 	}, [category]);
 
 	return (
-		<div className='rounded-lg bg-white p-5 shadow-lg'>
-			<div className='flex justify-between items-center mb-1 border-b border-gray-light p-1'>
+		<main className='rounded-lg bg-white p-5 shadow-lg relative'>
+			<div className='md:flex md:justify-between md:items-center mb-1 border-b border-gray-light p-1'>
 				<article className='flex items-center gap-2 bg-lightGrey p-2 rounded-lg'>
 					{category.category_name && (
 						<IconX
@@ -49,14 +48,16 @@ const ProductTable = ({ products, category, setCategory }) => {
 						{category.category_name ?? 'Todos los productos'}
 					</h3>
 				</article>
-				<button
-					className='p-2 text-white rounded-md bg-accent font-kanit text-md font-semibold'
-					onClick={handleCreate}
-				>
-					+ Agregar
-				</button>
+				{category.category_id && (
+					<button
+						className='p-2 w-full md:w-auto text-white rounded-md bg-accent font-kanit text-md font-semibold'
+						onClick={handleShow}
+					>
+						+ Agregar
+					</button>
+				)}
 			</div>
-			<div className='overflow-auto lg:overflow-visible w-full'>
+			<div className='w-full'>
 				{products.length ? (
 					<table className=' text-gray border-separate space-y-6 text-sm w-full'>
 						<thead className='bg-lightGrey text-gray'>
@@ -69,7 +70,7 @@ const ProductTable = ({ products, category, setCategory }) => {
 							</tr>
 						</thead>
 						<tbody>
-							{renderProducts.map(product => (
+							{products.map(product => (
 								<ProductTableItem
 									key={product.id}
 									product={product}
@@ -86,7 +87,15 @@ const ProductTable = ({ products, category, setCategory }) => {
 					</article>
 				)}
 			</div>
-		</div>
+			{visible && (
+				<section className='lg:z-5 lg:w-[30vw] lg:top-5 lg:absolute lg:right-5 lg:ml-5 sm:h-[600px]'>
+					<CreateProduct
+						closeFn={() => setVisible(false)}
+						category={category}
+					/>
+				</section>
+			)}
+		</main>
 	);
 };
 

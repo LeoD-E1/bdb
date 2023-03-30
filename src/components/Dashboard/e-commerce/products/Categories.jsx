@@ -3,10 +3,6 @@ import CreateCategory from './CreateCategory';
 import { useState } from 'react';
 
 const Categories = ({ categories, setCategory, selectedCat }) => {
-	console.log(
-		'🚀 ~ file: Categories.jsx:6 ~ Categories ~ selectedCat:',
-		selectedCat
-	);
 	const [visible, setVisible] = useState(false);
 	const handleClick = () => setVisible(true);
 
@@ -40,7 +36,7 @@ const Categories = ({ categories, setCategory, selectedCat }) => {
 				))}
 			</div>
 			{visible && (
-				<section className='lg:z-20 lg:w-[30vw] lg:top-0 lg:absolute lg:left-[100%] lg:ml-5 sm:h-[600px]'>
+				<section className='lg:z-10 lg:w-[30vw] lg:top-0 lg:absolute lg:left-[100%] lg:ml-5 sm:h-[600px]'>
 					<CreateCategory close={() => setVisible(false)} />
 				</section>
 			)}

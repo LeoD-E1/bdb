@@ -1,4 +1,3 @@
-import React from 'react';
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -22,10 +21,10 @@ const ProductTableItem = ({ product, actions }) => {
 						<img
 							className='rounded-full h-12 w-12   object-cover'
 							src={product.image_url}
-							alt={product.name}
+							alt={product.product_name}
 						/>
 						<div className='ml-3'>
-							<div className='font-semibold'>{product.name}</div>
+							<div className='font-semibold'>{product.product_name}</div>
 						</div>
 					</div>
 				</td>
