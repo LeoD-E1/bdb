@@ -2,19 +2,29 @@ const { VITE_APP_BASE_URL } = import.meta.env;
 
 export const createProduct = async ({
 	category_id,
+	image_url = {},
 	price,
 	product_name,
+	product_description = '',
 	branch_id,
 	token,
 }) => {
 	try {
+		const product = new FormData();
+		product.append('category_id', category_id);
+		product.append('price', price);
+		product.append('product_name', product_name);
+		product.append('description', product_description);
+		product.append('imageObj', image_url);
+		product.append('branch_id', branch_id);
+
+		console.log('🚀 ~ file: productService.js:23 ~ product:', product);
 		const response = await fetch(`${VITE_APP_BASE_URL}/product`, {
 			method: 'POST',
 			headers: {
-				'content-type': 'application/json',
 				Authorization: 'Bearer ' + token,
 			},
-			body: JSON.stringify({ category_id, branch_id, price, product_name }),
+			body: product,
 		});
 		return response.json();
 	} catch (error) {

@@ -7,12 +7,6 @@ const ProductTableItem = ({ product, actions }) => {
 		{ name: 'Delete', icon: faTrashCan },
 	];
 
-	const color = {
-		low: 'bg-yellow',
-		no: 'bg-red',
-		many: 'bg-green',
-	};
-
 	return (
 		<>
 			<tr className='bg-lightGrey'>
@@ -29,16 +23,6 @@ const ProductTableItem = ({ product, actions }) => {
 					</div>
 				</td>
 				<td className='p-3'>{product.price}</td>
-				<td className='p-3 font-bold'>{product.stock}</td>
-				<td className='p-3'>
-					<span
-						className={`${
-							color[product.status]
-						} text-white text-sm rounded-md px-1`}
-					>
-						{product.status} stock
-					</span>
-				</td>
 				<td className='p-3'>
 					<div className='flex flex-col justify-center items-center md:flex-row'>
 						{AbailableActions.map((action, i) => (

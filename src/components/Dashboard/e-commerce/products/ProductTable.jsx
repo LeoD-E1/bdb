@@ -4,11 +4,7 @@ import { IconX } from '@tabler/icons-react';
 import CreateProduct from './CreateProduct';
 
 const ProductTable = ({ products, category, setCategory }) => {
-	console.log(
-		'🚀 ~ file: ProductTable.jsx:7 ~ ProductTable ~ products:',
-		products
-	);
-	const [renderProducts, setRenderProducts] = useState([...products]);
+	const [renderProducts, setRenderProducts] = useState(products);
 	const [visible, setVisible] = useState(false);
 
 	const EditProduct = id => {
@@ -28,9 +24,11 @@ const ProductTable = ({ products, category, setCategory }) => {
 	};
 	const handleShow = () => setVisible(true);
 
+	const arrayToRender = category.category_id ? renderProducts : products;
+
 	useEffect(() => {
 		setRenderProducts(
-			renderProducts.filter(item => item.category_id === category.category_id)
+			products.filter(item => item.category_id === category.category_id)
 		);
 	}, [category]);
 
@@ -58,21 +56,19 @@ const ProductTable = ({ products, category, setCategory }) => {
 				)}
 			</div>
 			<div className='w-full'>
-				{products.length ? (
+				{arrayToRender.length ? (
 					<table className=' text-gray border-separate space-y-6 text-sm w-full'>
 						<thead className='bg-lightGrey text-gray'>
 							<tr>
-								<th className='p-3'>Product</th>
-								<th className='p-3'>Pricing</th>
-								<th className='p-3'>Quantity</th>
-								<th className='p-3'>Status</th>
-								<th className='p-3'>Actions</th>
+								<th className='p-3'>Producto</th>
+								<th className='p-3'>Precio</th>
+								<th className='p-3'>Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
-							{products.map(product => (
+							{arrayToRender.map(product => (
 								<ProductTableItem
-									key={product.id}
+									key={product.id + '-' + product.product_name}
 									product={product}
 									actions={actions}
 								/>
@@ -88,7 +84,7 @@ const ProductTable = ({ products, category, setCategory }) => {
 				)}
 			</div>
 			{visible && (
-				<section className='lg:z-5 lg:w-[30vw] lg:top-5 lg:absolute lg:right-5 lg:ml-5 sm:h-[600px]'>
+				<section className='lg:z-5 lg:w-[50vw] lg:top-5 lg:absolute lg:right-5 lg:ml-5 sm:h-[600px]'>
 					<CreateProduct
 						closeFn={() => setVisible(false)}
 						category={category}
