@@ -23,6 +23,7 @@ const ProductTableItem = ({ product, actions }) => {
 						</div>
 					</div>
 				</td>
+				<td className='p-3 text-sm'>{product.description}</td>
 				<td className='p-3'>{product.price}</td>
 				<td className='p-3'>
 					<div className='flex flex-col justify-center items-center md:flex-row'>

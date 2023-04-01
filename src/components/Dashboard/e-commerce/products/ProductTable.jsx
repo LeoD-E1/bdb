@@ -59,10 +59,11 @@ const ProductTable = ({ products, category, setCategory }) => {
 			</div>
 			<div className='w-full'>
 				{arrayToRender.length ? (
-					<table className=' text-gray border-separate space-y-6 text-sm w-full'>
+					<table className=' text-gray border-separate space-y-6 text-sm w-full text-center'>
 						<thead className='bg-lightGrey text-gray'>
 							<tr>
 								<th className='p-3'>Producto</th>
+								<th className='p-3'>Descripción</th>
 								<th className='p-3'>Precio</th>
 								<th className='p-3'>Acciones</th>
 							</tr>
