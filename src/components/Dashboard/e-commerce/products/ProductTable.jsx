@@ -4,7 +4,9 @@ import { IconX } from '@tabler/icons-react';
 import CreateProduct from './CreateProduct';
 
 const ProductTable = ({ products, category, setCategory }) => {
-	const [renderProducts, setRenderProducts] = useState(products);
+	const [renderProducts, setRenderProducts] = useState(() => {
+		return products.filter(item => item.category_id === category.category_id);
+	});
 	const [visible, setVisible] = useState(false);
 
 	const EditProduct = id => {
@@ -30,7 +32,7 @@ const ProductTable = ({ products, category, setCategory }) => {
 		setRenderProducts(
 			products.filter(item => item.category_id === category.category_id)
 		);
-	}, [category]);
+	}, [category, products]);
 
 	return (
 		<main className='rounded-lg bg-white p-5 shadow-lg relative'>

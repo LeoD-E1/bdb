@@ -25,9 +25,9 @@ const CreateCategory = ({ close }) => {
 	];
 
 	const mutation = useMutation({
-		mutationFn: obj => createCategory(obj),
+		mutationFn: createCategory,
 		onSuccess: () => {
-			queryClient.invalidateQueries('branch');
+			queryClient.invalidateQueries({ queryKey: ['branch'] });
 			close();
 		},
 	});

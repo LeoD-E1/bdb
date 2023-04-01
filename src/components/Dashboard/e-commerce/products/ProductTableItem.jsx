@@ -1,5 +1,6 @@
 import { faPenToSquare, faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import noImage from '../../../../assets/images/no-image.png';
 
 const ProductTableItem = ({ product, actions }) => {
 	const AbailableActions = [
@@ -14,7 +15,7 @@ const ProductTableItem = ({ product, actions }) => {
 					<div className='flex items-center'>
 						<img
 							className='rounded-full h-12 w-12   object-cover'
-							src={product.image_url}
+							src={product.image_url ?? noImage}
 							alt={product.product_name}
 						/>
 						<div className='ml-3'>
@@ -29,7 +30,7 @@ const ProductTableItem = ({ product, actions }) => {
 							<span
 								key={i}
 								className='text-gray-400 mr-2 hover:bg-gray-light p-2 rounded-full'
-								onClick={() => actions[action.name](product.id)}
+								onClick={() => actions[action.name](product.product_id)}
 							>
 								<FontAwesomeIcon icon={action.icon} className='w-4 h-4' />
 							</span>

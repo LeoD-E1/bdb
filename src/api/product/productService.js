@@ -18,7 +18,6 @@ export const createProduct = async ({
 		product.append('imageObj', image_url);
 		product.append('branch_id', branch_id);
 
-		console.log('🚀 ~ file: productService.js:23 ~ product:', product);
 		const response = await fetch(`${VITE_APP_BASE_URL}/product`, {
 			method: 'POST',
 			headers: {

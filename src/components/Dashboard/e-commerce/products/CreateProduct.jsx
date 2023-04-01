@@ -43,9 +43,9 @@ const CreateProduct = ({ closeFn, category }) => {
 	];
 
 	const mutation = useMutation({
-		mutationFn: obj => createProduct(obj),
+		mutationFn: createProduct,
 		onSuccess: () => {
-			queryClient.invalidateQueries('branch');
+			queryClient.invalidateQueries({ queryKey: ['branch'] });
 			closeFn();
 		},
 	});
