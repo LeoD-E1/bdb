@@ -30,3 +30,10 @@ export const createProduct = async ({
 		console.error(error);
 	}
 };
+
+export const editProduct = async product => {
+	console.log(
+		'🚀 ~ file: productService.js:35 ~ editProduct ~ product:',
+		product
+	);
+};

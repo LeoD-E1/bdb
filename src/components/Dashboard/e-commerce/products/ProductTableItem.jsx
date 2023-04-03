@@ -31,7 +31,7 @@ const ProductTableItem = ({ product, actions }) => {
 							<span
 								key={i}
 								className='text-gray-400 mr-2 hover:bg-gray-light p-2 rounded-full'
-								onClick={() => actions[action.name](product.product_id)}
+								onClick={() => actions[action.name](product)}
 							>
 								<FontAwesomeIcon icon={action.icon} className='w-4 h-4' />
 							</span>

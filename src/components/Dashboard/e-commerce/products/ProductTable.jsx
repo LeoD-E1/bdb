@@ -2,15 +2,23 @@ import ProductTableItem from './ProductTableItem';
 import { useEffect, useState } from 'react';
 import { IconX } from '@tabler/icons-react';
 import CreateProduct from './CreateProduct';
+import { useModalStore } from '../../../../store/modalStore';
 
 const ProductTable = ({ products, category, setCategory }) => {
+	const showModal = useModalStore(state => state.updateVisibility);
+	const updateModalType = useModalStore(state => state.updateModalType);
 	const [renderProducts, setRenderProducts] = useState(() => {
 		return products.filter(item => item.category_id === category.category_id);
 	});
 	const [visible, setVisible] = useState(false);
 
-	const EditProduct = id => {
-		console.log('Edit Product', id);
+	const EditProduct = product => {
+		showModal(true);
+		updateModalType({
+			newModalType: 'edit-product',
+			newJustify: 'center',
+			newArgs: product,
+		});
 	};
 	const DeleteProduct = id => {
 		console.log('Delete Product', id);

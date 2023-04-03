@@ -4,6 +4,7 @@ const initialState = {
 	modalType: 'create-product',
 	justify: 'start',
 	items: 'center',
+	args: {},
 };
 
 export const useModalStore = create(set => ({
@@ -20,6 +21,7 @@ export const useModalStore = create(set => ({
 		newModalType,
 		newJustify = 'start',
 		newItems = 'center',
+		newArgs = {},
 	}) =>
 		set(state => ({
 			...state,
@@ -28,6 +30,7 @@ export const useModalStore = create(set => ({
 				modalType: newModalType,
 				justify: newJustify,
 				items: newItems,
+				args: newArgs,
 			},
 		})),
 }));

@@ -51,6 +51,7 @@ function App() {
 						modalType={currentModal.modalType}
 						justify={currentModal.justify}
 						items={currentModal.items}
+						args={currentModal.args}
 					/>
 				)}
 				<Routes>
