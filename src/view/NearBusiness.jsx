@@ -10,7 +10,7 @@ const NearBusiness = () => {
 	const longitude = address?.geometry.location.lng;
 
 	const { data, loading, error } = useFetch(
-		`${VITE_APP_BASE_URL}/business?lat=${latitude}&lng=${longitude}`
+		`${VITE_APP_BASE_URL}/branch?lat=${latitude}&lng=${longitude}`
 	);
 
 	if (loading) {
@@ -34,12 +34,12 @@ const NearBusiness = () => {
 			<h2 className='text-3xl py-5'>Bocados de barrio cerca</h2>
 			{data ? (
 				<section className='grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-2 '>
-					{data.map(business => (
+					{data.map(branch => (
 						<Link
-							to={`/store?name=${business.business_name}&lat=${latitude}&lng=${longitude}`}
-							key={business.business_id + business.business_name}
+							to={`/store?name=${branch.business.business_name}&lat=${latitude}&lng=${longitude}`}
+							key={branch.branch_id + branch.business.business_name}
 						>
-							<BusinessCard businessItem={business} />
+							<BusinessCard businessItem={branch} />
 						</Link>
 					))}
 				</section>

@@ -10,6 +10,7 @@ import Modal from './components/Content/Modal';
 import { useEffect } from 'react';
 import Landing from './view/Landing';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Store from './view/Store';
 
 function App() {
 	const queryClient = new QueryClient();
@@ -64,6 +65,7 @@ function App() {
 					<Route onUpdate={onUpdateFn} path='/home' element={<Home />} />
 					<Route onUpdate={onUpdateFn} path='/login' element={<Login />} />
 					<Route onUpdate={onUpdateFn} path='/signup' element={<Signup />} />
+					<Route onUpdate={onUpdateFn} path='/store' element={<Store />} />
 					<Route
 						onUpdate={onUpdateFn}
 						path='/success-sub'

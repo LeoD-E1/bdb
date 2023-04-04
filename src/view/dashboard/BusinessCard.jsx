@@ -6,7 +6,7 @@ const BusinessCard = ({ businessItem }) => {
 	return (
 		<main className='max-h-96 rounded-xl hover:shadow-xl overflow-hidden relative'>
 			<div className='absolute z-5 h-full w-full justify-end flex flex-col'>
-				<article className='p-4 rounded-xl w-full hover:shadow-xl backdrop-blur-sm bg-gray-700/30 self-end'>
+				<article className='p-4 rounded-b-xl w-full hover:shadow-xl backdrop-blur-sm bg-gray-700/30 self-end'>
 					<h1 className='text-white text-lg font-bold md:text-2xl'>
 						{businessItem.business_name ?? businessItem.branch_address}
 					</h1>
