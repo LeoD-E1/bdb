@@ -65,7 +65,7 @@ const Sidebar = ({ open, onClose }) => {
 		>
 			<div className=' relative flex flex-col justify-between items-center h-[100vh] overflow-y-auto w-full pt-5'>
 				<div className='flex items-center justify-center'>
-					<img src={logo} alt='logo-BDB' className='sm:w-14' />
+					<img src={logo} alt='logo-BDB' className='sm:w-14 w-8' />
 				</div>
 				<SideLinks items={places} open={open} pathname={pathname} />
 				<div

@@ -5,6 +5,7 @@ import { useBranchStore } from '../../../../store/branchStore';
 import { useUserStore } from '../../../../store/userStore';
 import Spinner from '../../../Spinner/Spinner';
 import CloseModalBtn from '../../../Content/CloseModalBtn';
+import noImage from '../../../../assets/images/no-image.png';
 
 const EditProduct = ({ product }) => {
 	const { handleSubmit, register } = useForm();
@@ -89,16 +90,16 @@ const EditProduct = ({ product }) => {
 			>
 				<CloseModalBtn />
 
+				<h3 className='text-lg font-kanit font-semibold text-dark-gray my-2 text-center'>
+					Editar producto
+				</h3>
 				<section>
-					<h3 className='text-lg font-kanit font-semibold text-dark-gray my-2 text-center'>
-						Editar producto
-					</h3>
 					<div className='grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 items-center'>
 						<article className=''>
 							<h4>Imagen actual</h4>
 							<div className='relative w-full h-32 bg-black hover:opacity-20 rounded-lg'>
 								<img
-									src={product.image_url}
+									src={product.image_url ?? noImage}
 									alt={product.product_name}
 									className='absolute w-full h-full object-cover'
 								/>

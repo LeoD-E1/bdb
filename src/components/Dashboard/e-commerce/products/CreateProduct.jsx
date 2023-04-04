@@ -81,46 +81,55 @@ const CreateProduct = ({ closeFn, category }) => {
 	}
 
 	return (
-		<div className='bg-white h-full w-full shadow-lg rounded-lg my-1 p-5 sm:max-w-2xl sm:h-auto sm:min-h-[500px] relative'>
+		<div className='bg-white h-full w-full shadow-lg rounded-lg p-3 my-1 sm:max-w-2xl sm:h-auto sm:min-h-[500px] relative'>
 			<IconX onClick={handleClose} />
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<h3 className='text-lg font-kanit font-semibold text-dark-gray my-2'>
-					Create Product
-				</h3>
-				<div className='grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 items-center'>
-					<article>
-						<h3 className='text-sm font-kanit font-semibold text-gray-300 '>
-							Sección
-						</h3>
-						<input
-							type='text'
-							value={category.category_name}
-							className='p-2 px-4 border outline-none border-gray-300 rounded-md hover:outline-0 focus:border-accent w-full'
-							disabled
-						/>
-					</article>
-					{fields.map((field, i) => (
-						<article
-							key={i}
-							className={`${field.fieldType === 'file' && 'col-span-2'}`}
-						>
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className='flex flex-col h-full justify-between overflow-y-auto'
+			>
+				<section>
+					<h3 className='text-lg font-kanit font-semibold text-dark-gray my-2 text-center'>
+						Create Product
+					</h3>
+					<div className='grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 items-center'>
+						<article>
 							<h3 className='text-sm font-kanit font-semibold text-gray-300 '>
-								{field.title}{' '}
-								{field.required && <span className='text-sm text-red'>*</span>}
+								Sección
 							</h3>
 							<input
-								type={field.fieldType}
-								{...register(`${field.name}`)}
-								placeholder={field.ex}
+								type='text'
+								value={category.category_name}
 								className='p-2 px-4 border outline-none border-gray-300 rounded-md hover:outline-0 focus:border-accent w-full'
+								disabled
 							/>
 						</article>
-					))}
-				</div>
-				<input
-					type='submit'
-					className='bg-accent p-3 w-full rounded-lg text-md text-white my-2'
-				/>
+						{fields.map((field, i) => (
+							<article
+								key={i}
+								className={`${field.fieldType === 'file' && 'md:col-span-2'}`}
+							>
+								<h3 className='text-sm font-kanit font-semibold text-gray-300 '>
+									{field.title}{' '}
+									{field.required && (
+										<span className='text-sm text-red'>*</span>
+									)}
+								</h3>
+								<input
+									type={field.fieldType}
+									{...register(`${field.name}`)}
+									placeholder={field.ex}
+									className='p-2 px-4 border outline-none border-gray-300 rounded-md hover:outline-0 focus:border-accent w-full'
+								/>
+							</article>
+						))}
+					</div>
+				</section>
+				<section className='w-full'>
+					<input
+						type='submit'
+						className='bg-accent p-3 w-full rounded-lg text-md text-white sm:my-3'
+					/>
+				</section>
 			</form>
 		</div>
 	);
