@@ -46,7 +46,7 @@ const ProductTable = ({ products, category, setCategory }) => {
 	}, [category, products]);
 
 	return (
-		<main className='rounded-lg bg-white p-5 shadow-lg relative overflow-auto min-h-[500px] max-h-[900px]'>
+		<main className='rounded-lg bg-white p-5 shadow-lg relative overflow-y-auto min-h-[500px] max-h-[900px]'>
 			<div className='md:flex md:justify-between md:items-center mb-1 border-b border-gray-light p-1'>
 				<article className='flex items-center gap-2 bg-lightGrey p-2 rounded-lg justify-center'>
 					{category.category_name && (
@@ -70,7 +70,7 @@ const ProductTable = ({ products, category, setCategory }) => {
 			</div>
 			<div className='w-full'>
 				{arrayToRender.length ? (
-					<table className=' text-gray border-separate space-y-6 text-sm w-full text-center min-w-[500px]'>
+					<table className=' text-gray border-separate space-y-6 text-sm w-full text-center overflow-x-auto'>
 						<thead className='bg-lightGrey text-gray'>
 							<tr>
 								{headers.map((header, i) => (

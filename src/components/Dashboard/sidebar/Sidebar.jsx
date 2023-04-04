@@ -59,13 +59,13 @@ const Sidebar = ({ open, onClose }) => {
 
 	return (
 		<div
-			className={`relative h-screen text-white bg-accent font-kanit ${
-				open ? 'w-60' : 'w-20'
+			className={`sm:relative sm:h-screen text-white bg-accent font-kanit ${
+				open ? 'w-60' : 'w-14 sm:w-20'
 			}`}
 		>
 			<div className=' relative flex flex-col justify-between items-center h-[100vh] overflow-y-auto w-full pt-5'>
 				<div className='flex items-center justify-center'>
-					<img src={logo} alt='logo-BDB' className='w-14' />
+					<img src={logo} alt='logo-BDB' className='sm:w-14' />
 				</div>
 				<SideLinks items={places} open={open} pathname={pathname} />
 				<div

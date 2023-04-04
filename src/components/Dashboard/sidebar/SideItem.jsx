@@ -5,7 +5,7 @@ const SideItem = ({ item, pathname, open }) => {
 	return (
 		<Link
 			to={item.path}
-			className={`flex items-center px-4 py-4  my-1 rounded-md hover:bg-darkBlue ${
+			className={`flex w-full items-center p-4 rounded-md hover:bg-darkBlue ${
 				item.path === pathname && 'text-green'
 			}`}
 		>
