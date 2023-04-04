@@ -82,57 +82,56 @@ const EditProduct = ({ product }) => {
 	}
 
 	return (
-		<div className='bg-white h-full w-full shadow-lg rounded-lg my-1 p-5 sm:max-w-2xl sm:h-auto sm:min-h-[500px] relative'>
-			<CloseModalBtn />
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<h3 className='text-lg font-kanit font-semibold text-dark-gray my-2'>
-					Editar producto
-				</h3>
-				<div className='grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 items-center'>
-					{/* <article>
-						<h3 className='text-sm font-kanit font-semibold text-gray-300 '>
-							Sección
-						</h3>
-						<input
-							type='text'
-							value={category.category_name}
-							className='p-2 px-4 border outline-none border-gray-300 rounded-md hover:outline-0 focus:border-accent w-full'
-							disabled
-						/>
-					</article> */}
-					<article className='w-full'>
-						<h4>Imagen actual</h4>
-						<div className='relative w-full h-32 bg-black hover:opacity-20'>
-							<img
-								src={product.image_url}
-								alt={product.product_name}
-								className='absolute w-full h-full object-cover'
-							/>
-						</div>
-					</article>
-					{fields.map((field, i) => (
-						<article
-							key={i}
-							className={`${field.fieldType === 'file' && 'col-span-2'}`}
-						>
-							<h3 className='text-sm font-kanit font-semibold text-gray-300 '>
-								{field.title}{' '}
-								{field.required && <span className='text-sm text-red'>*</span>}
-							</h3>
-							<input
-								type={field.fieldType}
-								{...register(`${field.name}`)}
-								placeholder={field.ex}
-								defaultValue={field.defaultValue}
-								className='p-2 px-4 border outline-none border-gray-300 rounded-md hover:outline-0 focus:border-accent w-full'
-							/>
+		<div className='bg-white h-full w-full shadow-lg sm:rounded-lg px-2 sm:max-w-2xl sm:h-auto sm:min-h-[500px] relative'>
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				className='flex flex-col h-full justify-between overflow-y-auto'
+			>
+				<CloseModalBtn />
+
+				<section>
+					<h3 className='text-lg font-kanit font-semibold text-dark-gray my-2 text-center'>
+						Editar producto
+					</h3>
+					<div className='grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 items-center'>
+						<article className=''>
+							<h4>Imagen actual</h4>
+							<div className='relative w-full h-32 bg-black hover:opacity-20 rounded-lg'>
+								<img
+									src={product.image_url}
+									alt={product.product_name}
+									className='absolute w-full h-full object-cover'
+								/>
+							</div>
 						</article>
-					))}
-				</div>
-				<input
-					type='submit'
-					className='bg-accent p-3 w-full rounded-lg text-md text-white my-2'
-				/>
+						{fields.map((field, i) => (
+							<article
+								key={i}
+								className={`${field.fieldType === 'file' && 'sm:col-span-2'}`}
+							>
+								<h3 className='text-sm font-kanit font-semibold text-gray-300 '>
+									{field.title}{' '}
+									{field.required && (
+										<span className='text-sm text-red'>*</span>
+									)}
+								</h3>
+								<input
+									type={field.fieldType}
+									{...register(`${field.name}`)}
+									placeholder={field.ex}
+									defaultValue={field.defaultValue}
+									className='p-2 px-4 border outline-none border-gray-300 rounded-md hover:outline-0 focus:border-accent w-full'
+								/>
+							</article>
+						))}
+					</div>
+				</section>
+				<section className='w-full'>
+					<input
+						type='submit'
+						className='bg-accent p-3 w-full rounded-lg text-md text-white sm:my-3'
+					/>
+				</section>
 			</form>
 		</div>
 	);

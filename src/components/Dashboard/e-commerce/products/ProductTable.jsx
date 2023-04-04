@@ -7,9 +7,7 @@ import { useModalStore } from '../../../../store/modalStore';
 const ProductTable = ({ products, category, setCategory }) => {
 	const showModal = useModalStore(state => state.updateVisibility);
 	const updateModalType = useModalStore(state => state.updateModalType);
-	const [renderProducts, setRenderProducts] = useState(() => {
-		return products.filter(item => item.category_id === category.category_id);
-	});
+	const [renderProducts, setRenderProducts] = useState();
 	const [visible, setVisible] = useState(false);
 
 	const EditProduct = product => {
@@ -17,9 +15,14 @@ const ProductTable = ({ products, category, setCategory }) => {
 		updateModalType({
 			newModalType: 'edit-product',
 			newJustify: 'center',
-			newArgs: product,
+			newArgs: {
+				product,
+			},
 		});
 	};
+
+	const headers = ['Producto', 'Descripción', 'Precio', 'Acciones'];
+
 	const DeleteProduct = id => {
 		console.log('Delete Product', id);
 	};
@@ -43,9 +46,9 @@ const ProductTable = ({ products, category, setCategory }) => {
 	}, [category, products]);
 
 	return (
-		<main className='rounded-lg bg-white p-5 shadow-lg relative'>
+		<main className='rounded-lg bg-white p-5 shadow-lg relative overflow-auto min-h-[500px] max-h-[900px]'>
 			<div className='md:flex md:justify-between md:items-center mb-1 border-b border-gray-light p-1'>
-				<article className='flex items-center gap-2 bg-lightGrey p-2 rounded-lg'>
+				<article className='flex items-center gap-2 bg-lightGrey p-2 rounded-lg justify-center'>
 					{category.category_name && (
 						<IconX
 							className='text-gray hover:text-black hover:bg-white rounded-full'
@@ -58,7 +61,7 @@ const ProductTable = ({ products, category, setCategory }) => {
 				</article>
 				{category.category_id && (
 					<button
-						className='p-2 w-full md:w-auto text-white rounded-md bg-accent font-kanit text-md font-semibold'
+						className='p-2 w-full md:w-auto text-white my-1 rounded-md bg-accent font-kanit text-md font-semibold'
 						onClick={handleShow}
 					>
 						+ Agregar
@@ -67,13 +70,17 @@ const ProductTable = ({ products, category, setCategory }) => {
 			</div>
 			<div className='w-full'>
 				{arrayToRender.length ? (
-					<table className=' text-gray border-separate space-y-6 text-sm w-full text-center'>
+					<table className=' text-gray border-separate space-y-6 text-sm w-full text-center min-w-[500px]'>
 						<thead className='bg-lightGrey text-gray'>
 							<tr>
-								<th className='p-3'>Producto</th>
-								<th className='p-3'>Descripción</th>
-								<th className='p-3'>Precio</th>
-								<th className='p-3'>Acciones</th>
+								{headers.map((header, i) => (
+									<th
+										key={`${header}-${i}`}
+										className='p-3 font-semibold text-accent'
+									>
+										{header}
+									</th>
+								))}
 							</tr>
 						</thead>
 						<tbody>

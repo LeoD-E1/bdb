@@ -8,7 +8,7 @@ import ModalAddresses from './ModalAddresses';
 const Modal = ({ modalType, justify = 'start', items = 'center', args }) => {
 	const modals = {
 		'create-product': <CreateProduct />,
-		'edit-product': <EditProduct product={args} />,
+		'edit-product': <EditProduct product={args.product} />,
 		'create-category': <CreateCategory />,
 		'bars-menu': <BarsMenu />,
 		'user-addresses': <ModalAddresses />,
