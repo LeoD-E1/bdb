@@ -65,7 +65,11 @@ function App() {
 					<Route onUpdate={onUpdateFn} path='/home' element={<Home />} />
 					<Route onUpdate={onUpdateFn} path='/login' element={<Login />} />
 					<Route onUpdate={onUpdateFn} path='/signup' element={<Signup />} />
-					<Route onUpdate={onUpdateFn} path='/store' element={<Store />} />
+					<Route
+						onUpdate={onUpdateFn}
+						path='/store/:business_name/:branch_id'
+						element={<Store />}
+					/>
 					<Route
 						onUpdate={onUpdateFn}
 						path='/success-sub'

@@ -30,7 +30,7 @@ const SelectBusiness = () => {
 		try {
 			setIsLoading(true);
 			selectBusiness(businessItem);
-			await getBranchById(businessItem.branch[0].branch_id);
+			await getBranchById({ branchId: businessItem.branch[0].branch_id });
 			selectBranch(businessItem.branch[0]);
 			navigate(
 				`/business/${businessItem.business_id}/branch/${businessItem.branch[0].branch_id}/dashboard`

@@ -36,7 +36,7 @@ const NearBusiness = () => {
 				<section className='grid gap-5 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 p-2 '>
 					{data.map(branch => (
 						<Link
-							to={`/store?name=${branch.business.business_name}&lat=${latitude}&lng=${longitude}`}
+							to={`/store/${branch.business.business_name}/${branch.branch_id}`}
 							key={branch.branch_id + branch.business.business_name}
 						>
 							<BusinessCard businessItem={branch} />
