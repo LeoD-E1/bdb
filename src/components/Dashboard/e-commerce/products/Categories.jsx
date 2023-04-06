@@ -1,6 +1,6 @@
-import { IconPointFilled } from '@tabler/icons-react';
 import CreateCategory from './CreateCategory';
 import { useState } from 'react';
+import CategoryList from '../../../Content/category/CategoryList';
 
 const Categories = ({ categories, setCategory, selectedCat }) => {
 	const [visible, setVisible] = useState(false);
@@ -19,21 +19,12 @@ const Categories = ({ categories, setCategory, selectedCat }) => {
 						+ Agregar sección
 					</button>
 				</div>
-				{categories?.map((category, i) => (
-					<div
-						key={i}
-						className={`flex justify-start p-2 my-1 hover:bg-gray-100 hover:cursor-default rounded-lg ${
-							selectedCat.category_name === category.category_name &&
-							'bg-gray-light'
-						}`}
-						onClick={() => setCategory(category)}
-					>
-						<IconPointFilled />
-						<h4 className='text-md font-kanit text-gray font-semibold ml-3'>
-							{category.category_name}
-						</h4>
-					</div>
-				))}
+
+				<CategoryList
+					categories={categories}
+					setCategory={setCategory}
+					selectedCategory={selectedCat}
+				/>
 			</div>
 			{visible && (
 				<section className='lg:z-10 lg:w-[30vw] lg:top-0 lg:absolute lg:left-[100%] lg:ml-5 sm:h-[600px]'>
