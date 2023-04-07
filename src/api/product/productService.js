@@ -2,10 +2,10 @@ const { VITE_APP_BASE_URL } = import.meta.env;
 
 export const createProduct = async ({
 	category_id,
-	image_url = {},
+	image_url,
 	price,
 	product_name,
-	product_description = '',
+	product_description,
 	branch_id,
 	token,
 }) => {
@@ -14,8 +14,8 @@ export const createProduct = async ({
 		product.append('category_id', category_id);
 		product.append('price', price);
 		product.append('product_name', product_name);
-		product.append('description', product_description);
-		product.append('imageObj', image_url);
+		product_description && product.append('description', product_description);
+		image_url && product.append('imageObj', image_url);
 		product.append('branch_id', branch_id);
 
 		const response = await fetch(`${VITE_APP_BASE_URL}/product`, {
