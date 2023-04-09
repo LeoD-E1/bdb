@@ -1,15 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { editProduct } from '../../../../api/product/productService';
-import { useBranchStore } from '../../../../store/branchStore';
+import { updateProduct } from '../../../../api/product/productService';
 import { useUserStore } from '../../../../store/userStore';
 import Spinner from '../../../Spinner/Spinner';
 import CloseModalBtn from '../../../Content/CloseModalBtn';
 import noImage from '../../../../assets/images/no-image.png';
+import { useState } from 'react';
 
 const EditProduct = ({ product }) => {
 	const { handleSubmit, register } = useForm();
-	const branch = useBranchStore(state => state.selectedBranch);
+	const [changedFields, setChangedFields] = useState({});
+	const [image, setImage] = useState(null);
 	const token = useUserStore(state => state.token);
 	const queryClient = useQueryClient();
 	const fields = [
@@ -47,23 +48,38 @@ const EditProduct = ({ product }) => {
 		},
 	];
 
+	const handleChange = ({ target }) => {
+		setChangedFields({
+			...changedFields,
+			[target.name]: target.value,
+		});
+	};
+
 	const mutation = useMutation({
-		mutationFn: editProduct,
+		mutationFn: updateProduct,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['branch'] });
 		},
 	});
 
 	const onSubmit = data => {
+		const imageObj = data.product_image[0];
+		const fieldsToUpdate = image
+			? { ...changedFields, imageObj }
+			: changedFields;
+
 		mutation.mutate({
-			category_id: product.category_id,
-			image_url: data.product_image[0],
-			price: data.price,
-			product_name: data.product_name,
-			product_description: data.product_description,
-			branch_id: branch.branch_id,
+			product_id: product.product_id,
+			fields: fieldsToUpdate,
 			token,
 		});
+	};
+
+	const imgToDisplay = image ?? product.image_url;
+
+	const onImageChange = element => {
+		const [img] = element.target.files;
+		setImage(URL.createObjectURL(img));
 	};
 
 	if (mutation.isLoading) {
@@ -99,8 +115,8 @@ const EditProduct = ({ product }) => {
 							<h4>Imagen actual</h4>
 							<div className='relative w-full h-32 bg-black hover:opacity-20 rounded-lg'>
 								<img
-									src={product.image_url ?? noImage}
-									alt={product.product_name}
+									src={imgToDisplay ?? noImage}
+									alt={product.product_name + 'image'}
 									className='absolute w-full h-full object-cover'
 								/>
 							</div>
@@ -121,6 +137,9 @@ const EditProduct = ({ product }) => {
 									{...register(`${field.name}`)}
 									placeholder={field.ex}
 									defaultValue={field.defaultValue}
+									onChange={
+										field.fieldType === 'file' ? onImageChange : handleChange
+									}
 									className='p-2 px-4 border outline-none border-gray-300 rounded-md hover:outline-0 focus:border-accent w-full'
 								/>
 							</article>

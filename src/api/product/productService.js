@@ -31,9 +31,24 @@ export const createProduct = async ({
 	}
 };
 
-export const editProduct = async product => {
-	console.log(
-		'🚀 ~ file: productService.js:35 ~ editProduct ~ product:',
-		product
-	);
+export const updateProduct = async ({ product_id, fields, token }) => {
+	try {
+		const productToUpdate = new FormData();
+		Object.keys(fields).forEach(key => {
+			console.log(`${key}: ${fields[key]}`);
+			productToUpdate.append(key, fields[key]);
+		});
+
+		const resp = await fetch(`${VITE_APP_BASE_URL}/product/${product_id}`, {
+			method: 'PATCH',
+			headers: {
+				Authorization: 'Bearer ' + token,
+			},
+			body: productToUpdate,
+		});
+
+		return resp.json();
+	} catch (error) {
+		console.error(error);
+	}
 };
