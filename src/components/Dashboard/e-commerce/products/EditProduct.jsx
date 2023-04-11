@@ -6,6 +6,7 @@ import Spinner from '../../../Spinner/Spinner';
 import CloseModalBtn from '../../../Content/CloseModalBtn';
 import noImage from '../../../../assets/images/no-image.png';
 import { useState } from 'react';
+import { useModalStore } from '../../../../store/modalStore';
 
 const EditProduct = ({ product }) => {
 	const { handleSubmit, register } = useForm();
@@ -13,13 +14,13 @@ const EditProduct = ({ product }) => {
 	const [image, setImage] = useState(null);
 	const token = useUserStore(state => state.token);
 	const queryClient = useQueryClient();
+	const closeModal = useModalStore(state => state.updateVisibility);
 	const fields = [
 		{
 			title: 'Imagen del Producto',
 			name: 'product_image',
 			fieldType: 'file',
 			ex: 'Imagen del producto',
-			// defaultValue: product.image_url,
 			required: false,
 		},
 		{
@@ -32,7 +33,7 @@ const EditProduct = ({ product }) => {
 		},
 		{
 			title: 'Descripción',
-			name: 'product_description',
+			name: 'description',
 			fieldType: 'text',
 			ex: 'de pollo, con jamon y queso',
 			defaultValue: product.description,
@@ -59,6 +60,7 @@ const EditProduct = ({ product }) => {
 		mutationFn: updateProduct,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['branch'] });
+			closeModal(false);
 		},
 	});
 

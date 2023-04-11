@@ -35,7 +35,6 @@ export const updateProduct = async ({ product_id, fields, token }) => {
 	try {
 		const productToUpdate = new FormData();
 		Object.keys(fields).forEach(key => {
-			console.log(`${key}: ${fields[key]}`);
 			productToUpdate.append(key, fields[key]);
 		});
 
@@ -47,6 +46,20 @@ export const updateProduct = async ({ product_id, fields, token }) => {
 			body: productToUpdate,
 		});
 
+		return resp.json();
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const deleteProduct = async ({ product_id, token }) => {
+	try {
+		const resp = await fetch(`${VITE_APP_BASE_URL}/product/${product_id}`, {
+			method: 'DELETE',
+			headers: {
+				Authorization: 'Bearer ' + token,
+			},
+		});
 		return resp.json();
 	} catch (error) {
 		console.error(error);

@@ -10,6 +10,8 @@ const ProductTable = ({ products, category, setCategory }) => {
 	const [renderProducts, setRenderProducts] = useState();
 	const [visible, setVisible] = useState(false);
 
+	const headers = ['Producto', 'Descripción', 'Precio', 'Acciones'];
+
 	const EditProduct = product => {
 		showModal(true);
 		updateModalType({
@@ -21,10 +23,14 @@ const ProductTable = ({ products, category, setCategory }) => {
 		});
 	};
 
-	const headers = ['Producto', 'Descripción', 'Precio', 'Acciones'];
-
-	const DeleteProduct = id => {
-		console.log('Delete Product', id);
+	const DeleteProduct = product => {
+		console.log('Delete Product', product);
+		showModal(true);
+		updateModalType({
+			newModalType: 'delete-product',
+			newJustify: 'center',
+			newArgs: { product },
+		});
 	};
 
 	const unSelectCategory = () => {

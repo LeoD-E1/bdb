@@ -1,5 +1,6 @@
 import CreateCategory from '../Dashboard/e-commerce/products/CreateCategory';
 import CreateProduct from '../Dashboard/e-commerce/products/CreateProduct';
+import DeleteProduct from '../Dashboard/e-commerce/products/DeleteProduct';
 import EditProduct from '../Dashboard/e-commerce/products/EditProduct';
 import BarsMenu from '../Header/BarsMenu';
 import ChooseAddressModal from './ChooseAddressModal';
@@ -9,6 +10,7 @@ const Modal = ({ modalType, justify = 'start', items = 'center', args }) => {
 	const modals = {
 		'create-product': <CreateProduct />,
 		'edit-product': <EditProduct product={args.product} />,
+		'delete-product': <DeleteProduct product={args.product} />,
 		'create-category': <CreateCategory />,
 		'bars-menu': <BarsMenu />,
 		'user-addresses': <ModalAddresses />,
