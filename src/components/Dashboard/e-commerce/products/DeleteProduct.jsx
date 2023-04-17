@@ -14,7 +14,7 @@ const DeleteProduct = ({ product }) => {
 
 	const mutation = useMutation({
 		mutationFn: deleteProduct,
-		onSuccess: () => {
+		onSettled: () => {
 			queryClient.invalidateQueries({ queryKey: ['branch'] });
 			closeModal();
 		},

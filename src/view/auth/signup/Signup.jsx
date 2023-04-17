@@ -15,10 +15,6 @@ import { useState } from 'react';
 import Spinner from '../../../components/Spinner/Spinner';
 import Input from '../../../components/input/Input';
 import RoleCheckbox from '../../../components/Content/RoleCheckbox';
-import { useJsApiLoader, Autocomplete } from '@react-google-maps/api';
-const { VITE_APP_GOOGLE_MAPS_API_KEY } = import.meta.env;
-
-const libraries = ['places'];
 
 const Signup = () => {
 	const fields = {
@@ -106,19 +102,6 @@ const Signup = () => {
 					},
 				},
 			},
-			{
-				element: 'input',
-				type: 'text',
-				label: 'Direccion del local',
-				placeholder: 'Av. xyz 1234',
-				name: 'address',
-				constraints: {
-					required: {
-						value: true,
-						message: REQUIRED_FIELD,
-					},
-				},
-			},
 		],
 	};
 
@@ -137,10 +120,6 @@ const Signup = () => {
 
 	const [loading, setLoading] = useState(false);
 	const [roleSelected, setRoleSelected] = useState(roles[1]);
-	const { isLoaded } = useJsApiLoader({
-		googleMapsApiKey: VITE_APP_GOOGLE_MAPS_API_KEY,
-		libraries,
-	});
 	const navigate = useNavigate();
 
 	const methods = useForm();
@@ -183,14 +162,6 @@ const Signup = () => {
 			setLoading(false);
 		}
 	};
-
-	if (!isLoaded) {
-		return (
-			<div className='loader-div'>
-				<Spinner />
-			</div>
-		);
-	}
 
 	return (
 		<div className='h-screen max-h-screen w-full'>
@@ -244,17 +215,10 @@ const Signup = () => {
 									</section>
 
 									{roleSelected.id === 'OWNER' && (
-										<section className='w-full grid grid-flow-row sm:grid-cols-2 gap-2'>
-											{fields.owner.map(field => {
-												if (field.name === 'address') {
-													return (
-														<Autocomplete key={field.name}>
-															<Input key={field.name} field={field} />
-														</Autocomplete>
-													);
-												}
-												return <Input key={field.name} field={field} />;
-											})}
+										<section className='w-full grid grid-flow-row gap-2'>
+											{fields.owner.map(field => (
+												<Input key={field.name} field={field} />
+											))}
 										</section>
 									)}
 

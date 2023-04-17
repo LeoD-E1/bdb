@@ -58,7 +58,18 @@ const EditProduct = ({ product }) => {
 
 	const mutation = useMutation({
 		mutationFn: updateProduct,
-		onSuccess: () => {
+		onMutate: async newProduct => {
+			await queryClient.cancelQueries({
+				queryKey: ['branch', newProduct.product_id],
+			});
+			const previousProduct = queryClient.getQueryData([
+				'branch',
+				newProduct.product_id,
+			]);
+			queryClient.setQueryData(['todos', newProduct.product_id], newProduct);
+			return { previousProduct, newProduct };
+		},
+		onSettled: () => {
 			queryClient.invalidateQueries({ queryKey: ['branch'] });
 			closeModal(false);
 		},

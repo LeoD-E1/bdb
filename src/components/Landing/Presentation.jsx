@@ -1,9 +1,10 @@
 import { useModalStore } from '../../store/modalStore';
 import { IconMapPin } from '@tabler/icons-react';
 
-const Presentation = () => {
+const Presentation = (/* { locations } */) => {
 	const updateVisibility = useModalStore(state => state.updateVisibility);
 	const updateModalType = useModalStore(state => state.updateModalType);
+	// const userLocations = JSON.parse(locations);
 
 	const handleClick = () => {
 		window.scrollTo(0, 0);
@@ -30,6 +31,15 @@ const Presentation = () => {
 					/>
 					<IconMapPin className='absolute top-0 h-full w-9 p-0.5 bg-darkMarinBlue text-white rounded-l-md focus:outline-none focus:bg-blue-600' />
 				</div>
+				{/* <section className='bg-purple h-10 w-full'>
+					{userLocations?.map(location => (
+						<article key={location.id} className='bg-lightGrey p-2 rounded-lg'>
+							<h3 className='text-lg text-gray font-semibold'>
+								{location.category_name ?? 'Todos los productos'}
+							</h3>
+						</article>
+					))}
+				</section> */}
 			</article>
 		</div>
 	);

@@ -69,3 +69,13 @@ export const requestEmail = async ({ email, user_name }) => {
 		console.log(error);
 	}
 };
+
+// Save location
+export const saveLocation = async ({ location }) => {
+	try {
+		const resp = await fetch(`${VITE_APP_BASE_URL}/user`);
+		return resp.json();
+	} catch (error) {
+		console.log(error);
+	}
+};

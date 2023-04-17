@@ -4,19 +4,21 @@ import Footer from '../components/Footer/Footer';
 import Presentation from '../components/Landing/Presentation';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUserStore } from '../store/userStore';
 
 const Landing = () => {
 	const navigate = useNavigate();
+	const user = useUserStore(state => state.user);
 	const storedLocation = JSON.parse(localStorage.getItem('addressData'));
 
 	useEffect(() => {
-		storedLocation && navigate('/home');
+		(storedLocation ?? user.user_address) && navigate('/home');
 	});
 
 	return (
 		<>
 			<Navbar />
-			<Presentation />
+			<Presentation locations={user.user_address} />
 			<FeaturesSection />
 			<Footer />
 		</>

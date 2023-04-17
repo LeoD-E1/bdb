@@ -36,8 +36,10 @@ const MultiStepAddressForm = () => {
 		return str;
 	}
 
-	const onSubmit = direccion => {
+	const onSubmit = async direccion => {
 		localStorage.setItem('addressData', stringify(direccion));
+		// Guardar el dato en la direccion del usuario
+
 		updateVisibility(false);
 	};
 

@@ -13,6 +13,7 @@ const Products = () => {
 	const { isLoading, isError, data, error } = useQuery({
 		queryKey: ['branch'],
 		queryFn: () => getBranchById({ branchId: branch.branch_id }),
+		refetchOnWindowFocus: false,
 	});
 
 	const [selectedCategory, setSelectedCategory] = useState({});
