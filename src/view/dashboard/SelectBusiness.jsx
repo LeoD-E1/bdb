@@ -1,59 +1,49 @@
-import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Header/Navbar';
 import Spinner from '../../components/Spinner/Spinner';
 import { useUserStore } from '../../store/userStore';
 import BusinessCard from './BusinessCard';
-import { useFetch } from '../../Hook/useFetch';
 import CommonBtn from '../../components/Content/CommonBtn';
-import { useEffect, useState } from 'react';
-import { useBusinessStore } from '../../store/businessStore';
-import { getBranchById } from '../../api/branch/branchService';
-import { useBranchStore } from '../../store/branchStore';
-
-const { VITE_APP_BASE_URL } = import.meta.env;
+import { useQuery } from '@tanstack/react-query';
+import { getBusinessByUserId } from '../../api/business/businessService';
+import { useModalStore } from '../../store/modalStore';
 
 const SelectBusiness = () => {
-	const [isloading, setIsLoading] = useState(false);
-	const [hasError, setHasError] = useState(null);
-
 	const user = useUserStore(state => state.user);
-	const { data, loading, error } = useFetch(
-		`${VITE_APP_BASE_URL}/business/${user.user_id}`
-	);
-	const navigate = useNavigate();
-	const fillWithBusiness = useBusinessStore(state => state.fillWithBusiness);
-	const business = useBusinessStore(state => state.business);
-	const selectBusiness = useBusinessStore(state => state.selectBusiness);
-	const selectBranch = useBranchStore(state => state.selectBranch);
+	const updateVisibility = useModalStore(state => state.updateVisibility);
+	const updateModalType = useModalStore(state => state.updateModalType);
+	const token = useUserStore(state => state.token);
 
-	const handleSelect = async businessItem => {
-		try {
-			setIsLoading(true);
-			selectBusiness(businessItem);
-			await getBranchById({ branchId: businessItem.branch[0].branch_id });
-			selectBranch(businessItem.branch[0]);
-			navigate(
-				`/business/${businessItem.business_id}/branch/${businessItem.branch[0].branch_id}/dashboard`
-			);
-		} catch (error) {
-			setHasError(error);
-		} finally {
-			setIsLoading(false);
-		}
+	const { isLoading, isError, data, error } = useQuery({
+		queryKey: ['business'],
+		queryFn: () => getBusinessByUserId({ userId: user.user_id, token }),
+	});
+
+	// const handleSelect = async businessItem => {
+	// 	try {
+	// 		// setIsLoading(true);
+	// 		selectBusiness(businessItem);
+	// 		await getBranchById({ branchId: businessItem.branch[0].branch_id });
+	// 		selectBranch(businessItem.branch[0]);
+	// 		navigate(
+	// 			`/business/${businessItem.business_id}/branch/${businessItem.branch[0].branch_id}/dashboard`
+	// 		);
+	// 	} catch (error) {
+	// 		setHasError(error);
+	// 	} finally {
+	// 		setIsLoading(false);
+	// 	}
+	// };
+
+	const handleClick = event => {
+		updateVisibility(true);
+		updateModalType({
+			newModalType: 'create-business',
+			newJustify: 'center',
+			newItems: 'center',
+		});
 	};
 
-	useEffect(() => {
-		if (!business.length) {
-			console.log('entro aca');
-			const filteredItems =
-				data?.filter(item => {
-					return !business.includes(item);
-				}) || [];
-			fillWithBusiness(filteredItems);
-		}
-	}, [data]);
-
-	if (loading || isloading) {
+	if (isLoading) {
 		return (
 			<div className='loader-div'>
 				<Spinner />
@@ -61,10 +51,10 @@ const SelectBusiness = () => {
 		);
 	}
 
-	if (error || hasError) {
+	if (isError) {
 		return (
 			<div className='loader-div'>
-				<h1 className='text-3xl'> error </h1>
+				<h1 className='text-3xl'> {error} </h1>
 			</div>
 		);
 	}
@@ -74,13 +64,13 @@ const SelectBusiness = () => {
 			<Navbar />
 			<main className='sm:layout-container pt-20'>
 				<h1 className='text-xl mx-3 font-bold text-black'>
-					{data ? '¿Qué negocio, socio?' : 'No tenés ningun negocio pa'}
+					{data?.length ? '¿Qué negocio, socio?' : 'No tenés ningun negocio pa'}
 				</h1>
-				{data ? (
+				{data?.length ? (
 					<section className='grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 p-2 '>
 						{data.map(brand => (
 							<button
-								onClick={() => handleSelect(brand)}
+								// onClick={() => handleSelect(brand)}
 								key={`${brand.business_name} - ${brand.business_id}`}
 							>
 								<BusinessCard businessItem={brand} />
@@ -89,10 +79,7 @@ const SelectBusiness = () => {
 					</section>
 				) : (
 					<div className='flex justify-center'>
-						<CommonBtn
-							action={() => console.log('action')}
-							title='Crear Negocio'
-						/>
+						<CommonBtn action={handleClick} title='Crear Negocio' />
 					</div>
 				)}
 			</main>

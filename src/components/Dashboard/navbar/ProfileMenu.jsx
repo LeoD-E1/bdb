@@ -79,7 +79,7 @@ const ProfileMenu = ({ role = 'CUSTOMER', showModalAction }) => {
 	];
 
 	return (
-		<div className='flex justify-center my-2 w-full rounded-b-md bg-white'>
+		<div className='flex justify-center my-2 w-full rounded-b-md bg-white shadow-md'>
 			<div className='mb-3'>
 				<div className='flex flex-col'>
 					{links.map((link, index) => (

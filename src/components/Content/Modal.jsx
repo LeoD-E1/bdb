@@ -4,6 +4,7 @@ import DeleteProduct from '../Dashboard/e-commerce/products/DeleteProduct';
 import EditProduct from '../Dashboard/e-commerce/products/EditProduct';
 import BarsMenu from '../Header/BarsMenu';
 import ChooseAddressModal from './ChooseAddressModal';
+import CreateBusiness from './CreateBusiness';
 import ModalAddresses from './ModalAddresses';
 
 const Modal = ({ modalType, justify = 'start', items = 'center', args }) => {
@@ -15,6 +16,7 @@ const Modal = ({ modalType, justify = 'start', items = 'center', args }) => {
 		'bars-menu': <BarsMenu />,
 		'user-addresses': <ModalAddresses />,
 		'choose-address': <ChooseAddressModal />,
+		'create-business': <CreateBusiness />,
 	};
 
 	return (
