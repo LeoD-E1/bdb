@@ -1,4 +1,6 @@
+import { REQUIRED_FIELD } from '../../../constants/constants';
 import Input from '../../input/Input';
+import InputAutocomplete from '../../input/InputAutocomplete';
 
 const BusinessDataForm = () => {
 	const fields = [
@@ -7,23 +9,30 @@ const BusinessDataForm = () => {
 			name: 'product_name',
 			type: 'text',
 			placeholder: 'ej. Lo de Rolo',
-			required: true,
+			constraints: {
+				required: { value: true, message: REQUIRED_FIELD },
+			},
 		},
 		{
-			label: 'Descripción',
-			name: 'product_description',
+			label: 'Dirección del negocio',
+			name: 'business_address',
 			type: 'text',
-			placeholder: 'de pollo, con jamon y queso',
-			required: false,
+			placeholder: 'Av. rivadavia 17223',
+			constraints: {
+				required: { value: true, message: REQUIRED_FIELD },
+			},
 		},
 		{
-			label: 'Precio',
-			name: 'price',
-			type: 'number',
-			placeholder: '580',
-			required: true,
+			label: 'Telefono',
+			name: 'phone',
+			type: 'tel',
+			placeholder: '+541169502873',
 		},
 	];
+
+	const retrieveAddress = place => {
+		console.log(place);
+	};
 
 	return (
 		<section className='m-1'>
@@ -31,9 +40,17 @@ const BusinessDataForm = () => {
 				Crear Negocio
 			</h3>
 			<div>
-				{fields.map(field => (
-					<Input key={field.name + field.title} field={field} />
-				))}
+				{fields.map(field => {
+					return field.name === 'business_address' ? (
+						<InputAutocomplete
+							key={field.name + field.title}
+							label={true}
+							retrieveAddress={retrieveAddress}
+						/>
+					) : (
+						<Input key={field.name + field.title} field={field} />
+					);
+				})}
 			</div>
 		</section>
 	);

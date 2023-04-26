@@ -17,7 +17,7 @@ const Input = ({ field }) => {
 		<div className='flex flex-col my-3'>
 			<label className='text-sm text-black font-kanit '>
 				{field.label}
-				{required && <span className='text-sm text-gray-200'>(opcional)</span>}
+				{!required && <span className='text-sm text-gray-200'>(opcional)</span>}
 			</label>
 			<div className='relative flex items-center'>
 				<input
