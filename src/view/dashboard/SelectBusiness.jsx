@@ -1,17 +1,15 @@
-import Navbar from '../../components/Header/Navbar';
 import Spinner from '../../components/Spinner/Spinner';
 import { useUserStore } from '../../store/userStore';
 import BusinessCard from './BusinessCard';
 import CommonBtn from '../../components/Content/CommonBtn';
 import { useQuery } from '@tanstack/react-query';
 import { getBusinessByUserId } from '../../api/business/businessService';
-import { useModalStore } from '../../store/modalStore';
+import { useNavigate } from 'react-router-dom';
 
 const SelectBusiness = () => {
 	const user = useUserStore(state => state.user);
-	const updateVisibility = useModalStore(state => state.updateVisibility);
-	const updateModalType = useModalStore(state => state.updateModalType);
 	const token = useUserStore(state => state.token);
+	const navigate = useNavigate();
 
 	const { isLoading, isError, data, error } = useQuery({
 		queryKey: ['business'],
@@ -35,12 +33,7 @@ const SelectBusiness = () => {
 	// };
 
 	const handleClick = event => {
-		updateVisibility(true);
-		updateModalType({
-			newModalType: 'create-business',
-			newJustify: 'center',
-			newItems: 'center',
-		});
+		navigate('/business/create');
 	};
 
 	if (isLoading) {
@@ -61,9 +54,9 @@ const SelectBusiness = () => {
 
 	return (
 		<>
-			<Navbar />
+			{/* <Navbar /> */}
 			<main className='sm:layout-container pt-20'>
-				<h1 className='text-xl mx-3 font-bold text-black'>
+				<h1 className='text-xl mx-3 sm:mx-0 font-bold text-black'>
 					{data?.length ? '¿Qué negocio, socio?' : 'No tenés ningun negocio pa'}
 				</h1>
 				{data?.length ? (
@@ -78,7 +71,7 @@ const SelectBusiness = () => {
 						))}
 					</section>
 				) : (
-					<div className='flex justify-center'>
+					<div className='sm:mx-0 mx-3'>
 						<CommonBtn action={handleClick} title='Crear Negocio' />
 					</div>
 				)}

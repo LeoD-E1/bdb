@@ -4,12 +4,18 @@ import ConfigView from './Configurations';
 import EcommerceView from './E-commerce';
 import ProductsView from './Products';
 import SelectBusiness from './SelectBusiness';
+import CreateBusiness from '../../components/Dashboard/create-business/CreateBusiness';
 
 const Dashboard = () => {
 	const onUpdateFn = () => window.scrollTo(0, 0);
 	return (
 		<Routes>
 			<Route onUpdate={onUpdateFn} path='/' element={<SelectBusiness />} />
+			<Route
+				onUpdate={onUpdateFn}
+				path='/create'
+				element={<CreateBusiness />}
+			/>
 			<Route
 				onUpdate={onUpdateFn}
 				path='/:business_id/branch/:branch_id/dashboard'

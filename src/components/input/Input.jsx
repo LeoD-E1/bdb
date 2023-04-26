@@ -14,10 +14,10 @@ const Input = ({ field }) => {
 	const required = field.constraints?.required?.value;
 
 	return (
-		<div key={field.name} className='flex flex-col my-3'>
+		<div className='flex flex-col my-3'>
 			<label className='text-sm text-black font-kanit '>
 				{field.label}
-				{required && <span className='text-red text-md'> *</span>}
+				{required && <span className='text-sm text-gray-200'>(opcional)</span>}
 			</label>
 			<div className='relative flex items-center'>
 				<input
