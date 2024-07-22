@@ -5,7 +5,7 @@ import Spinner from '../Spinner/Spinner';
 const { VITE_APP_GOOGLE_MAPS_API_KEY } = import.meta.env;
 const libraries = ['places'];
 
-const InputAutocomplete = ({ retrieveAddress, label = false }) => {
+const InputAutocomplete = ({ retrieveAddress, label = false, placeholder }) => {
 	const { isLoaded } = useJsApiLoader({
 		googleMapsApiKey: VITE_APP_GOOGLE_MAPS_API_KEY,
 		libraries,
@@ -41,7 +41,7 @@ const InputAutocomplete = ({ retrieveAddress, label = false }) => {
 			>
 				<input
 					type='search'
-					placeholder='Busca calles, ciudades, distritos'
+					placeholder={placeholder}
 					className='w-full p-4 pr-7 mb-1 text-sm text-gray-500 font-kanit leading-tight focus:outline-none focus:border-accent border-transparent border rounded-lg  bg-lightGrey'
 				/>
 			</Autocomplete>

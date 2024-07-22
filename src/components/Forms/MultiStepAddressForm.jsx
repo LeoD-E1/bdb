@@ -10,8 +10,11 @@ const MultiStepAddressForm = () => {
 
 	const updateVisibility = useModalStore(state => state.updateVisibility);
 
-	const nextStep = direction => {
-		direction && setAddress(direction);
+	const retrieveAddress = (address) => {
+		setAddress(address)
+	}
+
+	const nextStep = () => {
 		setStep(step + 1);
 	};
 
@@ -44,7 +47,7 @@ const MultiStepAddressForm = () => {
 	};
 
 	const formByStep = {
-		1: <FindAddress nextFn={nextStep} />,
+		1: <FindAddress retrieveAddress={retrieveAddress} title='Veamos que tenes cerca' nextFn={nextFn} />,
 		2: (
 			<AddressVerification
 				nextFn={nextStep}

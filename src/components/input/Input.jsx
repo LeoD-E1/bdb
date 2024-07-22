@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 const Input = ({ field }) => {
+	console.log("🚀 ~ Input ~ field:", field)
 	const [show, setShow] = useState(false);
 	const [type, setType] = useState('password');
 	const {
@@ -17,10 +18,11 @@ const Input = ({ field }) => {
 		<div className='flex flex-col my-3'>
 			<label className='text-sm text-black font-kanit '>
 				{field.label}
-				{!required && <span className='text-sm text-gray-200'>(opcional)</span>}
+				{!required && field.type !== 'hidden' && <span className='text-sm text-gray-200'>(opcional)</span>}
 			</label>
 			<div className='relative flex items-center'>
 				<input
+				  defaultValue={field.value}
 					className='w-full p-4 pr-7 mb-1 text-sm text-gray-500 font-kanit leading-tight focus:outline-none focus:border-accent border-transparent border rounded-lg  bg-lightGrey'
 					name={field.name}
 					type={

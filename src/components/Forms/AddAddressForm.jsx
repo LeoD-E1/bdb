@@ -52,7 +52,7 @@ const AddAddressForm = ({ onSubmit, prevFn, address }) => {
 						{...register('label')}
 						type='text'
 						name='label'
-						placeholder='Ej. Casa de mama'
+						placeholder='Casa de mama'
 						className='w-full px-2 py-1 mt-1 border-b border-gray-100 rounded-sm outline-none focus:border-accent'
 					/>
 				</div>
