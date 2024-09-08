@@ -5,12 +5,14 @@ export const getBusinessByUserId = async ({ userId, token }) => {
 		const resp = await fetch(`${VITE_APP_BASE_URL}/business/${userId}`, {
 			method: 'GET',
 			headers: {
+				'Content-Type': 'application/json',
 				authorization: 'Bearer ' + token,
 			},
 		});
 		return resp.json();
 	} catch (error) {
 		console.log(error);
+		throw new Error(error);
 	}
 };
 
@@ -28,7 +30,6 @@ export const createBusiness = async ({
 		const resp = await fetch(`${VITE_APP_BASE_URL}/business`, {
 			headers: {
 				Authorization: 'Bearer ' + token,
-				content,
 				'Content-Type': 'application/json',
 			},
 			method: 'POST',
@@ -44,5 +45,6 @@ export const createBusiness = async ({
 		return resp.json();
 	} catch (error) {
 		console.log(error);
+		throw new Error(error);
 	}
 };

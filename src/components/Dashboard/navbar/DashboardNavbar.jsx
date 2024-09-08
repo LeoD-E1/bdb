@@ -7,6 +7,7 @@ import { IconCaretDown } from '@tabler/icons-react';
 
 const DashboardNavbar = () => {
 	const user = useUserStore(state => state.user);
+	console.log("🚀 ~ DashboardNavbar ~ user:", user)
 	const selectedBusiness = useBusinessStore(state => state.selectedBusiness);
 
 	const options = [

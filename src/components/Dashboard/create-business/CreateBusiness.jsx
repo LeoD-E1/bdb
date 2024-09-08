@@ -6,21 +6,23 @@ import { useState } from 'react';
 import BusinessDataForm from './BusinessDataForm';
 import FindAddress from '../../Forms/FindAddress';
 import AddressVerification from '../../Forms/AddressVerification';
+import { useNavigate } from 'react-router-dom';
+
 
 const CreateBusiness = () => {
-	const closeFn = useModalStore(state => state.updateVisibility);
 	const user = useUserStore(state => state.user);
 	const token = useUserStore(state => state.token);
 	console.log("🚀 ~ CreateBusiness ~ user:", user)
 	const [address, setAddress] = useState({});
 	const [step, setStep] = useState(1);
 	const queryClient = useQueryClient();
+	const navigate = useNavigate()
 
-	const mutation = useMutation({
+	const {mutateAsync, isLoading} = useMutation({
 		mutationFn: createBusiness,
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ['business'] });
-			closeFn(false);
+			navigate('/business')
 		},
 	});
 
@@ -42,7 +44,7 @@ const CreateBusiness = () => {
       token,
 		})
 
-		await mutation.mutateAsync({
+		await mutateAsync({
 			businessName: data.businessName,
       businessAddress: address.formatted_address,
       latitude: address.geometry.location.lat(),
@@ -50,7 +52,7 @@ const CreateBusiness = () => {
       phone: data.phone,
       userId: user.user_id,
       token,
-		});
+		})
 	};
 
 	const nextStep = () => setStep(step + 1);
@@ -69,6 +71,8 @@ const CreateBusiness = () => {
 			<BusinessDataForm submitFn={onSubmit} prevFn={prevStep} address={address} />
 		),
 	};
+
+	if (isLoading) return <div>Loading...</div>;
 
 	return (
 		<div className='h-screen w-full flex justify-center items-center relative'>

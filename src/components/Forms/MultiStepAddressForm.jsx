@@ -47,7 +47,7 @@ const MultiStepAddressForm = () => {
 	};
 
 	const formByStep = {
-		1: <FindAddress retrieveAddress={retrieveAddress} title='Veamos que tenes cerca' nextFn={nextFn} />,
+		1: <FindAddress retrieveAddress={retrieveAddress} title='Veamos que tenes cerca' nextFn={nextStep} />,
 		2: (
 			<AddressVerification
 				nextFn={nextStep}

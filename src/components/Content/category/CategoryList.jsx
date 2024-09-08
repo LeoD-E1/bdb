@@ -6,7 +6,7 @@ const CategoryList = ({ categories, setCategory, selectedCategory }) => {
 			{categories?.map((category, i) => (
 				<li
 					key={i}
-					className={`flex justify-start p-2 my-1 hover:bg-gray-100 hover:cursor-default rounded-lg ${
+					className={`flex justify-start p-2 my-1 hover:bg-gray-100 hover:cursor-default ${
 						selectedCategory?.category_name === category.category_name &&
 						'bg-gray-light'
 					}`}
