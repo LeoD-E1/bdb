@@ -1,7 +1,8 @@
 import noImage from '../../assets/images/no-image.png';
 
 const BusinessCard = ({ businessItem }) => {
-	const image = businessItem.image_url ?? noImage;
+	console.log("🚀 ~ BusinessCard ~ businessItem:", businessItem)
+	const image = businessItem.business.image_url ?? noImage;
 
 	return (
 		<main className='max-h-96 rounded-xl hover:shadow-xl overflow-hidden relative'>

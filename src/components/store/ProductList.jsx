@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 
 const ProductList = ({ products }) => {
 	return (
-		<section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full'>
+		<section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 w-full border rounded-lg p-3'>
 			{/* Product cards */}
 			{products.map(product => (
-				<Link key={product.id} className='space-x-4'>
+				<Link key={product.id} className='space-x-2'>
 					<div className='border rounded-lg p-4 shadow-md flex items-center hover:bg-[#EBEBED] bg-white'>
 						{/* Left side content */}
 						<div className='flex-grow'>
 							{/* Discount badge */}
 							{/* <span className='bg-yellow-200 text-yellow-800 font-semibold text-sm px-2 py-1 rounded-md'>
-								30% OFF
+								30% OFF	
 							</span> */}
 
 							{/* Product title */}
